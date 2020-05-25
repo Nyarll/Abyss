@@ -29,11 +29,14 @@
     <Filter Include="Game\Framework\Sound">
       <UniqueIdentifier>{96a47629-616e-4cfc-94fb-9c96fe450cb2}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Game\Framework\ECS">
-      <UniqueIdentifier>{58794e71-69b9-490a-acd4-0064ec82af03}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Game\Framework\Utility">
       <UniqueIdentifier>{ab8d554a-697d-462f-95a6-b8dcf696f022}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game\Framework\GameObject">
+      <UniqueIdentifier>{d98f48a2-29d6-4199-9ded-b2802f19b58e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game\Game\State">
+      <UniqueIdentifier>{faf24576-4836-4044-b918-d5a8fa6d207b}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -62,11 +65,20 @@
     <ClInclude Include="Game\Framework\Context\TypeID.h">
       <Filter>Game\Framework\Context</Filter>
     </ClInclude>
-    <ClInclude Include="Game\Framework\ECS\entt.hpp">
-      <Filter>Game\Framework\ECS</Filter>
-    </ClInclude>
     <ClInclude Include="Game\Framework\Utility\MathUtility.h">
       <Filter>Game\Framework\Utility</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\Framework\GameObject\Transform.h">
+      <Filter>Game\Framework\GameObject</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\Framework\GameObject\Property.h">
+      <Filter>Game\Framework\GameObject</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\Framework\GameObject\GameObject.h">
+      <Filter>Game\Framework\GameObject</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\Game\State\IState.h">
+      <Filter>Game\Game\State</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

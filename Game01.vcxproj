@@ -170,12 +170,15 @@
     <ClInclude Include="Game\Common\StepTimer.h" />
     <ClInclude Include="Game\Framework\Context\GameContext.h" />
     <ClInclude Include="Game\Framework\Context\TypeID.h" />
-    <ClInclude Include="Game\Framework\ECS\entt.hpp" />
+    <ClInclude Include="Game\Framework\GameObject\GameObject.h" />
+    <ClInclude Include="Game\Framework\GameObject\Property.h" />
+    <ClInclude Include="Game\Framework\GameObject\Transform.h" />
     <ClInclude Include="Game\Framework\Json\JsonImport.h" />
     <ClInclude Include="Game\Framework\Json\picojson.h" />
     <ClInclude Include="Game\Framework\Sound\Adx2Le.h" />
     <ClInclude Include="Game\Framework\Utility\MathUtility.h" />
     <ClInclude Include="Game\Game\Game.h" />
+    <ClInclude Include="Game\Game\State\IState.h" />
     <ClInclude Include="pch.h" />
   </ItemGroup>
   <ItemGroup>

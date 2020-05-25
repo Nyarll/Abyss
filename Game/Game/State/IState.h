@@ -5,17 +5,25 @@
 // <author			: Nyarll>
 // <GitHub			: https://github.com/Nyarll >
 
-#include "../../Framework/ECS/ECS.h"
-
 #ifndef ISTATE_DEFINED
 #define ISTATE_DEFINED
 
+#include <entt.hpp>
+
 // <State Interface>
-class IState : public ECS::Registry
+class IState
 {
+protected:
+	entt::DefaultRegistry m_registry;
+
 public:
 	IState() {};
 	virtual ~IState() = default;
+
+	virtual void Initialize() = 0;	// <‰Šú‰»>
+
+	virtual void Update() = 0;		// <XV>
+	virtual void Render() = 0;		// <•`‰æ>
 };
 
 #endif
