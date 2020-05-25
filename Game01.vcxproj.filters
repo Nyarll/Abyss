@@ -1,0 +1,55 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Assets">
+      <UniqueIdentifier>1e912272-5a0f-4e10-848a-ab76f7da86a2</UniqueIdentifier>
+      <Extensions>ico;cur;bmp;dds;dlg;fbx;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tga;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    </Filter>
+    <Filter Include="Game">
+      <UniqueIdentifier>bef4aad6-c75b-427a-aea4-1c613ed64cae</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game\Common">
+      <UniqueIdentifier>{60fcce74-c941-4b3c-a92e-be9d46f30b7e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game\Game">
+      <UniqueIdentifier>{ab9bade7-a685-41e2-915d-e93f859d4d80}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="pch.h" />
+    <ClInclude Include="Game\Common\DeviceResources.h">
+      <Filter>Game\Common</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\Common\StepTimer.h">
+      <Filter>Game\Common</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\Game\Game.h">
+      <Filter>Game\Game</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="pch.cpp" />
+    <ClCompile Include="Game\Main.cpp">
+      <Filter>Game</Filter>
+    </ClCompile>
+    <ClCompile Include="Game\Common\DeviceResources.cpp">
+      <Filter>Game\Common</Filter>
+    </ClCompile>
+    <ClCompile Include="Game\Game\Game.cpp">
+      <Filter>Game\Game</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="resource.rc" />
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="directx.ico">
+      <Filter>Assets</Filter>
+    </Image>
+  </ItemGroup>
+  <ItemGroup>
+    <Manifest Include="settings.manifest">
+      <Filter>Assets</Filter>
+    </Manifest>
+  </ItemGroup>
+</Project>
