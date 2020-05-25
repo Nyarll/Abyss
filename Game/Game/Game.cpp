@@ -12,7 +12,10 @@ using Microsoft::WRL::ComPtr;
 
 Game::Game() noexcept(false)
 {
-    m_deviceResources = std::make_unique<DX::DeviceResources>();
+	Register(std::make_unique<DX::StepTimer>());
+
+    Register(std::make_unique<DX::DeviceResources>());
+	m_deviceResources = &Get<DX::DeviceResources>();
     m_deviceResources->RegisterDeviceNotify(this);
 }
 
@@ -39,9 +42,10 @@ void Game::Initialize(HWND window, int width, int height)
 // Executes the basic game loop.
 void Game::Tick()
 {
-    m_timer.Tick([&]()
+	auto& timer = Get<DX::StepTimer>();
+    timer.Tick([&]()
     {
-        Update(m_timer);
+        Update(timer);
     });
 
     Render();
@@ -61,8 +65,9 @@ void Game::Update(DX::StepTimer const& timer)
 // Draws the scene.
 void Game::Render()
 {
+	auto& timer = Get<DX::StepTimer>();
     // Don't try to render anything before the first Update.
-    if (m_timer.GetFrameCount() == 0)
+    if (timer.GetFrameCount() == 0)
     {
         return;
     }
@@ -122,7 +127,8 @@ void Game::OnSuspending()
 
 void Game::OnResuming()
 {
-    m_timer.ResetElapsedTime();
+	auto& timer = Get<DX::StepTimer>();
+    timer.ResetElapsedTime();
 
     // TODO: Game is being power-resumed (or returning from minimize).
 }
