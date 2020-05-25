@@ -4,8 +4,6 @@
 #include <string>
 #include <cri_adx2le.h>
 
-
-
 // ADX2LEƒNƒ‰ƒX
 class Adx2Le
 {
