@@ -38,6 +38,15 @@
     <Filter Include="Game\Game\State">
       <UniqueIdentifier>{faf24576-4836-4044-b918-d5a8fa6d207b}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Game\Game\State\Title">
+      <UniqueIdentifier>{93c57ac4-5ea4-434d-9f86-fd8b3135cb29}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game\Game\State\Play">
+      <UniqueIdentifier>{952a5e04-7770-4163-bc5f-2b800648bc9c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game\Game\State\Resoult">
+      <UniqueIdentifier>{f7c25fdc-ad17-4ff9-aa63-81e734b6e4f9}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="pch.h" />
@@ -80,6 +89,9 @@
     <ClInclude Include="Game\Framework\Framework.h">
       <Filter>Game\Framework</Filter>
     </ClInclude>
+    <ClInclude Include="Game\Game\State\StateManager.h">
+      <Filter>Game\Game\State</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="pch.cpp" />
@@ -97,6 +109,9 @@
     </ClCompile>
     <ClCompile Include="Game\Framework\Utility\MathUtility.cpp">
       <Filter>Game\Framework\Utility</Filter>
+    </ClCompile>
+    <ClCompile Include="Game\Game\State\StateManager.cpp">
+      <Filter>Game\Game\State</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

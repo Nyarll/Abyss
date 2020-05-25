@@ -22,6 +22,11 @@ Game::Game() noexcept(false)
 // Initialize the Direct3D resources required to run.
 void Game::Initialize(HWND window, int width, int height)
 {
+	Register(std::make_unique<DirectX::Mouse>());
+	Get<DirectX::Mouse>().SetWindow(window);
+	Register(std::make_unique<DirectX::Mouse::ButtonStateTracker>());
+	Register(std::make_unique<DirectX::Keyboard>());
+
     m_deviceResources->SetWindow(window, width, height);
 
     m_deviceResources->CreateDeviceResources();
@@ -45,6 +50,8 @@ void Game::Tick()
 	auto& timer = Get<DX::StepTimer>();
     timer.Tick([&]()
     {
+		Get<DirectX::Keyboard>().GetState();
+		Get<DirectX::Mouse::ButtonStateTracker>().Update(Get<DirectX::Mouse>().GetState());
         Update(timer);
     });
 
@@ -58,6 +65,11 @@ void Game::Update(DX::StepTimer const& timer)
 
     // TODO: Add your game logic here.
     elapsedTime;
+
+	if (Get<DirectX::Keyboard>().GetState().Escape)
+	{
+		ExitGame();
+	}
 }
 #pragma endregion
 

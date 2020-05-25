@@ -26,6 +26,8 @@ public:
 
 	virtual void Update(GameContext& context) = 0;		// <XV>
 	virtual void Render(GameContext& context) = 0;		// <•`‰æ>
+
+	virtual void Finalize(GameContext& context) {}
 };
 
 #endif
