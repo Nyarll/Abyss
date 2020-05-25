@@ -14,6 +14,27 @@
     <Filter Include="Game\Game">
       <UniqueIdentifier>{ab9bade7-a685-41e2-915d-e93f859d4d80}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Game\Framework">
+      <UniqueIdentifier>{3a638d11-505f-4a2b-9da7-d244291c9b30}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game\Resources">
+      <UniqueIdentifier>{f45db255-1b80-482d-8235-fae4c13c253f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game\Framework\Context">
+      <UniqueIdentifier>{4f5db314-50dd-40e2-8d12-77a40d92f69b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game\Framework\Json">
+      <UniqueIdentifier>{73ea9074-6bc8-4530-a4da-99f330e719f8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game\Framework\Sound">
+      <UniqueIdentifier>{96a47629-616e-4cfc-94fb-9c96fe450cb2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game\Framework\ECS">
+      <UniqueIdentifier>{58794e71-69b9-490a-acd4-0064ec82af03}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game\Framework\Utility">
+      <UniqueIdentifier>{ab8d554a-697d-462f-95a6-b8dcf696f022}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="pch.h" />
@@ -26,6 +47,27 @@
     <ClInclude Include="Game\Game\Game.h">
       <Filter>Game\Game</Filter>
     </ClInclude>
+    <ClInclude Include="Game\Framework\Context\GameContext.h">
+      <Filter>Game\Framework\Context</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\Framework\Json\JsonImport.h">
+      <Filter>Game\Framework\Json</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\Framework\Json\picojson.h">
+      <Filter>Game\Framework\Json</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\Framework\Sound\Adx2Le.h">
+      <Filter>Game\Framework\Sound</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\Framework\Context\TypeID.h">
+      <Filter>Game\Framework\Context</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\Framework\ECS\entt.hpp">
+      <Filter>Game\Framework\ECS</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\Framework\Utility\MathUtility.h">
+      <Filter>Game\Framework\Utility</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="pch.cpp" />
@@ -37,6 +79,12 @@
     </ClCompile>
     <ClCompile Include="Game\Game\Game.cpp">
       <Filter>Game\Game</Filter>
+    </ClCompile>
+    <ClCompile Include="Game\Framework\Sound\Adx2Le.cpp">
+      <Filter>Game\Framework\Sound</Filter>
+    </ClCompile>
+    <ClCompile Include="Game\Framework\Utility\MathUtility.cpp">
+      <Filter>Game\Framework\Utility</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
