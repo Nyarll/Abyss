@@ -56,9 +56,6 @@
     <ClInclude Include="Game\Framework\Json\JsonImport.h">
       <Filter>Game\Framework\Json</Filter>
     </ClInclude>
-    <ClInclude Include="Game\Framework\Json\picojson.h">
-      <Filter>Game\Framework\Json</Filter>
-    </ClInclude>
     <ClInclude Include="Game\Framework\Sound\Adx2Le.h">
       <Filter>Game\Framework\Sound</Filter>
     </ClInclude>
@@ -79,6 +76,9 @@
     </ClInclude>
     <ClInclude Include="Game\Game\State\IState.h">
       <Filter>Game\Game\State</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\Framework\Framework.h">
+      <Filter>Game\Framework</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

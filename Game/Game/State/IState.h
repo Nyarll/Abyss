@@ -10,6 +10,8 @@
 
 #include <entt.hpp>
 
+class GameContext;
+
 // <State Interface>
 class IState
 {

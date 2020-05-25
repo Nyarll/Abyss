@@ -1,5 +1,13 @@
 #pragma once
 
+// <class name		: GameContext>
+// <update date		: 2020 / 05 / 25>
+// <author			: Nyarll>
+// <GitHub			: https://github.com/Nyarll >
+
+#ifndef GAMECONTEXT_DEFINED
+#define GAMECONTEXT_DEFINED
+
 #include <cassert>
 #include <memory>
 
@@ -191,4 +199,4 @@ public:
 	}
 };
 
-#include "../Utility/MathUtility.h"
+#endif

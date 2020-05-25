@@ -1,5 +1,14 @@
 #pragma once
-#include "picojson.h"
+
+// <namespace name	: JsonImport>
+// <update date		: 2020 / 05 / 25>
+// <author			: Nyarll>
+// <GitHub			: https://github.com/Nyarll >
+
+#ifndef JSONIMPORT_DEFINED
+#define JSONIMPORT_DEFINED
+
+#include <picojson.h>
 
 #include <string>
 #include <vector>
@@ -115,3 +124,5 @@ namespace JsonImport
 	}
 
 }
+
+#endif
