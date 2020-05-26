@@ -4,6 +4,8 @@
 
 #include "Game.h"
 
+#include "State\StateManager.h"
+
 extern void ExitGame();
 
 using namespace DirectX;
@@ -41,6 +43,16 @@ void Game::Initialize(HWND window, int width, int height)
     m_timer.SetFixedTimeStep(true);
     m_timer.SetTargetElapsedSeconds(1.0 / 60);
     */
+
+	{
+		Register(std::make_unique<StateManager>());
+		{
+			auto& manager = Get<StateManager>();
+
+			//manager.Register(StateManager::StateID::PLAY, ...);
+			//manager.SetStartState(*this, StateManager::StateID::TITLE);
+		}
+	}
 }
 
 #pragma region Frame Update
@@ -70,6 +82,8 @@ void Game::Update(DX::StepTimer const& timer)
 	{
 		ExitGame();
 	}
+
+	//Get<StateManager>().UpdateActiveState(*this);
 }
 #pragma endregion
 
@@ -87,10 +101,8 @@ void Game::Render()
     Clear();
 
     m_deviceResources->PIXBeginEvent(L"Render");
-    auto context = m_deviceResources->GetD3DDeviceContext();
 
-    // TODO: Add your rendering code here.
-    context;
+	//Get<StateManager>().RenderActiveState(*this);
 
     m_deviceResources->PIXEndEvent();
 
@@ -167,6 +179,14 @@ void Game::GetDefaultSize(int& width, int& height) const
     // TODO: Change to desired default window size (note minimum size is 320x200).
     width = 800;
     height = 600;
+}
+const LPCWCHAR Game::GetWindowTitle()
+{
+	return L"Abyss";
+}
+const LPCWCHAR Game::GetWindowClass()
+{
+	return L"AbyssWindowClass";
 }
 #pragma endregion
 

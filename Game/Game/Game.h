@@ -39,6 +39,9 @@ public:
     // Properties
     void GetDefaultSize( int& width, int& height ) const;
 
+	const LPCWCHAR GetWindowTitle();
+	const LPCWCHAR GetWindowClass();
+
 private:
 
     void Update(DX::StepTimer const& timer);
