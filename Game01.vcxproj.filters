@@ -47,6 +47,18 @@
     <Filter Include="Game\Game\State\Resoult">
       <UniqueIdentifier>{f7c25fdc-ad17-4ff9-aa63-81e734b6e4f9}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Game\Framework\GameSprite">
+      <UniqueIdentifier>{61292430-f744-49a9-bc98-87d3faf141bb}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game\Framework\ShaderFileImporter">
+      <UniqueIdentifier>{8e068913-f176-4b2b-bbd8-4d27891b3568}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game\Framework\BinaryFile">
+      <UniqueIdentifier>{33f07173-704b-418c-9053-b211ddb38b76}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game\Framework\System">
+      <UniqueIdentifier>{ab06932a-e967-47f1-b60a-905531dac9dd}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="pch.h" />
@@ -92,6 +104,21 @@
     <ClInclude Include="Game\Game\State\StateManager.h">
       <Filter>Game\Game\State</Filter>
     </ClInclude>
+    <ClInclude Include="Game\Game\State\Title\TitleState.h">
+      <Filter>Game\Game\State\Title</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\Framework\GameSprite\GameSprite.h">
+      <Filter>Game\Framework\GameSprite</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\Framework\ShaderFileImporter\ShaderFileImporter.h">
+      <Filter>Game\Framework\ShaderFileImporter</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\Framework\BinaryFile\BinaryFile.h">
+      <Filter>Game\Framework\BinaryFile</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\Framework\System\System.h">
+      <Filter>Game\Framework\System</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="pch.cpp" />
@@ -112,6 +139,21 @@
     </ClCompile>
     <ClCompile Include="Game\Game\State\StateManager.cpp">
       <Filter>Game\Game\State</Filter>
+    </ClCompile>
+    <ClCompile Include="Game\Game\State\Title\TitleState.cpp">
+      <Filter>Game\Game\State\Title</Filter>
+    </ClCompile>
+    <ClCompile Include="Game\Framework\GameSprite\GameSprite.cpp">
+      <Filter>Game\Framework\GameSprite</Filter>
+    </ClCompile>
+    <ClCompile Include="Game\Framework\ShaderFileImporter\ShaderFileImporter.cpp">
+      <Filter>Game\Framework\ShaderFileImporter</Filter>
+    </ClCompile>
+    <ClCompile Include="Game\Framework\BinaryFile\BinaryFile.cpp">
+      <Filter>Game\Framework\BinaryFile</Filter>
+    </ClCompile>
+    <ClCompile Include="Game\Framework\System\System.cpp">
+      <Filter>Game\Framework\System</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

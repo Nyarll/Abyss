@@ -18,7 +18,7 @@ public:
 	enum StateID
 	{
 		NONE = -1,
-		//TITLE,
+		TITLE,
 		//PLAY,
 		//RESOULT,
 

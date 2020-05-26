@@ -6,6 +6,8 @@
 
 #include "State\StateManager.h"
 
+#include "../Framework/System/System.h"
+
 extern void ExitGame();
 
 using namespace DirectX;
@@ -24,6 +26,8 @@ Game::Game() noexcept(false)
 // Initialize the Direct3D resources required to run.
 void Game::Initialize(HWND window, int width, int height)
 {
+	System::SetWindowSize(DirectX::SimpleMath::Vector2((float)width, (float)height));
+
 	Register(std::make_unique<DirectX::Mouse>());
 	Get<DirectX::Mouse>().SetWindow(window);
 	Register(std::make_unique<DirectX::Mouse::ButtonStateTracker>());
