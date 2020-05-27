@@ -8,14 +8,26 @@
 #define FRAMEWORK_HEADER
 
 #include "System\System.h"
+
 #include "BinaryFile\BinaryFile.h"
+
 #include "Utility\MathUtility.h"
+
 #include "Context\GameContext.h"
+
 #include "FbxModel\FbxModel.h"
+
 #include "ShaderFileImporter\ShaderFileImporter.h"
+
+#include "Texture\Texture.h"
+#include "Texture\TextureManager.h"
+
 #include "GameObject\GameObject.h"
-#include "GameSprite\GameSprite.h"
+
+#include "GameSprite\SpriteRenderer.h"
+
 #include "Json\JsonImport.h"
+
 #include "Sound\Adx2Le.h"
 
 #endif

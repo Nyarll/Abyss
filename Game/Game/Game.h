@@ -52,6 +52,9 @@ private:
     void CreateDeviceDependentResources();
     void CreateWindowSizeDependentResources();
 
+	void RegisterTexture();
+	void RegisterState();
+
     // Device resources.
     DX::DeviceResources*    m_deviceResources;
 

@@ -59,6 +59,9 @@
     <Filter Include="Game\Framework\System">
       <UniqueIdentifier>{ab06932a-e967-47f1-b60a-905531dac9dd}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Game\Framework\Texture">
+      <UniqueIdentifier>{f570491e-9ac5-4b0f-86cc-42e84e69663e}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="pch.h" />
@@ -107,9 +110,6 @@
     <ClInclude Include="Game\Game\State\Title\TitleState.h">
       <Filter>Game\Game\State\Title</Filter>
     </ClInclude>
-    <ClInclude Include="Game\Framework\GameSprite\GameSprite.h">
-      <Filter>Game\Framework\GameSprite</Filter>
-    </ClInclude>
     <ClInclude Include="Game\Framework\ShaderFileImporter\ShaderFileImporter.h">
       <Filter>Game\Framework\ShaderFileImporter</Filter>
     </ClInclude>
@@ -118,6 +118,18 @@
     </ClInclude>
     <ClInclude Include="Game\Framework\System\System.h">
       <Filter>Game\Framework\System</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\Game\State\States.h">
+      <Filter>Game\Game\State</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\Framework\Texture\Texture.h">
+      <Filter>Game\Framework\Texture</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\Framework\Texture\TextureManager.h">
+      <Filter>Game\Framework\Texture</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\Framework\GameSprite\SpriteRenderer.h">
+      <Filter>Game\Framework\GameSprite</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -143,9 +155,6 @@
     <ClCompile Include="Game\Game\State\Title\TitleState.cpp">
       <Filter>Game\Game\State\Title</Filter>
     </ClCompile>
-    <ClCompile Include="Game\Framework\GameSprite\GameSprite.cpp">
-      <Filter>Game\Framework\GameSprite</Filter>
-    </ClCompile>
     <ClCompile Include="Game\Framework\ShaderFileImporter\ShaderFileImporter.cpp">
       <Filter>Game\Framework\ShaderFileImporter</Filter>
     </ClCompile>
@@ -154,6 +163,15 @@
     </ClCompile>
     <ClCompile Include="Game\Framework\System\System.cpp">
       <Filter>Game\Framework\System</Filter>
+    </ClCompile>
+    <ClCompile Include="Game\Framework\Texture\Texture.cpp">
+      <Filter>Game\Framework\Texture</Filter>
+    </ClCompile>
+    <ClCompile Include="Game\Framework\Texture\TextureManager.cpp">
+      <Filter>Game\Framework\Texture</Filter>
+    </ClCompile>
+    <ClCompile Include="Game\Framework\GameSprite\SpriteRenderer.cpp">
+      <Filter>Game\Framework\GameSprite</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

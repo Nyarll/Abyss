@@ -10,7 +10,7 @@
 //#pragma warning(disable:4244)
 //#pragma warning(disable:4239)
 //#pragma warning(disable:4189)
-//#pragma warning(disable:4100)
+#pragma warning(disable:4100)
 //#pragma warning(disable:4996)
 //#pragma warning(disable:4172)
 
@@ -79,6 +79,8 @@
 #include <deque>
 
 #include <thread>
+
+#include <utility>
 
 // <DirectXTK>
 #include <Keyboard.h>
