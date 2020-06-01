@@ -5,12 +5,21 @@
 
 void TitleState::Initialize(GameContext & context)
 {
-	auto titleLogo = m_registry.create();
-	auto& titleSprite = m_registry.assign<Sprite2DRenderer>(titleLogo);
-	titleSprite.Initialize();
-	auto& logoPos = m_registry.assign<DirectX::SimpleMath::Vector2>(titleLogo);
-	logoPos.x = 0;
-	logoPos.y = 0;
+	{
+		auto titleLogo = m_registry.create();
+		auto& titleSprite = m_registry.assign<Sprite2DRenderer>(titleLogo);
+		titleSprite.Initialize();
+		auto& logoPos = m_registry.assign<DirectX::SimpleMath::Vector2>(titleLogo);
+		logoPos.x = 0;
+		logoPos.y = 0;
+	}
+	{
+		auto titleMessage = m_registry.create();
+		auto& titlefont = m_registry.assign<GameFont>(titleMessage);
+		titlefont.Load(context, L"Resources/Font/meiryo.spritefont");
+		auto& messagePos = m_registry.assign<DirectX::SimpleMath::Vector2>(titleMessage);
+		messagePos;
+	}
 }
 
 void TitleState::Update(GameContext& context)
@@ -24,7 +33,8 @@ void TitleState::Render(GameContext& context)
 		renderer.Draw(context, pos, context.Get<TextureManager>().GetTexture(TextureID::Logo));
 	});
 
-	/*Sprite2DRenderer sprite;
-	sprite.Initialize();
-	sprite.Draw(context, DirectX::SimpleMath::Vector2(0, 0), context.Get<TextureManager>().GetTexture(TextureID::Logo));*/
+	m_registry.view<GameFont, DirectX::SimpleMath::Vector2>().each([&](auto entity, auto& gameFont, auto& pos)
+	{
+		gameFont.Draw(context, pos, DirectX::Colors::White, "push to [SPACE] key.");
+	});
 }

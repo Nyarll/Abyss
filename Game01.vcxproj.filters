@@ -47,9 +47,6 @@
     <Filter Include="Game\Game\State\Resoult">
       <UniqueIdentifier>{f7c25fdc-ad17-4ff9-aa63-81e734b6e4f9}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Game\Framework\GameSprite">
-      <UniqueIdentifier>{61292430-f744-49a9-bc98-87d3faf141bb}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Game\Framework\ShaderFileImporter">
       <UniqueIdentifier>{8e068913-f176-4b2b-bbd8-4d27891b3568}</UniqueIdentifier>
     </Filter>
@@ -61,6 +58,12 @@
     </Filter>
     <Filter Include="Game\Framework\Texture">
       <UniqueIdentifier>{f570491e-9ac5-4b0f-86cc-42e84e69663e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game\Framework\SpriteRenderer">
+      <UniqueIdentifier>{61292430-f744-49a9-bc98-87d3faf141bb}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game\Framework\GameFont">
+      <UniqueIdentifier>{8715b012-255f-48f9-b6a2-09ca4ef8dcd0}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -128,8 +131,11 @@
     <ClInclude Include="Game\Framework\Texture\TextureManager.h">
       <Filter>Game\Framework\Texture</Filter>
     </ClInclude>
-    <ClInclude Include="Game\Framework\GameSprite\SpriteRenderer.h">
-      <Filter>Game\Framework\GameSprite</Filter>
+    <ClInclude Include="Game\Framework\SpriteRenderer\SpriteRenderer.h">
+      <Filter>Game\Framework\SpriteRenderer</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\Framework\GameFont\GameFont.h">
+      <Filter>Game\Framework\GameFont</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -170,8 +176,11 @@
     <ClCompile Include="Game\Framework\Texture\TextureManager.cpp">
       <Filter>Game\Framework\Texture</Filter>
     </ClCompile>
-    <ClCompile Include="Game\Framework\GameSprite\SpriteRenderer.cpp">
-      <Filter>Game\Framework\GameSprite</Filter>
+    <ClCompile Include="Game\Framework\SpriteRenderer\SpriteRenderer.cpp">
+      <Filter>Game\Framework\SpriteRenderer</Filter>
+    </ClCompile>
+    <ClCompile Include="Game\Framework\GameFont\GameFont.cpp">
+      <Filter>Game\Framework\GameFont</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

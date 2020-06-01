@@ -220,7 +220,7 @@ void Game::RegisterTexture()
 	Register(std::make_unique<TextureManager>());
 	auto& manager = Get<TextureManager>();
 
-	manager.Register(*this, L"Game/Resources/Sprite/titleLogo.png", TextureID::Logo);
+	manager.Register(*this, L"Resources/Sprite/titleLogo.png", TextureID::Logo);
 }
 
 void Game::RegisterState()

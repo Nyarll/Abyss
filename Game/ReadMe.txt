@@ -6,6 +6,5 @@ Game/
  ├-- Common
  ├-- Framework
  ├-- Game
- ├-- Resources
  │
  └-- ReadMe.txt
