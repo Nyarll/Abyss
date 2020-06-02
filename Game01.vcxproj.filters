@@ -68,6 +68,9 @@
     <Filter Include="Game\Framework\InputManager">
       <UniqueIdentifier>{a922b952-6a91-440c-a822-4756a375214e}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Game\Framework\PrimitiveRenderer">
+      <UniqueIdentifier>{2c9da175-0510-48f2-a94d-6386eb8abcd2}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="pch.h" />
@@ -152,6 +155,9 @@
     <ClInclude Include="Game\Game\State\Play\PlayState.h">
       <Filter>Game\Game\State\Play</Filter>
     </ClInclude>
+    <ClInclude Include="Game\Framework\PrimitiveRenderer\PrimitiveRenderer.h">
+      <Filter>Game\Framework\PrimitiveRenderer</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="pch.cpp" />
@@ -208,6 +214,9 @@
     </ClCompile>
     <ClCompile Include="Game\Game\State\Play\PlayState.cpp">
       <Filter>Game\Game\State\Play</Filter>
+    </ClCompile>
+    <ClCompile Include="Game\Framework\PrimitiveRenderer\PrimitiveRenderer.cpp">
+      <Filter>Game\Framework\PrimitiveRenderer</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

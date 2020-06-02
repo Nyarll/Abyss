@@ -8,6 +8,7 @@
 #ifndef PRIMITIVERENDERER_DEFINED
 #define PRIMITIVERENDERER_DEFINED
 
+// <PrimitiveRenderer>
 class PrimitiveRenderer
 {
 
