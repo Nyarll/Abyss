@@ -134,7 +134,13 @@
     <ClInclude Include="Game\Framework\SpriteRenderer\SpriteRenderer.h">
       <Filter>Game\Framework\SpriteRenderer</Filter>
     </ClInclude>
-    <ClInclude Include="Game\Framework\GameFont\GameFont.h">
+    <ClInclude Include="Game\Framework\GameFont\FontRenderer.h">
+      <Filter>Game\Framework\GameFont</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\Framework\GameFont\Font.h">
+      <Filter>Game\Framework\GameFont</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\Framework\GameFont\FontManager.h">
       <Filter>Game\Framework\GameFont</Filter>
     </ClInclude>
   </ItemGroup>
@@ -179,7 +185,13 @@
     <ClCompile Include="Game\Framework\SpriteRenderer\SpriteRenderer.cpp">
       <Filter>Game\Framework\SpriteRenderer</Filter>
     </ClCompile>
-    <ClCompile Include="Game\Framework\GameFont\GameFont.cpp">
+    <ClCompile Include="Game\Framework\GameFont\FontRenderer.cpp">
+      <Filter>Game\Framework\GameFont</Filter>
+    </ClCompile>
+    <ClCompile Include="Game\Framework\GameFont\Font.cpp">
+      <Filter>Game\Framework\GameFont</Filter>
+    </ClCompile>
+    <ClCompile Include="Game\Framework\GameFont\FontManager.cpp">
       <Filter>Game\Framework\GameFont</Filter>
     </ClCompile>
   </ItemGroup>

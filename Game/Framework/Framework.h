@@ -26,7 +26,8 @@
 
 #include "SpriteRenderer\SpriteRenderer.h"
 
-#include "GameFont\GameFont.h"
+#include "GameFont\FontManager.h"
+#include "GameFont\FontRenderer.h"
 
 #include "Json\JsonImport.h"
 

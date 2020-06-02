@@ -8,6 +8,7 @@
 #include "State\States.h"
 
 #include "../Framework/Texture/TextureManager.h"
+#include "../Framework/GameFont/FontManager.h"
 
 #include "../Framework/System/System.h"
 
@@ -61,7 +62,7 @@ void Game::Initialize(HWND window, int width, int height)
 
 	RegisterTexture();
 	RegisterState();
-
+	RegisterFont();
 }
 
 #pragma region Frame Update
@@ -232,6 +233,14 @@ void Game::RegisterState()
 	manager.Register(StateManager::StateID::TITLE, TitleState::Create);
 
 	manager.SetStartState(*this, StateManager::StateID::TITLE);
+}
+
+void Game::RegisterFont()
+{
+	Register(std::make_unique<FontManager>());
+	auto& manager = Get<FontManager>();
+
+	manager.Register(*this, L"Resources/Font/meiryo.spritefont", "Meiryo UI");
 }
 
 void Game::OnDeviceLost()

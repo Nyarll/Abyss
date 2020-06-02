@@ -15,10 +15,10 @@ void TitleState::Initialize(GameContext & context)
 	}
 	{
 		auto titleMessage = m_registry.create();
-		auto& titlefont = m_registry.assign<GameFont>(titleMessage);
-		titlefont.Load(context, L"Resources/Font/meiryo.spritefont");
+		auto& titlefont = m_registry.assign<FontRenderer>(titleMessage);
 		auto& messagePos = m_registry.assign<DirectX::SimpleMath::Vector2>(titleMessage);
-		messagePos;
+		messagePos.x = (System::GetWindowSize().x / 8) * 2.5f;
+		messagePos.y = (System::GetWindowSize().y / 4) * 3;
 	}
 }
 
@@ -33,8 +33,9 @@ void TitleState::Render(GameContext& context)
 		renderer.Draw(context, pos, context.Get<TextureManager>().GetTexture(TextureID::Logo));
 	});
 
-	m_registry.view<GameFont, DirectX::SimpleMath::Vector2>().each([&](auto entity, auto& gameFont, auto& pos)
+	m_registry.view<FontRenderer, DirectX::SimpleMath::Vector2>().each([&](auto entity, auto& gameFont, auto& pos)
 	{
-		gameFont.Draw(context, pos, DirectX::Colors::White, "push to [SPACE] key.");
+		auto font = context.Get<FontManager>().GetSpriteFont("Meiryo UI");
+		gameFont.Draw(context, font, pos, DirectX::Colors::White, "push to [SPACE] key.");
 	});
 }

@@ -54,6 +54,7 @@ private:
 
 	void RegisterTexture();
 	void RegisterState();
+	void RegisterFont();
 
     // Device resources.
     DX::DeviceResources*    m_deviceResources;

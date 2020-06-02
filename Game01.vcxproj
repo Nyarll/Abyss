@@ -173,7 +173,9 @@
     <ClInclude Include="Game\Framework\Context\GameContext.h" />
     <ClInclude Include="Game\Framework\Context\TypeID.h" />
     <ClInclude Include="Game\Framework\Framework.h" />
-    <ClInclude Include="Game\Framework\GameFont\GameFont.h" />
+    <ClInclude Include="Game\Framework\GameFont\Font.h" />
+    <ClInclude Include="Game\Framework\GameFont\FontManager.h" />
+    <ClInclude Include="Game\Framework\GameFont\FontRenderer.h" />
     <ClInclude Include="Game\Framework\GameObject\GameObject.h" />
     <ClInclude Include="Game\Framework\GameObject\Property.h" />
     <ClInclude Include="Game\Framework\GameObject\Transform.h" />
@@ -195,7 +197,9 @@
   <ItemGroup>
     <ClCompile Include="Game\Common\DeviceResources.cpp" />
     <ClCompile Include="Game\Framework\BinaryFile\BinaryFile.cpp" />
-    <ClCompile Include="Game\Framework\GameFont\GameFont.cpp" />
+    <ClCompile Include="Game\Framework\GameFont\Font.cpp" />
+    <ClCompile Include="Game\Framework\GameFont\FontManager.cpp" />
+    <ClCompile Include="Game\Framework\GameFont\FontRenderer.cpp" />
     <ClCompile Include="Game\Framework\ShaderFileImporter\ShaderFileImporter.cpp" />
     <ClCompile Include="Game\Framework\Sound\Adx2Le.cpp" />
     <ClCompile Include="Game\Framework\SpriteRenderer\SpriteRenderer.cpp" />
