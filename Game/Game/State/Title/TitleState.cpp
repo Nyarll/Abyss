@@ -3,7 +3,7 @@
 
 #include "../../../Framework/Framework.h"
 
-void TitleState::Initialize(GameContext & context)
+void TitleState::Initialize(GameContext& context)
 {
 	{
 		auto titleLogo = m_registry.create();
