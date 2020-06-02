@@ -19,7 +19,7 @@ public:
 	{
 		NONE = -1,
 		TITLE,
-		//PLAY,
+		PLAY,
 		//RESOULT,
 
 		NUM_STATES

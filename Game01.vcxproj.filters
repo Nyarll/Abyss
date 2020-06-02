@@ -149,6 +149,9 @@
     <ClInclude Include="Game\Framework\InputManager\InputManager.h">
       <Filter>Game\Framework\InputManager</Filter>
     </ClInclude>
+    <ClInclude Include="Game\Game\State\Play\PlayState.h">
+      <Filter>Game\Game\State\Play</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="pch.cpp" />
@@ -202,6 +205,9 @@
     </ClCompile>
     <ClCompile Include="Game\Framework\InputManager\InputManager.cpp">
       <Filter>Game\Framework\InputManager</Filter>
+    </ClCompile>
+    <ClCompile Include="Game\Game\State\Play\PlayState.cpp">
+      <Filter>Game\Game\State\Play</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

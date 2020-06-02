@@ -8,5 +8,6 @@
 #define STATES_HEADER
 
 #include "Title\TitleState.h"
+#include "Play\PlayState.h"
 
 #endif

@@ -233,8 +233,9 @@ void Game::RegisterState()
 
 	//manager.Register(StateManager::StateID::PLAY, ...);
 	manager.Register(StateManager::StateID::TITLE, TitleState::Create);
+	manager.Register(StateManager::StateID::PLAY, PlayState::Create);
 
-	manager.SetStartState(*this, StateManager::StateID::TITLE);
+	manager.SetStartState(*this, StateManager::StateID::PLAY);
 }
 
 void Game::RegisterFont()
