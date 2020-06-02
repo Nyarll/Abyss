@@ -68,7 +68,7 @@
     <Filter Include="Game\Framework\InputManager">
       <UniqueIdentifier>{a922b952-6a91-440c-a822-4756a375214e}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Game\Framework\PrimitiveRenderer">
+    <Filter Include="Game\Framework\Primitive">
       <UniqueIdentifier>{2c9da175-0510-48f2-a94d-6386eb8abcd2}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
@@ -155,8 +155,11 @@
     <ClInclude Include="Game\Game\State\Play\PlayState.h">
       <Filter>Game\Game\State\Play</Filter>
     </ClInclude>
-    <ClInclude Include="Game\Framework\PrimitiveRenderer\PrimitiveRenderer.h">
-      <Filter>Game\Framework\PrimitiveRenderer</Filter>
+    <ClInclude Include="Game\Framework\Primitive\PrimitiveRenderer.h">
+      <Filter>Game\Framework\Primitive</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\Framework\Primitive\PrimitiveModelList.h">
+      <Filter>Game\Framework\Primitive</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -215,8 +218,11 @@
     <ClCompile Include="Game\Game\State\Play\PlayState.cpp">
       <Filter>Game\Game\State\Play</Filter>
     </ClCompile>
-    <ClCompile Include="Game\Framework\PrimitiveRenderer\PrimitiveRenderer.cpp">
-      <Filter>Game\Framework\PrimitiveRenderer</Filter>
+    <ClCompile Include="Game\Framework\Primitive\PrimitiveRenderer.cpp">
+      <Filter>Game\Framework\Primitive</Filter>
+    </ClCompile>
+    <ClCompile Include="Game\Framework\Primitive\PrimitiveModelList.cpp">
+      <Filter>Game\Framework\Primitive</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

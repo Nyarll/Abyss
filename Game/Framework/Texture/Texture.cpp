@@ -14,6 +14,6 @@ void Texture::Load(GameContext & ctx, const wchar_t * file_name)
 	D3D11_TEXTURE2D_DESC desc;
 	texture2D->GetDesc(&desc);
 
-	m_textureSize = DirectX::SimpleMath::Vector2(desc.Width, desc.Height);
+	m_textureSize = DirectX::SimpleMath::Vector2((float)desc.Width, (float)desc.Height);
 	m_center = m_textureSize / 2;
 }

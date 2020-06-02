@@ -70,6 +70,7 @@
 
 #include <random>
 
+#include <array>
 #include <vector>
 #include <list>
 #include <unordered_map>
