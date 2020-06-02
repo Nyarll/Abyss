@@ -2,6 +2,7 @@
 #include "TitleState.h"
 
 #include "../../../Framework/Framework.h"
+#include "../StateManager.h"
 
 void TitleState::Initialize(GameContext & context)
 {
@@ -24,6 +25,10 @@ void TitleState::Initialize(GameContext & context)
 
 void TitleState::Update(GameContext& context)
 {
+	if (InputManager::GetKeyDown(DirectX::Keyboard::Keys::Space))
+	{
+		//context.Get<StateManager>().RequestState(StateManager::StateID::PLAY);
+	}
 }
 
 void TitleState::Render(GameContext& context)
