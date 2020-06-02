@@ -12,6 +12,8 @@
 
 #include "../Framework/System/System.h"
 
+#include "../Framework/InputManager/InputManager.h"
+
 extern void ExitGame();
 
 using namespace DirectX;
@@ -72,8 +74,8 @@ void Game::Tick()
 	auto& timer = Get<DX::StepTimer>();
 	timer.Tick([&]()
 	{
-		Get<DirectX::Keyboard>().GetState();
 		Get<DirectX::Mouse::ButtonStateTracker>().Update(Get<DirectX::Mouse>().GetState());
+		InputManager::Update();
 		Update(timer);
 	});
 
@@ -88,7 +90,7 @@ void Game::Update(DX::StepTimer const& timer)
 	// TODO: Add your game logic here.
 	elapsedTime;
 
-	if (Get<DirectX::Keyboard>().GetState().Escape)
+	if (InputManager::GetKey(DirectX::Keyboard::Keys::Escape))
 	{
 		ExitGame();
 	}

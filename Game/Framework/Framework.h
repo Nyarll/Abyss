@@ -31,6 +31,8 @@
 
 #include "Json\JsonImport.h"
 
+#include "InputManager\InputManager.h"
+
 #include "Sound\Adx2Le.h"
 
 #endif

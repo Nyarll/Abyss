@@ -65,6 +65,9 @@
     <Filter Include="Game\Framework\GameFont">
       <UniqueIdentifier>{8715b012-255f-48f9-b6a2-09ca4ef8dcd0}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Game\Framework\InputManager">
+      <UniqueIdentifier>{a922b952-6a91-440c-a822-4756a375214e}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="pch.h" />
@@ -143,6 +146,9 @@
     <ClInclude Include="Game\Framework\GameFont\FontManager.h">
       <Filter>Game\Framework\GameFont</Filter>
     </ClInclude>
+    <ClInclude Include="Game\Framework\InputManager\InputManager.h">
+      <Filter>Game\Framework\InputManager</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="pch.cpp" />
@@ -193,6 +199,9 @@
     </ClCompile>
     <ClCompile Include="Game\Framework\GameFont\FontManager.cpp">
       <Filter>Game\Framework\GameFont</Filter>
+    </ClCompile>
+    <ClCompile Include="Game\Framework\InputManager\InputManager.cpp">
+      <Filter>Game\Framework\InputManager</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
