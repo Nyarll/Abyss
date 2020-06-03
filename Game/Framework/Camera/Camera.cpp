@@ -5,15 +5,11 @@
 
 void Camera::Update(GameContext& context, Transform* _self, Transform* _target)
 {
-	DirectX::SimpleMath::Vector3 eye = _self->position;
+	DirectX::SimpleMath::Vector3 eye = _self->localPosition;
 	DirectX::SimpleMath::Vector3 target = eye - DirectX::SimpleMath::Vector3(0.f, 5.f, -10.f);
 	if (_target)
 	{
-		target = _target->position;
-	}
-	if (target == eye)
-	{
-		eye = target + DirectX::SimpleMath::Vector3(0.f, 5.f, -10.f);
+		target = _target->localPosition;
 	}
 	m_view = DirectX::SimpleMath::Matrix::CreateLookAt(eye, target, DirectX::SimpleMath::Vector3::Up);
 

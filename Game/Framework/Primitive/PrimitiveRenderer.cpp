@@ -8,5 +8,8 @@ void PrimitiveRenderer::SetModel(PrimitiveModel * model)
 void PrimitiveRenderer::Draw(const DirectX::SimpleMath::Matrix& world, const DirectX::SimpleMath::Matrix& view,
 	const DirectX::SimpleMath::Matrix& projection, DirectX::XMVECTOR color)
 {
-	m_modelPtr->Draw(world, view, projection, color);
+	if (m_modelPtr)
+	{
+		m_modelPtr->Draw(world, view, projection, color);
+	}
 }

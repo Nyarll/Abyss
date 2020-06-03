@@ -17,8 +17,15 @@ private:
 	bool m_isActive = true;
 	Transform transform;
 
+	DirectX::SimpleMath::Matrix m_world;
+
 public:
 	
+	void Update()
+	{
+		m_world = transform.GetMatrix();
+	}
+
 	Transform* GetTransform()
 	{
 		return &transform;
@@ -26,7 +33,7 @@ public:
 
 	const DirectX::SimpleMath::Matrix& GetMatrix()
 	{
-		return transform.GetMatrix();
+		return m_world;
 	}
 
 	// <オブジェクトをアクティブにする>

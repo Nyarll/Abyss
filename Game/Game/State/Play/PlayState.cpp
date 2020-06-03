@@ -6,7 +6,8 @@ void PlayState::Initialize(GameContext& context)
 {
 	{
 		auto camera = m_registry.create();
-		m_registry.assign<GameObject>(camera);
+		auto& obj = m_registry.assign<GameObject>(camera);
+		obj.GetTransform()->localPosition = DirectX::SimpleMath::Vector3(0.f, 10.f, 10.f);
 		m_registry.assign<Camera>(camera);
 	}
 	{
@@ -15,20 +16,32 @@ void PlayState::Initialize(GameContext& context)
 		auto& renderer = m_registry.assign<PrimitiveRenderer>(object);
 		renderer.SetModel(context.Get<PrimitiveModelList>().GetModel(PrimitiveModelList::ID::Sphere));
 	}
+
+	m_registry.view<GameObject>().each([&](auto entity, auto& obj)
+	{
+		auto transform = obj.GetTransform();
+		transform->localScale = DirectX::SimpleMath::Vector3(1.f, 1.f, 1.f);
+	});
 }
 
 void PlayState::Update(GameContext& context)
 {
 	Transform* target = nullptr;
 	// <プレイヤーを探してターゲットにする>
-	m_registry.view<GameObject, PrimitiveRenderer>().each([&](auto entitiy, auto& obj, auto& renderer)
+	m_registry.view<GameObject, PrimitiveRenderer>().each([&](auto entity, auto& obj, auto& renderer)
 	{
 		target = obj.GetTransform();
 	});
 
 	m_registry.view<GameObject, Camera>().each([&](auto entity, auto& obj, auto& camera)
 	{
-		//camera.Update(context, obj.GetTransform(), target);
+		camera.Update(context, obj.GetTransform(), target);
+	});
+
+	// <TransformをWorld行列へ更新>
+	m_registry.view<GameObject>().each([&](auto entity, auto& obj)
+	{
+		obj.Update();
 	});
 }
 

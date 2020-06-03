@@ -13,13 +13,13 @@ class PrimitiveRenderer
 {
 private:
 	using PrimitiveModel = DirectX::GeometricPrimitive;
-	PrimitiveModel* m_modelPtr;
+	PrimitiveModel* m_modelPtr = nullptr;
 
 public:
 	void SetModel(PrimitiveModel* model);
 
 	void Draw(const DirectX::SimpleMath::Matrix& world, const DirectX::SimpleMath::Matrix& view,
-		const DirectX::SimpleMath::Matrix& projection, DirectX::XMVECTOR color = DirectX::Colors::White);
+		const DirectX::SimpleMath::Matrix& projection, DirectX::XMVECTOR color = DirectX::Colors::Blue);
 };
 
 #endif
