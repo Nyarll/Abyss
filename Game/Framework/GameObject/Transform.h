@@ -18,7 +18,7 @@ public:
 	DirectX::SimpleMath::Quaternion localRotation;	// <ローカル回転>
 	DirectX::SimpleMath::Vector3 localScale;		// <>ローカルスケール
 
-	const Transform* parent;						// <親オブジェクト情報>
+	const Transform* parent = nullptr;				// <親オブジェクト情報>
 
 	// <位置>
 	Property<DirectX::SimpleMath::Vector3> position

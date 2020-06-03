@@ -15,9 +15,19 @@ class GameObject
 {
 private:
 	bool m_isActive = true;
+	Transform transform;
 
 public:
-	Transform transform;
+	
+	Transform* GetTransform()
+	{
+		return &transform;
+	}
+
+	const DirectX::SimpleMath::Matrix& GetMatrix()
+	{
+		return transform.GetMatrix();
+	}
 
 	// <オブジェクトをアクティブにする>
 	void Activate()

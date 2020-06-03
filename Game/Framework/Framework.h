@@ -25,14 +25,19 @@
 #include "GameObject\GameObject.h"
 
 #include "SpriteRenderer\SpriteRenderer.h"
+#include "Primitive\PrimitiveRenderer.h"
+
+#include "Primitive\PrimitiveModelList.h"
 
 #include "GameFont\FontManager.h"
 #include "GameFont\FontRenderer.h"
 
-#include "Json\JsonImport.h"
+//#include "Json\JsonImport.h"
 
 #include "InputManager\InputManager.h"
 
 #include "Sound\Adx2Le.h"
+
+#include "Camera\Camera.h"
 
 #endif

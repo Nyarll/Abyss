@@ -71,6 +71,9 @@
     <Filter Include="Game\Framework\Primitive">
       <UniqueIdentifier>{2c9da175-0510-48f2-a94d-6386eb8abcd2}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Game\Framework\Camera">
+      <UniqueIdentifier>{fd5464e5-4a89-41e0-9aed-c4cca98deb57}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="pch.h" />
@@ -97,9 +100,6 @@
     </ClInclude>
     <ClInclude Include="Game\Framework\Utility\MathUtility.h">
       <Filter>Game\Framework\Utility</Filter>
-    </ClInclude>
-    <ClInclude Include="Game\Framework\GameObject\Transform.h">
-      <Filter>Game\Framework\GameObject</Filter>
     </ClInclude>
     <ClInclude Include="Game\Framework\GameObject\Property.h">
       <Filter>Game\Framework\GameObject</Filter>
@@ -160,6 +160,12 @@
     </ClInclude>
     <ClInclude Include="Game\Framework\Primitive\PrimitiveModelList.h">
       <Filter>Game\Framework\Primitive</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\Framework\Camera\Camera.h">
+      <Filter>Game\Framework\Camera</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\Framework\GameObject\Transform.h">
+      <Filter>Game\Framework\GameObject</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -223,6 +229,9 @@
     </ClCompile>
     <ClCompile Include="Game\Framework\Primitive\PrimitiveModelList.cpp">
       <Filter>Game\Framework\Primitive</Filter>
+    </ClCompile>
+    <ClCompile Include="Game\Framework\Camera\Camera.cpp">
+      <Filter>Game\Framework\Camera</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

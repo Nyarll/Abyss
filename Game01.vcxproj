@@ -170,6 +170,7 @@
     <ClInclude Include="Game\Common\DeviceResources.h" />
     <ClInclude Include="Game\Common\StepTimer.h" />
     <ClInclude Include="Game\Framework\BinaryFile\BinaryFile.h" />
+    <ClInclude Include="Game\Framework\Camera\Camera.h" />
     <ClInclude Include="Game\Framework\Context\GameContext.h" />
     <ClInclude Include="Game\Framework\Context\TypeID.h" />
     <ClInclude Include="Game\Framework\Framework.h" />
@@ -201,6 +202,7 @@
   <ItemGroup>
     <ClCompile Include="Game\Common\DeviceResources.cpp" />
     <ClCompile Include="Game\Framework\BinaryFile\BinaryFile.cpp" />
+    <ClCompile Include="Game\Framework\Camera\Camera.cpp" />
     <ClCompile Include="Game\Framework\GameFont\Font.cpp" />
     <ClCompile Include="Game\Framework\GameFont\FontManager.cpp" />
     <ClCompile Include="Game\Framework\GameFont\FontRenderer.cpp" />

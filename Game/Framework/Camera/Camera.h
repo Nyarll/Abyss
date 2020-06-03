@@ -9,6 +9,7 @@
 #define CAMERA_DEFINED
 
 class Transform;
+class GameContext;
 
 class Camera
 {
@@ -20,7 +21,7 @@ private:
 	const Transform* m_target;
 
 public:
-	void Update(const Transform* self, const Transform* target = nullptr);
+	void Update(GameContext& context, Transform* self, Transform* target = nullptr);
 
 	DirectX::SimpleMath::Matrix& GetViewMatrix();
 	DirectX::SimpleMath::Matrix& GetProjectionMatrix();
