@@ -14,7 +14,7 @@ void PlayState::Initialize(GameContext& context)
 		auto object = m_registry.create();
 		m_registry.assign<GameObject>(object);
 		auto& renderer = m_registry.assign<PrimitiveRenderer>(object);
-		renderer.SetModel(context.Get<PrimitiveModelList>().GetModel(PrimitiveModelList::ID::Sphere));
+		renderer.SetModel(context.Get<PrimitiveModelList>().GetModel(PrimitiveModelList::ID::Cube));
 	}
 
 	m_registry.view<GameObject>().each([&](auto entity, auto& obj)
