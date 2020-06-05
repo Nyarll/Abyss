@@ -12,7 +12,11 @@ void PlayState::Initialize(GameContext& context)
 	}
 	{
 		auto object = m_registry.create();
-		m_registry.assign<GameObject>(object);
+		auto& obj = m_registry.assign<GameObject>(object);
+		obj.GetTransform()->localRotation = 
+			DirectX::SimpleMath::Quaternion::CreateFromRotationMatrix(
+				DirectX::SimpleMath::Matrix::CreateRotationY(45.f * (180.0f / 3.14159265f)));
+
 		auto& renderer = m_registry.assign<PrimitiveRenderer>(object);
 		renderer.SetModel(context.Get<PrimitiveModelList>().GetModel(PrimitiveModelList::ID::Cube));
 	}
