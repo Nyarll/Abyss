@@ -193,6 +193,8 @@
     <ClInclude Include="Game\Framework\Utility\MathUtility.h" />
     <ClInclude Include="Game\Game\Game.h" />
     <ClInclude Include="Game\Game\State\IState.h" />
+    <ClInclude Include="Game\Game\State\Play\Component\Components.h" />
+    <ClInclude Include="Game\Game\State\Play\Component\Move\Move.h" />
     <ClInclude Include="Game\Game\State\Play\PlayState.h" />
     <ClInclude Include="Game\Game\State\StateManager.h" />
     <ClInclude Include="Game\Game\State\States.h" />
