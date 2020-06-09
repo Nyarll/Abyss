@@ -80,6 +80,9 @@
     <Filter Include="Game\Game\State\Play\Component\Move">
       <UniqueIdentifier>{b089ebe6-8085-48a7-8e2e-a8fdddd858ae}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Game\Framework\Optional">
+      <UniqueIdentifier>{d475b35c-a02f-47c6-86a0-2f5d97feeaef}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="pch.h" />
@@ -106,9 +109,6 @@
     </ClInclude>
     <ClInclude Include="Game\Framework\Utility\MathUtility.h">
       <Filter>Game\Framework\Utility</Filter>
-    </ClInclude>
-    <ClInclude Include="Game\Framework\GameObject\Property.h">
-      <Filter>Game\Framework\GameObject</Filter>
     </ClInclude>
     <ClInclude Include="Game\Framework\GameObject\GameObject.h">
       <Filter>Game\Framework\GameObject</Filter>
@@ -178,6 +178,9 @@
     </ClInclude>
     <ClInclude Include="Game\Game\State\Play\Component\Move\Move.h">
       <Filter>Game\Game\State\Play\Component\Move</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\Framework\Optional\Optional.h">
+      <Filter>Game\Framework\Optional</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

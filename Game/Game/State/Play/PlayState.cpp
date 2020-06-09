@@ -7,42 +7,91 @@ void PlayState::Initialize(GameContext& context)
 {
 	{
 		auto camera = m_registry.create();
-		auto& obj = m_registry.assign<GameObject>(camera);
-		obj.GetTransform()->localPosition = DirectX::SimpleMath::Vector3(0.f, 10.f, 10.f);
+		auto& obj = m_registry.assign<GameObject>(camera, &m_registry, camera);
+		obj.GetTransform()->localPosition = DirectX::SimpleMath::Vector3(0.f, 15.f, 30.f);
 		m_registry.assign<Camera>(camera);
-	}
-
-	for (int z = 0; z < 10; z++)
-	{
-		for (int x = 0; x < 10; x++)
+		auto& move = m_registry.assign<Move>(camera);
+		move.SetFunction([](GameObject* obj)
 		{
-			auto object = m_registry.create();
-			auto& obj = m_registry.assign<GameObject>(object);
-
-			obj.GetTransform()->localPosition = DirectX::SimpleMath::Vector3((float)x * 1.5f, 0.f, (float)z * 1.5f);
-
-			auto& renderer = m_registry.assign<PrimitiveRenderer>(object);
-			renderer.SetModel(context.Get<PrimitiveModelList>().GetModel(PrimitiveModelList::ID::Cube));
-			auto& move = m_registry.assign<Move>(object);
-			if (x % 2)
+			auto pos = obj->GetTransform()->localPosition;
+			if (InputManager::GetKey(DirectX::Keyboard::Keys::W))
 			{
-				move.SetFunction([](GameObject* obj)
-				{
-					obj->GetTransform()->localRotation *=
-						DirectX::SimpleMath::Quaternion::CreateFromRotationMatrix(
-							DirectX::SimpleMath::Matrix::CreateRotationY(
-								DirectX::XMConvertToRadians(5.f)));
-				});
+				pos.z -= 0.1f;
 			}
-			else
+			if (InputManager::GetKey(DirectX::Keyboard::Keys::A))
 			{
+				pos.x -= 0.1f;
+			}
+			if (InputManager::GetKey(DirectX::Keyboard::Keys::LeftShift))
+			{
+				pos.y -= 0.1f;
+			}
+			if (InputManager::GetKey(DirectX::Keyboard::Keys::S))
+			{
+				pos.z += 0.1f;
+			}
+			if (InputManager::GetKey(DirectX::Keyboard::Keys::D))
+			{
+				pos.x += 0.1f;
+			}
+			if (InputManager::GetKey(DirectX::Keyboard::Keys::Space))
+			{
+				pos.y += 0.1f;
+			}
+			obj->GetTransform()->localPosition = pos;
+		});
+	}
+	float shift = 1.5f;
+
+	auto parentEntity = m_registry.create();
+	auto& parentObj = m_registry.assign<GameObject>(parentEntity, &m_registry, parentEntity);
+	parentObj.GetTransform()->localPosition = DirectX::SimpleMath::Vector3(0.f * shift, 0.f * shift, 0.f * shift);
+	auto& pMove = m_registry.assign<Move>(parentEntity);
+	pMove.SetFunction([](GameObject* object)
+	{
+		object->GetTransform()->localRotation *=
+			DirectX::SimpleMath::Quaternion::CreateFromRotationMatrix(
+				DirectX::SimpleMath::Matrix::CreateRotationY(
+					DirectX::XMConvertToRadians(5.f)) *
+				DirectX::SimpleMath::Matrix::CreateRotationX(
+					DirectX::XMConvertToRadians(5.f)) *
+				DirectX::SimpleMath::Matrix::CreateRotationZ(
+					DirectX::XMConvertToRadians(-5.f)));
+
+		object->GetTransform()->localScale.x = (std::sinf((float)(object->GetCount()) / 20.f) + 1.0f)/ 2.f + 0.5f;
+		object->GetTransform()->localScale.y = (std::sinf((float)(object->GetCount()) / 20.f) + 1.0f)/ 2.f + 0.5f;
+		object->GetTransform()->localScale.z = (std::sinf((float)(object->GetCount()) / 20.f) + 1.0f)/ 2.f + 0.5f;
+	});
+
+	for (int y = 0; y < 10; y++)
+	{
+		for (int z = 0; z < 10; z++)
+		{
+			for (int x = 0; x < 10; x++)
+			{
+				auto object = m_registry.create();
+				auto& obj = m_registry.assign<GameObject>(object, &m_registry, object);
+				obj.SetParent(parentEntity);
+
+				obj.GetTransform()->localPosition = DirectX::SimpleMath::Vector3((float)(x - 5) * shift, (float)(y - 5) * shift, (float)(z - 5) * shift);
+
+				auto& renderer = m_registry.assign<PrimitiveRenderer>(object);
+				renderer.SetModel(context.Get<PrimitiveModelList>().GetModel(PrimitiveModelList::ID::Cube));
+				auto& move = m_registry.assign<Move>(object);
+				/**
 				move.SetFunction([](GameObject* obj)
 				{
 					obj->GetTransform()->localRotation *=
 						DirectX::SimpleMath::Quaternion::CreateFromRotationMatrix(
 							DirectX::SimpleMath::Matrix::CreateRotationY(
-								DirectX::XMConvertToRadians(-5.f)));
+								DirectX::XMConvertToRadians(10.f)) *
+							DirectX::SimpleMath::Matrix::CreateRotationX(
+								DirectX::XMConvertToRadians(10.f)) *
+							DirectX::SimpleMath::Matrix::CreateRotationZ(
+								DirectX::XMConvertToRadians(-5.f))
+						);
 				});
+				/**/
 			}
 		}
 	}
@@ -56,16 +105,18 @@ void PlayState::Initialize(GameContext& context)
 
 void PlayState::Update(GameContext& context)
 {
-	Transform* target = nullptr;
+	//Transform* target = nullptr;
 	// <プレイヤーを探してターゲットにする>
-	m_registry.view<GameObject, PrimitiveRenderer>().each([&](auto entity, auto& obj, auto& renderer)
+	/*m_registry.view<GameObject, PrimitiveRenderer>().each([&](auto entity, auto& obj, auto& renderer)
 	{
 		target = obj.GetTransform();
-	});
+	});*/
 
+	Transform target;
+	target.localPosition = target.localScale = DirectX::SimpleMath::Vector3(0, 0, 0);
 	m_registry.view<GameObject, Camera>().each([&](auto entity, auto& obj, auto& camera)
 	{
-		camera.Update(context, obj.GetTransform(), target);
+		camera.Update(context, obj.GetTransform(), &target);
 	});
 
 	m_registry.view<GameObject, Move>().each([](auto entity, auto& obj, auto& move)
@@ -74,7 +125,7 @@ void PlayState::Update(GameContext& context)
 	});
 
 	// <TransformをWorld行列へ更新>
-	m_registry.view<GameObject>().each([&](auto entity, auto& obj)
+	m_registry.view<GameObject>().each([](auto entity, auto& obj)
 	{
 		obj.Update();
 	});

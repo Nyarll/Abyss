@@ -178,10 +178,10 @@
     <ClInclude Include="Game\Framework\GameFont\FontManager.h" />
     <ClInclude Include="Game\Framework\GameFont\FontRenderer.h" />
     <ClInclude Include="Game\Framework\GameObject\GameObject.h" />
-    <ClInclude Include="Game\Framework\GameObject\Property.h" />
     <ClInclude Include="Game\Framework\GameObject\Transform.h" />
     <ClInclude Include="Game\Framework\InputManager\InputManager.h" />
     <ClInclude Include="Game\Framework\Json\JsonImport.h" />
+    <ClInclude Include="Game\Framework\Optional\Optional.h" />
     <ClInclude Include="Game\Framework\Primitive\PrimitiveModelList.h" />
     <ClInclude Include="Game\Framework\Primitive\PrimitiveRenderer.h" />
     <ClInclude Include="Game\Framework\ShaderFileImporter\ShaderFileImporter.h" />

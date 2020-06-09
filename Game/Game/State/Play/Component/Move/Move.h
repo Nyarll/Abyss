@@ -23,7 +23,10 @@ public:
 
 	void Update(GameObject* owner)
 	{
-		m_func(owner);
+		if (m_func)
+		{
+			m_func(owner);
+		}
 	}
 };
 

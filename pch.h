@@ -103,6 +103,9 @@
 #include <Effects.h>
 #include <Model.h>
 
+// <entt>
+#include <entt.hpp>
+
 #ifdef _DEBUG
 #include <dxgidebug.h>
 #endif
@@ -135,3 +138,5 @@ namespace DX
 		}
 	}
 }
+
+using Entity = uint32_t;
