@@ -197,6 +197,7 @@
     <ClInclude Include="Game\Game\State\Play\Component\Components.h" />
     <ClInclude Include="Game\Game\State\Play\Component\DebugTools\DebugCamera\DebugCamera.h" />
     <ClInclude Include="Game\Game\State\Play\Component\DebugTools\DebugTools.h" />
+    <ClInclude Include="Game\Game\State\Play\Component\MapGenerator\MapGenerator.h" />
     <ClInclude Include="Game\Game\State\Play\PlayState.h" />
     <ClInclude Include="Game\Game\State\StateManager.h" />
     <ClInclude Include="Game\Game\State\States.h" />
@@ -223,6 +224,7 @@
     <ClCompile Include="Game\Framework\Utility\MathUtility.cpp" />
     <ClCompile Include="Game\Game\Game.cpp" />
     <ClCompile Include="Game\Game\State\Play\Component\DebugTools\DebugCamera\DebugCamera.cpp" />
+    <ClCompile Include="Game\Game\State\Play\Component\MapGenerator\MapGenerator.cpp" />
     <ClCompile Include="Game\Game\State\Play\PlayState.cpp" />
     <ClCompile Include="Game\Game\State\StateManager.cpp" />
     <ClCompile Include="Game\Game\State\Title\TitleState.cpp" />

@@ -197,6 +197,9 @@
     <ClInclude Include="Game\Game\State\Play\Component\DebugTools\DebugTools.h">
       <Filter>Game\Game\State\Play\Component\Debug</Filter>
     </ClInclude>
+    <ClInclude Include="Game\Game\State\Play\Component\MapGenerator\MapGenerator.h">
+      <Filter>Game\Game\State\Play\Component\MapGenerator</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="pch.cpp" />
@@ -269,6 +272,7 @@
     <ClCompile Include="Game\Game\State\Play\Component\DebugTools\DebugCamera\DebugCamera.cpp">
       <Filter>Game\Game\State\Play\Component\Debug\DebugCamera</Filter>
     </ClCompile>
+    <ClCompile Include="Game\Game\State\Play\Component\MapGenerator\MapGenerator.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="resource.rc" />

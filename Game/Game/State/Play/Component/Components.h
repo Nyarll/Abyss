@@ -4,6 +4,6 @@
 // <author			: Nyarll>
 // <GitHub			: https://github.com/Nyarll >
 
-//#include "MapGenerator\MapGenerator.h"
+#include "MapGenerator\MapGenerator.h"
 
 #include "DebugTools\DebugTools.h"

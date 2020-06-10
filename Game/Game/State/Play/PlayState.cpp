@@ -13,10 +13,11 @@ void PlayState::Initialize(GameContext& context)
 	}
 
 	{
-		//auto entity = m_registry.create();
-		//auto& generator = m_registry.assign<MapGenerator>(entity, &m_registry);
-		//generator.GenerateMap(context);
-		//m_mapGenerator = entity;
+		auto entity = m_registry.create();
+		auto& generator = m_registry.assign<MapGenerator>(entity);
+		generator.Initialize(context, &m_registry);
+		generator.Generate();
+		m_mapGenerator = entity;
 	}
 
 	{
@@ -43,7 +44,7 @@ void PlayState::Update(GameContext& context)
 
 	if (InputManager::GetKeyDown(DirectX::Keyboard::Keys::F1))
 	{
-		//m_registry.get<MapGenerator>(m_mapGenerator).GenerateMap(context);
+		m_registry.get<MapGenerator>(m_mapGenerator).Generate();
 	}
 
 	Transform target;
