@@ -49,25 +49,24 @@ void PlayState::Initialize(GameContext& context)
 	auto& pMove = m_registry.assign<Move>(parentEntity);
 	pMove.SetFunction([](GameObject* object)
 	{
-		object->GetTransform()->localRotation *=
-			DirectX::SimpleMath::Quaternion::CreateFromRotationMatrix(
-				DirectX::SimpleMath::Matrix::CreateRotationY(
-					DirectX::XMConvertToRadians(5.f)) *
-				DirectX::SimpleMath::Matrix::CreateRotationX(
-					DirectX::XMConvertToRadians(5.f)) *
-				DirectX::SimpleMath::Matrix::CreateRotationZ(
-					DirectX::XMConvertToRadians(-5.f)));
-
-		object->GetTransform()->localScale.x = (std::sinf((float)(object->GetCount()) / 20.f) + 1.0f)/ 2.f + 0.5f;
-		object->GetTransform()->localScale.y = (std::sinf((float)(object->GetCount()) / 20.f) + 1.0f)/ 2.f + 0.5f;
-		object->GetTransform()->localScale.z = (std::sinf((float)(object->GetCount()) / 20.f) + 1.0f)/ 2.f + 0.5f;
+		if (InputManager::GetKey(DirectX::Keyboard::Keys::X))
+		{
+			object->GetTransform()->localRotation *=
+				DirectX::SimpleMath::Quaternion::CreateFromRotationMatrix(
+					DirectX::SimpleMath::Matrix::CreateRotationY(
+						DirectX::XMConvertToRadians(5.f)));
+		}
+		else
+		{
+			object->GetTransform()->localRotation = DirectX::SimpleMath::Quaternion::Identity;
+		}
 	});
 
-	for (int y = 0; y < 10; y++)
+	for (int y = 0; y < 11; y++)
 	{
-		for (int z = 0; z < 10; z++)
+		for (int z = 0; z < 11; z++)
 		{
-			for (int x = 0; x < 10; x++)
+			for (int x = 0; x < 11; x++)
 			{
 				auto object = m_registry.create();
 				auto& obj = m_registry.assign<GameObject>(object, &m_registry, object);
@@ -76,27 +75,34 @@ void PlayState::Initialize(GameContext& context)
 				obj.GetTransform()->localPosition = DirectX::SimpleMath::Vector3((float)(x - 5) * shift, (float)(y - 5) * shift, (float)(z - 5) * shift);
 
 				auto& renderer = m_registry.assign<PrimitiveRenderer>(object);
-				renderer.SetModel(context.Get<PrimitiveModelList>().GetModel(PrimitiveModelList::ID::Cube));
+				renderer.SetModel(context.Get<PrimitiveModelList>().GetModel(PrimitiveModelList::ID::Teapot));
 				auto& move = m_registry.assign<Move>(object);
-				/**
+				/**/
 				move.SetFunction([](GameObject* obj)
 				{
-					obj->GetTransform()->localRotation *=
-						DirectX::SimpleMath::Quaternion::CreateFromRotationMatrix(
-							DirectX::SimpleMath::Matrix::CreateRotationY(
-								DirectX::XMConvertToRadians(10.f)) *
-							DirectX::SimpleMath::Matrix::CreateRotationX(
-								DirectX::XMConvertToRadians(10.f)) *
-							DirectX::SimpleMath::Matrix::CreateRotationZ(
-								DirectX::XMConvertToRadians(-5.f))
-						);
+					if (InputManager::GetKey(DirectX::Keyboard::Keys::Z))
+					{
+						obj->GetTransform()->localRotation *=
+							DirectX::SimpleMath::Quaternion::CreateFromRotationMatrix(
+								DirectX::SimpleMath::Matrix::CreateRotationY(
+									DirectX::XMConvertToRadians(10.f)) *
+								DirectX::SimpleMath::Matrix::CreateRotationX(
+									DirectX::XMConvertToRadians(10.f)) *
+								DirectX::SimpleMath::Matrix::CreateRotationZ(
+									DirectX::XMConvertToRadians(-5.f))
+							);
+					}
+					else
+					{
+						obj->GetTransform()->localRotation = DirectX::SimpleMath::Quaternion::Identity;
+					}
 				});
 				/**/
 			}
 		}
 	}
 
-	m_registry.view<GameObject>().each([&](auto entity, auto& obj)
+	m_registry.view<GameObject>().each([](auto entity, auto& obj)
 	{
 		auto transform = obj.GetTransform();
 		transform->localScale = DirectX::SimpleMath::Vector3(1.f, 1.f, 1.f);
