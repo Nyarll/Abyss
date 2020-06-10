@@ -184,6 +184,7 @@
     <ClInclude Include="Game\Framework\Optional\Optional.h" />
     <ClInclude Include="Game\Framework\Primitive\PrimitiveModelList.h" />
     <ClInclude Include="Game\Framework\Primitive\PrimitiveRenderer.h" />
+    <ClInclude Include="Game\Framework\Random\Random.h" />
     <ClInclude Include="Game\Framework\ShaderFileImporter\ShaderFileImporter.h" />
     <ClInclude Include="Game\Framework\Sound\Adx2Le.h" />
     <ClInclude Include="Game\Framework\SpriteRenderer\SpriteRenderer.h" />
@@ -194,7 +195,8 @@
     <ClInclude Include="Game\Game\Game.h" />
     <ClInclude Include="Game\Game\State\IState.h" />
     <ClInclude Include="Game\Game\State\Play\Component\Components.h" />
-    <ClInclude Include="Game\Game\State\Play\Component\Move\Move.h" />
+    <ClInclude Include="Game\Game\State\Play\Component\DebugTools\DebugCamera\DebugCamera.h" />
+    <ClInclude Include="Game\Game\State\Play\Component\DebugTools\DebugTools.h" />
     <ClInclude Include="Game\Game\State\Play\PlayState.h" />
     <ClInclude Include="Game\Game\State\StateManager.h" />
     <ClInclude Include="Game\Game\State\States.h" />
@@ -211,6 +213,7 @@
     <ClCompile Include="Game\Framework\InputManager\InputManager.cpp" />
     <ClCompile Include="Game\Framework\Primitive\PrimitiveModelList.cpp" />
     <ClCompile Include="Game\Framework\Primitive\PrimitiveRenderer.cpp" />
+    <ClCompile Include="Game\Framework\Random\Random.cpp" />
     <ClCompile Include="Game\Framework\ShaderFileImporter\ShaderFileImporter.cpp" />
     <ClCompile Include="Game\Framework\Sound\Adx2Le.cpp" />
     <ClCompile Include="Game\Framework\SpriteRenderer\SpriteRenderer.cpp" />
@@ -219,6 +222,7 @@
     <ClCompile Include="Game\Framework\Texture\TextureManager.cpp" />
     <ClCompile Include="Game\Framework\Utility\MathUtility.cpp" />
     <ClCompile Include="Game\Game\Game.cpp" />
+    <ClCompile Include="Game\Game\State\Play\Component\DebugTools\DebugCamera\DebugCamera.cpp" />
     <ClCompile Include="Game\Game\State\Play\PlayState.cpp" />
     <ClCompile Include="Game\Game\State\StateManager.cpp" />
     <ClCompile Include="Game\Game\State\Title\TitleState.cpp" />

@@ -18,7 +18,7 @@ public:
 	entt::DefaultRegistry* registry;
 	uint32_t entity;
 
-private:
+protected:
 	bool m_isActive = true;
 	Transform transform;
 

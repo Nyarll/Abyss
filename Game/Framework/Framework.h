@@ -32,12 +32,12 @@
 #include "GameFont\FontManager.h"
 #include "GameFont\FontRenderer.h"
 
-//#include "Json\JsonImport.h"
-
 #include "InputManager\InputManager.h"
 
 #include "Sound\Adx2Le.h"
 
 #include "Camera\Camera.h"
+#include "Random\Random.h"
 
+//#include "Json\JsonImport.h"
 #endif

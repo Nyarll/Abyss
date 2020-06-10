@@ -9,7 +9,20 @@ void PlayState::Initialize(GameContext& context)
 		auto camera = m_registry.create();
 		auto& obj = m_registry.assign<GameObject>(camera, &m_registry, camera);
 		obj.GetTransform()->localPosition = DirectX::SimpleMath::Vector3(0.f, 15.f, 30.f);
-		m_registry.assign<Camera>(camera);
+		m_registry.assign<DebugCamera>(camera);
+	}
+
+	{
+		//auto entity = m_registry.create();
+		//auto& generator = m_registry.assign<MapGenerator>(entity, &m_registry);
+		//generator.GenerateMap(context);
+		//m_mapGenerator = entity;
+	}
+
+	{
+		auto entity = m_registry.create();
+		m_registry.assign<FontRenderer>(entity);
+		m_registry.assign<DirectX::SimpleMath::Vector2>(entity);
 	}
 
 	m_registry.view<GameObject>().each([](auto entity, auto& obj)
@@ -28,11 +41,16 @@ void PlayState::Update(GameContext& context)
 		target = obj.GetTransform();
 	});*/
 
+	if (InputManager::GetKeyDown(DirectX::Keyboard::Keys::F1))
+	{
+		//m_registry.get<MapGenerator>(m_mapGenerator).GenerateMap(context);
+	}
+
 	Transform target;
 	target.localPosition = target.localScale = DirectX::SimpleMath::Vector3(0, 0, 0);
-	m_registry.view<GameObject, Camera>().each([&](auto entity, auto& obj, auto& camera)
+	m_registry.view<GameObject, DebugCamera>().each([&](auto entity, auto& obj, auto& camera)
 	{
-		camera.Update(context, obj.GetTransform(), &target);
+		camera.Update(context, obj.GetTransform());
 	});
 
 	// <Transform‚ðWorlds—ñ‚ÖXV>
@@ -45,15 +63,26 @@ void PlayState::Update(GameContext& context)
 void PlayState::Render(GameContext& context)
 {
 	DirectX::SimpleMath::Matrix view, proj;
+	DirectX::SimpleMath::Vector3 cameraPos;
 
-	m_registry.view<Camera>().each([&](auto entity, auto& camera)
+	m_registry.view<DebugCamera, GameObject>().each([&](auto entity, auto& camera, auto& obj)
 	{
 		view = camera.GetViewMatrix();
 		proj = camera.GetProjectionMatrix();
+		cameraPos = obj.GetTransform()->localPosition;
 	});
 
 	m_registry.view<GameObject, PrimitiveRenderer>().each([&](auto entity, auto& obj, auto& renderer)
 	{
-		renderer.Draw(obj.GetMatrix(), view, proj, DirectX::Colors::Red);
+		if (obj.IsActive())
+		{
+			renderer.Draw(obj.GetMatrix(), view, proj, DirectX::Colors::Red);
+		}
+	});
+
+	m_registry.view<FontRenderer, DirectX::SimpleMath::Vector2>().each([&](auto entity, auto& renderer, auto& pos)
+	{
+		auto font = context.Get<FontManager>().GetSpriteFont("Meiryo UI");
+		renderer.Draw(context, font, pos, DirectX::Colors::Red, "Camera : %.2f, %.2f", cameraPos.x, cameraPos.z);
 	});
 }

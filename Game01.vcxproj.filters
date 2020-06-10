@@ -77,11 +77,20 @@
     <Filter Include="Game\Game\State\Play\Component">
       <UniqueIdentifier>{cb3abedd-f7e2-4ff0-948d-f2945785c436}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Game\Game\State\Play\Component\Move">
-      <UniqueIdentifier>{b089ebe6-8085-48a7-8e2e-a8fdddd858ae}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Game\Framework\Optional">
       <UniqueIdentifier>{d475b35c-a02f-47c6-86a0-2f5d97feeaef}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game\Game\State\Play\Component\MapGenerator">
+      <UniqueIdentifier>{1c295b1a-ac17-47e6-900d-d1ad29c239d7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game\Framework\Random">
+      <UniqueIdentifier>{3091bf6a-ad99-48b4-bc73-9a436b9a9efd}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game\Game\State\Play\Component\Debug">
+      <UniqueIdentifier>{bbce5d29-18af-4608-b008-516960c91154}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game\Game\State\Play\Component\Debug\DebugCamera">
+      <UniqueIdentifier>{b8aac547-a52a-42fb-b026-bccc3a7ce46a}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -176,11 +185,17 @@
     <ClInclude Include="Game\Game\State\Play\Component\Components.h">
       <Filter>Game\Game\State\Play\Component</Filter>
     </ClInclude>
-    <ClInclude Include="Game\Game\State\Play\Component\Move\Move.h">
-      <Filter>Game\Game\State\Play\Component\Move</Filter>
-    </ClInclude>
     <ClInclude Include="Game\Framework\Optional\Optional.h">
       <Filter>Game\Framework\Optional</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\Framework\Random\Random.h">
+      <Filter>Game\Framework\Random</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\Game\State\Play\Component\DebugTools\DebugCamera\DebugCamera.h">
+      <Filter>Game\Game\State\Play\Component\Debug\DebugCamera</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\Game\State\Play\Component\DebugTools\DebugTools.h">
+      <Filter>Game\Game\State\Play\Component\Debug</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -247,6 +262,12 @@
     </ClCompile>
     <ClCompile Include="Game\Framework\Camera\Camera.cpp">
       <Filter>Game\Framework\Camera</Filter>
+    </ClCompile>
+    <ClCompile Include="Game\Framework\Random\Random.cpp">
+      <Filter>Game\Framework\Random</Filter>
+    </ClCompile>
+    <ClCompile Include="Game\Game\State\Play\Component\DebugTools\DebugCamera\DebugCamera.cpp">
+      <Filter>Game\Game\State\Play\Component\Debug\DebugCamera</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

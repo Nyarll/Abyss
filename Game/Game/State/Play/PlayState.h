@@ -13,6 +13,9 @@
 // <PlayState>
 class PlayState : public IState
 {
+private:
+	Entity m_mapGenerator = entt::null;
+
 public:
 	virtual void Initialize(GameContext& context)override;	// <‰Šú‰»>
 
