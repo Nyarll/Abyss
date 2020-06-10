@@ -77,7 +77,7 @@ void PlayState::Render(GameContext& context)
 	{
 		if (obj.IsActive())
 		{
-			renderer.Draw(obj.GetMatrix(), view, proj, DirectX::Colors::Red);
+			renderer.Draw(obj.GetMatrix(), view, proj, DirectX::Colors::Red, nullptr, true);
 		}
 	});
 

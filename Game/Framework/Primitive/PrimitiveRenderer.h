@@ -19,7 +19,10 @@ public:
 	void SetModel(PrimitiveModel* model);
 
 	void Draw(const DirectX::SimpleMath::Matrix& world, const DirectX::SimpleMath::Matrix& view,
-		const DirectX::SimpleMath::Matrix& projection, DirectX::XMVECTOR color = DirectX::Colors::Blue);
+		const DirectX::SimpleMath::Matrix& projection,
+		DirectX::XMVECTOR color = DirectX::Colors::Blue,
+		ID3D11ShaderResourceView* texture = nullptr,
+		bool wireframe = false);
 };
 
 #endif
