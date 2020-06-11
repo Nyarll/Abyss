@@ -52,6 +52,9 @@ public:
 	// <マップ生成>
 	void Generate();
 
+	// <プレーンなマップ>
+	void Plain();
+
 private:
 	// <マップデータを生成>
 	void CreateSpaceData();

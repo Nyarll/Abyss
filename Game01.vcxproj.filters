@@ -92,6 +92,9 @@
     <Filter Include="Game\Game\State\Play\Component\Debug\DebugCamera">
       <UniqueIdentifier>{b8aac547-a52a-42fb-b026-bccc3a7ce46a}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Game\Game\State\Play\Component\Debug\Grid">
+      <UniqueIdentifier>{0da216ca-4284-4631-b8cf-dbf1b932a593}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="pch.h" />
@@ -200,6 +203,9 @@
     <ClInclude Include="Game\Game\State\Play\Component\MapGenerator\MapGenerator.h">
       <Filter>Game\Game\State\Play\Component\MapGenerator</Filter>
     </ClInclude>
+    <ClInclude Include="Game\Game\State\Play\Component\DebugTools\Grid\Grid.h">
+      <Filter>Game\Game\State\Play\Component\Debug\Grid</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="pch.cpp" />
@@ -272,7 +278,12 @@
     <ClCompile Include="Game\Game\State\Play\Component\DebugTools\DebugCamera\DebugCamera.cpp">
       <Filter>Game\Game\State\Play\Component\Debug\DebugCamera</Filter>
     </ClCompile>
-    <ClCompile Include="Game\Game\State\Play\Component\MapGenerator\MapGenerator.cpp" />
+    <ClCompile Include="Game\Game\State\Play\Component\DebugTools\Grid\Grid.cpp">
+      <Filter>Game\Game\State\Play\Component\Debug\Grid</Filter>
+    </ClCompile>
+    <ClCompile Include="Game\Game\State\Play\Component\MapGenerator\MapGenerator.cpp">
+      <Filter>Game\Game\State\Play\Component\MapGenerator</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="resource.rc" />

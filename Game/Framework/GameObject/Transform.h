@@ -16,6 +16,13 @@ public:
 	DirectX::SimpleMath::Quaternion localRotation;	// <ローカル回転>
 	DirectX::SimpleMath::Vector3 localScale;		// <ローカルスケール>
 
+	Transform()
+	{
+		localPosition = DirectX::SimpleMath::Vector3::Zero;
+		localRotation = DirectX::SimpleMath::Quaternion::Identity;
+		localScale = DirectX::SimpleMath::Vector3(1.f, 1.f, 1.f);
+	}
+
 	DirectX::SimpleMath::Matrix GetMatrix()const
 	{
 		DirectX::SimpleMath::Matrix matrix = DirectX::SimpleMath::Matrix::CreateScale(localScale) *

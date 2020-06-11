@@ -9,6 +9,9 @@
 #define PLAYSTATE_DEFINED
 
 #include "../IState.h"
+#include "Component\DebugTools\Grid\Grid.h"
+
+class GridFloor;
 
 // <PlayState>
 class PlayState : public IState
@@ -26,6 +29,24 @@ public:
 	{
 		return{ new PlayState };
 	}
+
+private:
+	void CreateCamera();
+	void CreateGameEntitys(GameContext& context);
+	void CreateUI(GameContext& context);
+
+	// <デバッグ用>
+private:
+	bool isWireframe = true;
+	std::unique_ptr<GridFloor> m_gridFloor;
+
+	void CreateDebugItems(GameContext& context);
+	void SwitchingDebug();
+
+	void DebugFunction();
+
+	void DebugRender(GameContext& context, DirectX::SimpleMath::Vector3& cameraPos, const DirectX::SimpleMath::Matrix& view,
+		const DirectX::SimpleMath::Matrix& proj);
 };
 
 #endif

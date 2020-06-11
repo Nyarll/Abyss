@@ -18,6 +18,7 @@ void MapGenerator::Initialize(GameContext& context, entt::DefaultRegistry* _pReg
 			obj.Deactivate();
 			auto& renderer = registry->assign<PrimitiveRenderer>(entity);
 			renderer.SetModel(context.Get<PrimitiveModelList>().GetModel(PrimitiveModelList::ID::Cube));
+			renderer.SetModelOption(DirectX::Colors::Black, true);
 
 			m_mapEntitys[z].push_back(entity);
 		}
@@ -29,6 +30,20 @@ void MapGenerator::Generate()
 	Clear();
 	Fill();
 	CreateSpaceData();
+	Activate();
+}
+
+void MapGenerator::Plain()
+{
+	Clear();
+	for (int z = 0; z < MapSize; z++)
+	{
+		m_mapData.push_back(std::vector<int>());
+		for (int x = 0; x < MapSize; x++)
+		{
+			m_mapData[z].push_back((int)MapState::Floor);
+		}
+	}
 	Activate();
 }
 
@@ -203,6 +218,19 @@ void MapGenerator::Activate()
 				auto entity = m_mapEntitys[z][x];
 				registry->get<GameObject>(entity).Activate();
 				m_activeEntitys.push_back(entity);
+
+				if (z != m_mapData.size() - 1)
+				{
+					auto entity2 = m_mapEntitys[z + 1][x];
+					registry->get<GameObject>(entity2).Activate();
+					m_activeEntitys.push_back(entity2);
+				}
+				if (x != m_mapData[z].size() - 1)
+				{
+					auto entity3 = m_mapEntitys[z][x + 1];
+					registry->get<GameObject>(entity3).Activate();
+					m_activeEntitys.push_back(entity3);
+				}
 			}
 		}
 	}

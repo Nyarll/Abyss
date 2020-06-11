@@ -13,16 +13,25 @@ class PrimitiveRenderer
 {
 private:
 	using PrimitiveModel = DirectX::GeometricPrimitive;
-	PrimitiveModel* m_modelPtr = nullptr;
+	PrimitiveModel* m_modelPtr;
+
+	DirectX::XMVECTOR m_color;
+	bool m_isWireframe;
+	ID3D11ShaderResourceView* texture;
 
 public:
+	PrimitiveRenderer();
+
 	void SetModel(PrimitiveModel* model);
+	void SetModelOption(DirectX::XMVECTOR _color = DirectX::Colors::Blue,
+		bool _wireframe = false, ID3D11ShaderResourceView* _texture = nullptr);
+
+	void SetColor(DirectX::XMVECTOR _color);
+	void SetIsWireframe(bool _wireframe);
+	void SetTexture(ID3D11ShaderResourceView* _texture);
 
 	void Draw(const DirectX::SimpleMath::Matrix& world, const DirectX::SimpleMath::Matrix& view,
-		const DirectX::SimpleMath::Matrix& projection,
-		DirectX::XMVECTOR color = DirectX::Colors::Blue,
-		ID3D11ShaderResourceView* texture = nullptr,
-		bool wireframe = false);
+		const DirectX::SimpleMath::Matrix& projection);
 };
 
 #endif
