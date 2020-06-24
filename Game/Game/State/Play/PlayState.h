@@ -34,6 +34,7 @@ private:
 	void CreateCamera();
 	void CreateGameEntitys(GameContext& context);
 	void CreateUI(GameContext& context);
+	void RegisterTexture(GameContext& context);
 
 	// <デバッグ用>
 private:

@@ -18,7 +18,7 @@ void MapGenerator::Initialize(GameContext& context, entt::DefaultRegistry* _pReg
 			obj.Deactivate();
 			auto& renderer = registry->assign<PrimitiveRenderer>(entity);
 			renderer.SetModel(context.Get<PrimitiveModelList>().GetModel(PrimitiveModelList::ID::Cube));
-			renderer.SetModelOption(DirectX::Colors::Black, true);
+			renderer.SetModelOption(DirectX::Colors::White, false, context.Get<TextureManager>().GetTexture(TextureID::Floor));
 
 			m_mapEntitys[z].push_back(entity);
 		}

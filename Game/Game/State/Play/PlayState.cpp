@@ -5,9 +5,12 @@
 
 void PlayState::Initialize(GameContext& context)
 {
+	RegisterTexture(context);
+
 	CreateCamera();
 	CreateGameEntitys(context);
 	CreateUI(context);
+
 	CreateDebugItems(context);
 }
 
@@ -83,6 +86,12 @@ void PlayState::CreateUI(GameContext& context)
 	auto entity = m_registry.create();
 	m_registry.assign<FontRenderer>(entity);
 	m_registry.assign<DirectX::SimpleMath::Vector2>(entity);
+}
+
+void PlayState::RegisterTexture(GameContext& context)
+{
+	auto& textureManager = context.Get<TextureManager>();
+	textureManager.Register(context, L"Resources/Sprite/protoFloor.png", TextureID::Floor);
 }
 
 void PlayState::CreateDebugItems(GameContext& context)

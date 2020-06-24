@@ -16,6 +16,8 @@ enum TextureID
 {
 	Logo,
 
+	Floor,
+
 	NUM
 };
 

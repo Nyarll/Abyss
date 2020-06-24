@@ -21,6 +21,14 @@ void DebugCamera::Update(GameContext& context, Transform* self)
 	{
 		eye.x -= 0.1f;
 	}
+	if (InputManager::GetKey(DirectX::Keyboard::Keys::Space))
+	{
+		eye.y += 0.1f;
+	}
+	if (InputManager::GetKey(DirectX::Keyboard::Keys::LeftShift))
+	{
+		eye.y -= 0.1f;
+	}
 	self->localPosition = eye;
 
 	DirectX::SimpleMath::Vector3 target = eye - DirectX::SimpleMath::Vector3(0.f, 5.f, -10.f);
