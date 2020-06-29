@@ -206,6 +206,9 @@
     <ClInclude Include="Game\Game\State\Play\Component\DebugTools\Grid\Grid.h">
       <Filter>Game\Game\State\Play\Component\Debug\Grid</Filter>
     </ClInclude>
+    <ClInclude Include="Game\Framework\Json\Json.h">
+      <Filter>Game\Framework\Json</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="pch.cpp" />
@@ -283,6 +286,9 @@
     </ClCompile>
     <ClCompile Include="Game\Game\State\Play\Component\MapGenerator\MapGenerator.cpp">
       <Filter>Game\Game\State\Play\Component\MapGenerator</Filter>
+    </ClCompile>
+    <ClCompile Include="Game\Framework\Json\Json.cpp">
+      <Filter>Game\Framework\Json</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

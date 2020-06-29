@@ -180,6 +180,7 @@
     <ClInclude Include="Game\Framework\GameObject\GameObject.h" />
     <ClInclude Include="Game\Framework\GameObject\Transform.h" />
     <ClInclude Include="Game\Framework\InputManager\InputManager.h" />
+    <ClInclude Include="Game\Framework\Json\Json.h" />
     <ClInclude Include="Game\Framework\Json\JsonImport.h" />
     <ClInclude Include="Game\Framework\Optional\Optional.h" />
     <ClInclude Include="Game\Framework\Primitive\PrimitiveModelList.h" />
@@ -213,6 +214,7 @@
     <ClCompile Include="Game\Framework\GameFont\FontManager.cpp" />
     <ClCompile Include="Game\Framework\GameFont\FontRenderer.cpp" />
     <ClCompile Include="Game\Framework\InputManager\InputManager.cpp" />
+    <ClCompile Include="Game\Framework\Json\Json.cpp" />
     <ClCompile Include="Game\Framework\Primitive\PrimitiveModelList.cpp" />
     <ClCompile Include="Game\Framework\Primitive\PrimitiveRenderer.cpp" />
     <ClCompile Include="Game\Framework\Random\Random.cpp" />
