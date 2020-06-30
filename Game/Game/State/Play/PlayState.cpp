@@ -91,7 +91,10 @@ void PlayState::CreateUI(GameContext& context)
 void PlayState::RegisterTexture(GameContext& context)
 {
 	auto& textureManager = context.Get<TextureManager>();
-	textureManager.Register(context, L"Resources/Sprite/stationFloor.png", TextureID::Floor);
+	Json config;
+	config.Load("Resources/Json/PlayStateConfig.json");
+
+	textureManager.Register(context, config.GetAs<std::string>("Texture.Floor"), TextureID::Floor);
 }
 
 void PlayState::CreateDebugItems(GameContext& context)

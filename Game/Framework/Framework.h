@@ -12,6 +12,7 @@
 #include "BinaryFile\BinaryFile.h"
 
 #include "Utility\MathUtility.h"
+#include "Utility\StringUtility.h"
 
 #include "Context\GameContext.h"
 
@@ -40,4 +41,5 @@
 #include "Random\Random.h"
 
 #include "Json\Json.h"
+
 #endif

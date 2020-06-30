@@ -31,6 +31,7 @@ public:
 	~TextureManager() = default;
 
 	void Register(GameContext& ctx, const wchar_t* file_name, TextureID id);
+	void Register(GameContext& ctx, std::string file_name, TextureID id);
 	Texture& Get(TextureID id);
 	ID3D11ShaderResourceView* GetTexture(TextureID id);
 };

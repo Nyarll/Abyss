@@ -12,7 +12,7 @@ namespace MathUtility
 {
 	// <Å¬’l–¢–ž‚©‚Ç‚¤‚©>
 	template <typename T>
-	T Min(T min, T value)
+	inline T Min(T min, T value)
 	{
 		if (min >= value)return min;
 		return value;
@@ -20,7 +20,7 @@ namespace MathUtility
 
 	// <Å‘å’l‚æ‚è‘å‚«‚¢‚©‚Ç‚¤‚©>
 	template <typename T>
-	T Max(T max, T value)
+	inline T Max(T max, T value)
 	{
 		if (max <= value)return max;
 		return value;
@@ -28,7 +28,7 @@ namespace MathUtility
 
 	// <min`max‚ÌŠÔ‚Évalue‚ðŽû‚ß‚é>
 	template <typename T>
-	T Clamp(T min, T max, T value)
+	inline T Clamp(T min, T max, T value)
 	{
 		return Max(max, (Min(min, value)));
 	}

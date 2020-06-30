@@ -209,6 +209,9 @@
     <ClInclude Include="Game\Framework\Json\Json.h">
       <Filter>Game\Framework\Json</Filter>
     </ClInclude>
+    <ClInclude Include="Game\Framework\Utility\StringUtility.h">
+      <Filter>Game\Framework\Utility</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="pch.cpp" />
@@ -289,6 +292,9 @@
     </ClCompile>
     <ClCompile Include="Game\Framework\Json\Json.cpp">
       <Filter>Game\Framework\Json</Filter>
+    </ClCompile>
+    <ClCompile Include="Game\Framework\Utility\StringUtility.cpp">
+      <Filter>Game\Framework\Utility</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

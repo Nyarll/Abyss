@@ -11,6 +11,8 @@
 #include <fstream>
 #include <picojson.h>
 
+#include "JsonImport.h"
+
 // <Jsonファイルを取り扱うクラス>
 class Json
 {

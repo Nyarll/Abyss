@@ -193,6 +193,7 @@
     <ClInclude Include="Game\Framework\Texture\Texture.h" />
     <ClInclude Include="Game\Framework\Texture\TextureManager.h" />
     <ClInclude Include="Game\Framework\Utility\MathUtility.h" />
+    <ClInclude Include="Game\Framework\Utility\StringUtility.h" />
     <ClInclude Include="Game\Game\Game.h" />
     <ClInclude Include="Game\Game\State\IState.h" />
     <ClInclude Include="Game\Game\State\Play\Component\Components.h" />
@@ -225,6 +226,7 @@
     <ClCompile Include="Game\Framework\Texture\Texture.cpp" />
     <ClCompile Include="Game\Framework\Texture\TextureManager.cpp" />
     <ClCompile Include="Game\Framework\Utility\MathUtility.cpp" />
+    <ClCompile Include="Game\Framework\Utility\StringUtility.cpp" />
     <ClCompile Include="Game\Game\Game.cpp" />
     <ClCompile Include="Game\Game\State\Play\Component\DebugTools\DebugCamera\DebugCamera.cpp" />
     <ClCompile Include="Game\Game\State\Play\Component\DebugTools\Grid\Grid.cpp" />
