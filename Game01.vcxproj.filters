@@ -95,6 +95,9 @@
     <Filter Include="Game\Game\State\Play\Component\Debug\Grid">
       <UniqueIdentifier>{0da216ca-4284-4631-b8cf-dbf1b932a593}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Game\Game\State\Play\Component\Player">
+      <UniqueIdentifier>{b3fcbe8f-da25-4a66-bdae-28146f478990}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="pch.h" />
@@ -212,6 +215,9 @@
     <ClInclude Include="Game\Framework\Utility\StringUtility.h">
       <Filter>Game\Framework\Utility</Filter>
     </ClInclude>
+    <ClInclude Include="Game\Game\State\Play\Component\Player\Player.h">
+      <Filter>Game\Game\State\Play\Component\Player</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="pch.cpp" />
@@ -295,6 +301,9 @@
     </ClCompile>
     <ClCompile Include="Game\Framework\Utility\StringUtility.cpp">
       <Filter>Game\Framework\Utility</Filter>
+    </ClCompile>
+    <ClCompile Include="Game\Game\State\Play\Component\Player\Player.cpp">
+      <Filter>Game\Game\State\Play\Component\Player</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

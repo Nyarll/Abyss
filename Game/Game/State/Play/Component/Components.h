@@ -5,5 +5,6 @@
 // <GitHub			: https://github.com/Nyarll >
 
 #include "MapGenerator\MapGenerator.h"
+#include "Player\Player.h"
 
 #include "DebugTools\DebugTools.h"
