@@ -27,15 +27,15 @@ void MapGenerator::Initialize(GameContext& context, entt::DefaultRegistry* _pReg
 
 void MapGenerator::Generate()
 {
-	Clear();
-	Fill();
-	CreateSpaceData();
-	Activate();
+	MapDataClear();
+	MapDataFillNone();
+	CreateMapData();
+	ReflectMapDataToEntitys();
 }
 
 void MapGenerator::Plain()
 {
-	Clear();
+	MapDataClear();
 	for (int z = 0; z < MapSize; z++)
 	{
 		m_mapData.push_back(std::vector<int>());
@@ -44,10 +44,10 @@ void MapGenerator::Plain()
 			m_mapData[z].push_back((int)MapState::Floor);
 		}
 	}
-	Activate();
+	ReflectMapDataToEntitys();
 }
 
-void MapGenerator::CreateSpaceData()
+void MapGenerator::CreateMapData()
 {
 	Random random;
 
@@ -173,7 +173,7 @@ void MapGenerator::CreateRoadData(int roadStartPointX, int roadStartPointY, int 
 	}
 }
 
-void MapGenerator::Clear()
+void MapGenerator::MapDataClear()
 {
 	// <配列内をすべて消去>
 	if (m_mapData.size() > 0)
@@ -185,17 +185,17 @@ void MapGenerator::Clear()
 		m_mapData.clear();
 	}
 	// <非アクティブにしておく>
-	if (m_activeEntitys.size() > 0)
+	if (m_activeMapEntitys.size() > 0)
 	{
-		for (auto& entity : m_activeEntitys)
+		for (auto& entity : m_activeMapEntitys)
 		{
 			registry->get<GameObject>(entity).Deactivate();
 		}
-		m_activeEntitys.clear();
+		m_activeMapEntitys.clear();
 	}
 }
 
-void MapGenerator::Fill()
+void MapGenerator::MapDataFillNone()
 {
 	for (int z = 0; z < MapSize; z++)
 	{
@@ -207,7 +207,7 @@ void MapGenerator::Fill()
 	}
 }
 
-void MapGenerator::Activate()
+void MapGenerator::ReflectMapDataToEntitys()
 {
 	for (int z = 0; z < m_mapData.size(); z++)
 	{
@@ -217,19 +217,19 @@ void MapGenerator::Activate()
 			{
 				auto entity = m_mapEntitys[z][x];
 				registry->get<GameObject>(entity).Activate();
-				m_activeEntitys.push_back(entity);
+				m_activeMapEntitys.push_back(entity);
 
 				if (z != m_mapData.size() - 1)
 				{
 					auto entity2 = m_mapEntitys[z + 1][x];
 					registry->get<GameObject>(entity2).Activate();
-					m_activeEntitys.push_back(entity2);
+					m_activeMapEntitys.push_back(entity2);
 				}
 				if (x != m_mapData[z].size() - 1)
 				{
 					auto entity3 = m_mapEntitys[z][x + 1];
 					registry->get<GameObject>(entity3).Activate();
-					m_activeEntitys.push_back(entity3);
+					m_activeMapEntitys.push_back(entity3);
 				}
 			}
 		}

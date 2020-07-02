@@ -13,17 +13,16 @@
 
 class GridFloor;
 
-// <PlayState>
 class PlayState : public IState
 {
 private:
 	Entity m_mapGenerator = entt::null;
 
 public:
-	virtual void Initialize(GameContext& context)override;	// <‰Šú‰»>
+	virtual void Initialize(GameContext& context)override;
 
-	virtual void Update(GameContext& context)override;		// <XV>
-	virtual void Render(GameContext& context)override;		// <•`‰æ>
+	virtual void Update(GameContext& context)override;
+	virtual void Render(GameContext& context)override;
 
 	static IState* Create()
 	{

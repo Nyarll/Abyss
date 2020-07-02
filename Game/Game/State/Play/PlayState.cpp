@@ -16,13 +16,6 @@ void PlayState::Initialize(GameContext& context)
 
 void PlayState::Update(GameContext& context)
 {
-	//Transform* target = nullptr;
-	// <プレイヤーを探してターゲットにする>
-	/*m_registry.view<GameObject, PrimitiveRenderer>().each([&](auto entity, auto& obj, auto& renderer)
-	{
-		target = obj.GetTransform();
-	});*/
-
 	DebugFunction();
 
 	Transform target;
@@ -78,6 +71,9 @@ void PlayState::CreateGameEntitys(GameContext& context)
 		generator.Initialize(context, &m_registry);
 		generator.Generate();
 		m_mapGenerator = entity;
+	}
+	{
+
 	}
 }
 

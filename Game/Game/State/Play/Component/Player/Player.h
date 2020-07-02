@@ -12,8 +12,12 @@ class Player
 {
 private:
 	Entity m_player;
+	entt::DefaultRegistry* registry;
 
 public:
+	Player();
+	Player(entt::DefaultRegistry* _registry, Entity entity);
+
 	void Update();
 };
 
