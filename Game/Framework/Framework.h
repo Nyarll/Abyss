@@ -24,6 +24,7 @@
 #include "Texture\TextureManager.h"
 
 #include "GameObject\GameObject.h"
+#include "Rigidbody\Rigidbody.h"
 
 #include "SpriteRenderer\SpriteRenderer.h"
 #include "Primitive\PrimitiveRenderer.h"

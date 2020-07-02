@@ -98,6 +98,9 @@
     <Filter Include="Game\Game\State\Play\Component\Player">
       <UniqueIdentifier>{b3fcbe8f-da25-4a66-bdae-28146f478990}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Game\Framework\Rigidbody">
+      <UniqueIdentifier>{22346781-c80e-4560-8734-725202fd644a}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="pch.h" />
@@ -218,6 +221,9 @@
     <ClInclude Include="Game\Game\State\Play\Component\Player\Player.h">
       <Filter>Game\Game\State\Play\Component\Player</Filter>
     </ClInclude>
+    <ClInclude Include="Game\Framework\Rigidbody\Rigidbody.h">
+      <Filter>Game\Framework\Rigidbody</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="pch.cpp" />
@@ -304,6 +310,9 @@
     </ClCompile>
     <ClCompile Include="Game\Game\State\Play\Component\Player\Player.cpp">
       <Filter>Game\Game\State\Play\Component\Player</Filter>
+    </ClCompile>
+    <ClCompile Include="Game\Framework\Rigidbody\Rigidbody.cpp">
+      <Filter>Game\Framework\Rigidbody</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

@@ -14,13 +14,15 @@
 // <GameObject>
 class GameObject
 {
-public:
+private:
 	entt::DefaultRegistry* registry;
 	uint32_t entity;
 
-protected:
+private:
 	bool m_isActive = true;
 	Transform transform;
+
+	DirectX::SimpleMath::Vector3 m_velocity;
 
 	Entity parent = entt::null;						// <親オブジェクト>
 
@@ -36,12 +38,13 @@ public:
 	}
 	GameObject(entt::DefaultRegistry* _pRegistry, uint32_t _entity)
 		:registry(_pRegistry),
-		 entity(_entity)
+		entity(_entity)
 	{
 	}
 
 	void Update()
 	{
+		transform.localPosition += m_velocity;
 		m_world = transform.GetMatrix();
 		m_count++;
 	}
@@ -74,6 +77,15 @@ public:
 			matrix *= pT.GetMatrix();
 			return matrix;
 		}
+	}
+
+	void SetVelocity(const DirectX::SimpleMath::Vector3& vel)
+	{
+		m_velocity = vel;
+	}
+	const DirectX::SimpleMath::Vector3& GetVelocity()
+	{
+		return m_velocity;
 	}
 
 	// <オブジェクトをアクティブにする>

@@ -27,13 +27,18 @@ void PlayState::Update(GameContext& context)
 		camera.Update(context, obj.GetTransform());
 	});*/
 
-	m_registry.view<GameObject, Camera>().each([&](auto entity, auto& obj, auto& camera)
+	m_registry.view<Rigidbody>().each([](auto entity, auto& rb)
 	{
-		camera.Update(context, obj.GetTransform(), &target);
+		rb.Update();
 	});
 
 	m_registry.get<Player>(m_player).Update();
 
+
+	m_registry.view<GameObject, Camera>().each([&](auto entity, auto& obj, auto& camera)
+	{
+		camera.Update(context, obj.GetTransform(), &target);
+	});
 	// <Transform‚ðWorlds—ñ‚ÖXV>
 	m_registry.view<GameObject>().each([](auto entity, auto& obj)
 	{
@@ -86,6 +91,9 @@ void PlayState::CreateGameEntitys(GameContext& context)
 		auto entity = m_registry.create();
 		auto& player = m_registry.assign<Player>(entity, &m_registry, entity);
 		auto& obj = m_registry.assign<GameObject>(entity, &m_registry, entity);
+
+		m_registry.assign<Rigidbody>(entity, &m_registry, entity);
+
 		auto& renderer = m_registry.assign<PrimitiveRenderer>(entity);
 		renderer.SetModel(context.Get<PrimitiveModelList>().GetModel(PrimitiveModelList::ID::Sphere));
 		renderer.SetModelOption(DirectX::Colors::Aqua);
@@ -98,9 +106,11 @@ void PlayState::CreateGameEntitys(GameContext& context)
 
 void PlayState::CreateUI(GameContext& context)
 {
-	auto entity = m_registry.create();
-	m_registry.assign<FontRenderer>(entity);
-	m_registry.assign<DirectX::SimpleMath::Vector2>(entity);
+	{
+		auto entity = m_registry.create();
+		m_registry.assign<FontRenderer>(entity);
+		m_registry.assign<DirectX::SimpleMath::Vector2>(entity);
+	}
 }
 
 void PlayState::RegisterTexture(GameContext& context)

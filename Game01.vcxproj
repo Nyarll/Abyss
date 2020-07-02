@@ -186,6 +186,7 @@
     <ClInclude Include="Game\Framework\Primitive\PrimitiveModelList.h" />
     <ClInclude Include="Game\Framework\Primitive\PrimitiveRenderer.h" />
     <ClInclude Include="Game\Framework\Random\Random.h" />
+    <ClInclude Include="Game\Framework\Rigidbody\Rigidbody.h" />
     <ClInclude Include="Game\Framework\ShaderFileImporter\ShaderFileImporter.h" />
     <ClInclude Include="Game\Framework\Sound\Adx2Le.h" />
     <ClInclude Include="Game\Framework\SpriteRenderer\SpriteRenderer.h" />
@@ -220,6 +221,7 @@
     <ClCompile Include="Game\Framework\Primitive\PrimitiveModelList.cpp" />
     <ClCompile Include="Game\Framework\Primitive\PrimitiveRenderer.cpp" />
     <ClCompile Include="Game\Framework\Random\Random.cpp" />
+    <ClCompile Include="Game\Framework\Rigidbody\Rigidbody.cpp" />
     <ClCompile Include="Game\Framework\ShaderFileImporter\ShaderFileImporter.cpp" />
     <ClCompile Include="Game\Framework\Sound\Adx2Le.cpp" />
     <ClCompile Include="Game\Framework\SpriteRenderer\SpriteRenderer.cpp" />
