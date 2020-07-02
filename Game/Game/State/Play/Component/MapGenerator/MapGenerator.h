@@ -26,13 +26,15 @@ public:
 private:
 	entt::DefaultRegistry* registry;
 
-	int MapSize = 50;
+	static const int MapSize;
 
 	std::vector<std::vector<int>>			m_mapData;
 	std::vector<std::vector<Entity>>		m_mapEntitys;
 	std::vector<Entity>						m_activeMapEntitys;
 
 	std::vector<std::vector<int>>			m_entitySpawnMapPointData;
+
+	std::vector<std::vector<Entity>>		m_chunks;
 
 	int roomMinWidth = 5;
 	int roomMaxWidth = 10;

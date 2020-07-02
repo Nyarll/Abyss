@@ -39,6 +39,24 @@ void PlayState::Update(GameContext& context)
 	{
 		camera.Update(context, obj.GetTransform(), &target);
 	});
+
+
+	m_registry.view<Collider, GameObject>().each([&](auto entity, auto& collider, auto& obj)
+	{
+		if (obj.IsActive())
+		{
+			m_registry.view<Collider, GameObject>().each([&](auto entity2, auto& collider2, auto& obj2)
+			{
+				if (obj2.IsActive())
+				{
+					if (entity != entity2)
+					{
+						// ”»’è
+					}
+				}
+			});
+		}
+	});
 	// <Transform‚ðWorlds—ñ‚ÖXV>
 	m_registry.view<GameObject>().each([](auto entity, auto& obj)
 	{
@@ -60,7 +78,7 @@ void PlayState::Render(GameContext& context)
 
 	m_registry.view<GameObject, PrimitiveRenderer>().each([&](auto entity, auto& obj, auto& renderer)
 	{
-		if (obj.IsActive())
+		if (obj.IsRendering())
 		{
 			renderer.Draw(obj.GetMatrix(), view, proj);
 		}
@@ -92,7 +110,8 @@ void PlayState::CreateGameEntitys(GameContext& context)
 		auto& player = m_registry.assign<Player>(entity, &m_registry, entity);
 		auto& obj = m_registry.assign<GameObject>(entity, &m_registry, entity);
 
-		m_registry.assign<Rigidbody>(entity, &m_registry, entity);
+		//m_registry.assign<Rigidbody>(entity, &m_registry, entity);
+		m_registry.assign<Collider>(entity, ColliderType::Sphere, 1.f);
 
 		auto& renderer = m_registry.assign<PrimitiveRenderer>(entity);
 		renderer.SetModel(context.Get<PrimitiveModelList>().GetModel(PrimitiveModelList::ID::Sphere));

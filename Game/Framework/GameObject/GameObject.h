@@ -20,6 +20,7 @@ private:
 
 private:
 	bool m_isActive = true;
+	bool m_isRendering = true;
 	Transform transform;
 
 	DirectX::SimpleMath::Vector3 m_velocity;
@@ -93,16 +94,48 @@ public:
 	{
 		m_isActive = true;
 	}
+	// <描画する>
+	void ActivateRendering()
+	{
+		m_isRendering = true;
+	}
+
 	// <オブジェクトを非アクティブにする>
 	void Deactivate()
 	{
 		m_isActive = false;
+	}
+	// <描画しない>
+	void DeactivateRendering()
+	{
+		m_isRendering = false;
 	}
 
 	// <オブジェクトがアクティブかどうか>
 	bool IsActive()
 	{
 		return m_isActive;
+	}
+
+	// <描画するかどうか>
+	bool IsRendering()
+	{
+		return m_isRendering;
+	}
+
+	DirectX::SimpleMath::Vector3 GetPosition()
+	{
+		if (parent == entt::null)
+		{
+			return transform.localPosition;
+		}
+		else
+		{
+			DirectX::SimpleMath::Vector3 position = transform.localPosition;
+			auto& pT = registry->get<GameObject>(parent);
+			position -= pT.GetTransform()->localPosition;
+			return position;
+		}
 	}
 };
 

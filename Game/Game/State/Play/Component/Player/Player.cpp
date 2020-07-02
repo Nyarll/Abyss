@@ -47,23 +47,26 @@ void Player::DetermineSpawnPosition(Entity map_generator)
 void Player::Move()
 {
 	DirectX::SimpleMath::Vector3 pos = registry->get<GameObject>(m_player).GetTransform()->localPosition;
+	DirectX::SimpleMath::Vector3 vel = DirectX::SimpleMath::Vector3::Zero;
 
 	if (InputManager::GetKey(DirectX::Keyboard::Keys::W))
 	{
-		pos.z += 0.1f;
+		vel.z += 1.0f;
 	}
 	if (InputManager::GetKey(DirectX::Keyboard::Keys::S))
 	{
-		pos.z -= 0.1f;
+		vel.z -= 1.0f;
 	}
 	if (InputManager::GetKey(DirectX::Keyboard::Keys::A))
 	{
-		pos.x += 0.1f;
+		vel.x += 1.0f;
 	}
 	if (InputManager::GetKey(DirectX::Keyboard::Keys::D))
 	{
-		pos.x -= 0.1f;
+		vel.x -= 1.0f;
 	}
+	vel.Normalize();
+	vel *= 1.f;
 
-	registry->get<GameObject>(m_player).GetTransform()->localPosition = pos;
+	registry->get<GameObject>(m_player).GetTransform()->localPosition = pos + vel;
 }
