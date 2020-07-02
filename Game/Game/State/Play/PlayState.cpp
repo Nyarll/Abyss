@@ -41,21 +41,18 @@ void PlayState::Update(GameContext& context)
 	});
 
 
-	m_registry.view<Collider, GameObject>().each([&](auto entity, auto& collider, auto& obj)
+	m_registry.view<Collider, GameObject, Player>().each([&](auto e, auto& pCollider, auto& obj, auto& player)
 	{
-		if (obj.IsActive())
+		pCollider.SetPosition(obj.GetPosition());
+		obj.DeactivateRendering();
+		m_registry.view<Collider, Chunk>().each([&](auto ce, auto& cCollider, auto& chunk)
 		{
-			m_registry.view<Collider, GameObject>().each([&](auto entity2, auto& collider2, auto& obj2)
+			if (pCollider.OnCollision(cCollider))
 			{
-				if (obj2.IsActive())
-				{
-					if (entity != entity2)
-					{
-						// ”»’è
-					}
-				}
-			});
-		}
+				int a = 10;
+				obj.ActivateRendering();
+			}
+		});
 	});
 	// <Transform‚ðWorlds—ñ‚ÖXV>
 	m_registry.view<GameObject>().each([](auto entity, auto& obj)

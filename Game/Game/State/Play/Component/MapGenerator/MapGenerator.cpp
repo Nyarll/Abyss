@@ -11,7 +11,7 @@ void MapGenerator::Initialize(GameContext& context, entt::DefaultRegistry* _pReg
 {
 	registry = _pRegistry;
 
-	float chunk_scale = 16;
+	const float chunk_scale = 16;
 	for (int i = 0; i < (MapSize / chunk_scale); i++)
 	{
 		m_chunks.push_back(std::vector<Entity>());
@@ -21,15 +21,19 @@ void MapGenerator::Initialize(GameContext& context, entt::DefaultRegistry* _pReg
 			
 			registry->assign<Chunk>(entity, chunk_scale);
 
-			int x = ((int)chunk_scale / 2) + (j * (int)chunk_scale);
-			int z = ((int)chunk_scale / 2) + (i * (int)chunk_scale);
+			float x = (chunk_scale / 2.f) + ((float)j * chunk_scale);
+			float z = (chunk_scale / 2.f) + ((float)i * chunk_scale);
 
 			auto& obj = registry->assign<GameObject>(entity, registry, entity);
 			obj.GetTransform()->localPosition = DirectX::SimpleMath::Vector3(x, 0, z);
 			obj.Activate();
 
 			auto& collider = registry->assign<Collider>(entity, ColliderType::Box, chunk_scale);
-			collider.SetPosition(obj.GetTransform()->localPosition);
+			collider.SetPosition(DirectX::SimpleMath::Vector3(x, 0, z));
+
+			auto& renderer = registry->assign<PrimitiveRenderer>(entity);
+			renderer.SetModel(context.Get<PrimitiveModelList>().GetModel(PrimitiveModelList::Cube));
+			renderer.SetModelOption(DirectX::Colors::Red, true);
 
 			m_chunks[i].push_back(entity);
 		}
@@ -53,6 +57,9 @@ void MapGenerator::Initialize(GameContext& context, entt::DefaultRegistry* _pReg
 			auto& renderer = registry->assign<PrimitiveRenderer>(entity);
 			renderer.SetModel(context.Get<PrimitiveModelList>().GetModel(PrimitiveModelList::ID::Cube));
 			renderer.SetModelOption(DirectX::Colors::White, false, context.Get<TextureManager>().GetTexture(TextureID::Floor));
+
+			auto& chunk = registry->get<Chunk>(parent);
+			chunk.RegisterChild(entity);
 
 			m_mapEntitys[z].push_back(entity);
 		}

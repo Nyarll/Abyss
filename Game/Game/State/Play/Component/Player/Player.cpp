@@ -66,7 +66,7 @@ void Player::Move()
 		vel.x -= 1.0f;
 	}
 	vel.Normalize();
-	vel *= 1.f;
+	vel *= .5f;
 
 	registry->get<GameObject>(m_player).GetTransform()->localPosition = pos + vel;
 }

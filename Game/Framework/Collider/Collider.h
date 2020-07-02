@@ -44,6 +44,18 @@ public:
 
 	void SetPosition(const DirectX::SimpleMath::Vector3& pos);
 
+	bool OnCollision(Collider& collider);
+
+	ColliderType GetColliderType()
+	{
+		return m_colliderType;
+	}
+
+	_ColliderHolderBase& GetColliderHolder()
+	{
+		return *m_colliderHolder.get();
+	}
+
 private:
 	template <typename Type>
 	void SetCollider()
@@ -57,6 +69,9 @@ private:
 		auto holder = dynamic_cast<_ColliderHolder<Type>*> (m_colliderHolder.get());
 		return holder->collider.get();
 	}
+
+	bool OnCollisionSphere(Collider& other, DirectX::BoundingSphere& bounding);
+	bool OnCollisionBox(Collider& other, DirectX::BoundingBox& bounding);
 };
 
 #endif

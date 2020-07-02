@@ -50,7 +50,10 @@ Collider::Collider(const Collider& col)
 
 void Collider::SetPosition(const DirectX::SimpleMath::Vector3& pos)
 {
-	DirectX::XMFLOAT3 position = pos;
+	DirectX::XMFLOAT3 position;
+	position.x = pos.x;
+	position.y = pos.y;
+	position.z = pos.z;
 
 	switch (m_colliderType)
 	{
@@ -65,6 +68,57 @@ void Collider::SetPosition(const DirectX::SimpleMath::Vector3& pos)
 		auto box = GetCollider<DirectX::BoundingBox>();
 		box->Center = position;
 		break;
+	}
+	}
+}
+
+bool Collider::OnCollision(Collider& collider)
+{
+	switch (m_colliderType)
+	{
+	case ColliderType::Sphere:
+	{
+		auto sphere = GetCollider<DirectX::BoundingSphere>();
+		return OnCollisionSphere(collider, *sphere);
+	}
+	case ColliderType::Box:
+	{
+		auto box = GetCollider<DirectX::BoundingBox>();
+		return OnCollisionBox(collider, *box);
+	}
+	}
+}
+
+bool Collider::OnCollisionSphere(Collider& other, DirectX::BoundingSphere& bounding)
+{
+	switch (other.GetColliderType())
+	{
+	case ColliderType::Sphere:
+	{
+		auto sphere = other.GetCollider<DirectX::BoundingSphere>();
+		return sphere->Intersects(bounding);
+	}
+	case ColliderType::Box:
+	{
+		auto box = other.GetCollider<DirectX::BoundingBox>();
+		return box->Intersects(bounding);
+	}
+	}
+}
+
+bool Collider::OnCollisionBox(Collider& other, DirectX::BoundingBox& bounding)
+{
+	switch (other.GetColliderType())
+	{
+	case ColliderType::Sphere:
+	{
+		auto sphere = other.GetCollider<DirectX::BoundingSphere>();
+		return sphere->Intersects(bounding);
+	}
+	case ColliderType::Box:
+	{
+		auto box = other.GetCollider<DirectX::BoundingBox>();
+		return box->Intersects(bounding);
 	}
 	}
 }
