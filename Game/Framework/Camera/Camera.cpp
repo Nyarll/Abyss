@@ -11,6 +11,9 @@ void Camera::Update(GameContext& context, Transform* _self, Transform* _target)
 	{
 		target = _target->localPosition;
 	}
+	eye = target + DirectX::SimpleMath::Vector3(0.f, 5.f, -10.f);
+	_self->localPosition = eye;
+
 	m_view = DirectX::SimpleMath::Matrix::CreateLookAt(eye, target, DirectX::SimpleMath::Vector3::Up);
 
 	RECT size = context.Get<DX::DeviceResources>().GetOutputSize();

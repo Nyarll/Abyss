@@ -19,11 +19,20 @@ void PlayState::Update(GameContext& context)
 	DebugFunction();
 
 	Transform target;
-	target.localPosition = target.localScale = DirectX::SimpleMath::Vector3(0, 0, 0);
-	m_registry.view<GameObject, DebugCamera>().each([&](auto entity, auto& obj, auto& camera)
+	target = *(m_registry.get<GameObject>(m_player).GetTransform());
+	//target.localPosition = target.localScale = DirectX::SimpleMath::Vector3(0, 0, 0);
+
+	/*m_registry.view<GameObject, DebugCamera>().each([&](auto entity, auto& obj, auto& camera)
 	{
 		camera.Update(context, obj.GetTransform());
+	});*/
+
+	m_registry.view<GameObject, Camera>().each([&](auto entity, auto& obj, auto& camera)
+	{
+		camera.Update(context, obj.GetTransform(), &target);
 	});
+
+	m_registry.get<Player>(m_player).Update();
 
 	// <Transform‚ðWorlds—ñ‚ÖXV>
 	m_registry.view<GameObject>().each([](auto entity, auto& obj)
@@ -37,7 +46,7 @@ void PlayState::Render(GameContext& context)
 	DirectX::SimpleMath::Matrix view, proj;
 	DirectX::SimpleMath::Vector3 cameraPos;
 
-	m_registry.view<DebugCamera, GameObject>().each([&](auto entity, auto& camera, auto& obj)
+	m_registry.view<Camera, GameObject>().each([&](auto entity, auto& camera, auto& obj)
 	{
 		view = camera.GetViewMatrix();
 		proj = camera.GetProjectionMatrix();
@@ -60,7 +69,8 @@ void PlayState::CreateCamera()
 	auto camera = m_registry.create();
 	auto& obj = m_registry.assign<GameObject>(camera, &m_registry, camera);
 	obj.GetTransform()->localPosition = DirectX::SimpleMath::Vector3(25.f, 15.f, -12.f);
-	m_registry.assign<DebugCamera>(camera);
+	//m_registry.assign<DebugCamera>(camera);
+	m_registry.assign<Camera>(camera);
 }
 
 void PlayState::CreateGameEntitys(GameContext& context)
@@ -73,7 +83,13 @@ void PlayState::CreateGameEntitys(GameContext& context)
 		m_mapGenerator = entity;
 	}
 	{
-
+		auto entity = m_registry.create();
+		m_player = entity;
+		m_registry.assign<Player>(entity, &m_registry, entity);
+		auto& obj = m_registry.assign<GameObject>(entity, &m_registry, entity);
+		auto& renderer = m_registry.assign<PrimitiveRenderer>(entity);
+		renderer.SetModel(context.Get<PrimitiveModelList>().GetModel(PrimitiveModelList::ID::Sphere));
+		renderer.SetModelOption(DirectX::Colors::Aqua);
 	}
 }
 

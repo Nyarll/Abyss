@@ -19,6 +19,9 @@ public:
 	Player(entt::DefaultRegistry* _registry, Entity entity);
 
 	void Update();
+
+private:
+	void Move();
 };
 
 #endif

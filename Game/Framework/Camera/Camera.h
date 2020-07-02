@@ -17,7 +17,6 @@ private:
 	DirectX::SimpleMath::Matrix	m_view;
 	DirectX::SimpleMath::Matrix m_proj;
 
-	const Transform* m_self;
 	const Transform* m_target;
 
 public:

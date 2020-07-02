@@ -14,7 +14,7 @@ void MapGenerator::Initialize(GameContext& context, entt::DefaultRegistry* _pReg
 		{
 			auto entity = registry->create();
 			auto& obj = registry->assign<GameObject>(entity);
-			obj.GetTransform()->localPosition = DirectX::SimpleMath::Vector3((float)x, 0.f, (float)z);
+			obj.GetTransform()->localPosition = DirectX::SimpleMath::Vector3((float)x, -1.f, (float)z);
 			obj.Deactivate();
 			auto& renderer = registry->assign<PrimitiveRenderer>(entity);
 			renderer.SetModel(context.Get<PrimitiveModelList>().GetModel(PrimitiveModelList::ID::Cube));
@@ -45,6 +45,11 @@ void MapGenerator::Plain()
 		}
 	}
 	ReflectMapDataToEntitys();
+}
+
+const std::vector<std::vector<int>>& MapGenerator::GetMapData()
+{
+	return m_mapData;
 }
 
 void MapGenerator::CreateMapData()

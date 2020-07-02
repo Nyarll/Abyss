@@ -50,6 +50,8 @@ public:
 	// <•½‚ç‚Èƒ}ƒbƒv>
 	void Plain();
 
+	const std::vector<std::vector<int>>& GetMapData();
+
 private:
 
 	void CreateMapData();
