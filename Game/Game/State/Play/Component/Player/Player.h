@@ -20,6 +20,8 @@ public:
 
 	void Update();
 
+	void DetermineSpawnPosition(Entity map_generator);
+
 private:
 	void Move();
 };

@@ -2,6 +2,8 @@
 
 #include "../../../../../Framework/Framework.h"
 
+#include "../MapGenerator/MapGenerator.h"
+
 Player::Player()
 	:registry(nullptr)
 	,m_player(entt::null)
@@ -20,6 +22,26 @@ void Player::Update()
 	if (m_player == entt::null)return;
 
 	Move();
+}
+
+void Player::DetermineSpawnPosition(Entity map_generator)
+{
+	auto& spawnData = registry->get<MapGenerator>(map_generator).GetEntitySpawnMapData();
+
+	Random random;
+	while (true)
+	{
+		float x = random.Range(0, spawnData.size() - 1);
+		float z = random.Range(0, spawnData.size() - 1);
+
+		if (spawnData[z][x] == MapGenerator::MapState::Floor)
+		{
+			auto& obj = registry->get<GameObject>(m_player);
+			obj.GetTransform()->localPosition = DirectX::SimpleMath::Vector3(x, obj.GetTransform()->localPosition.y, z);
+			spawnData[z][x] = MapGenerator::MapState::EntityPlaced;
+			break;
+		}
+	}
 }
 
 void Player::Move()

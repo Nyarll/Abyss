@@ -12,11 +12,15 @@ class GameContext;
 
 class MapGenerator
 {
-private:
+public:
 	enum MapState
 	{
 		None = 0,
 		Floor,
+
+
+
+		EntityPlaced
 	};
 
 private:
@@ -27,6 +31,8 @@ private:
 	std::vector<std::vector<int>>			m_mapData;
 	std::vector<std::vector<Entity>>		m_mapEntitys;
 	std::vector<Entity>						m_activeMapEntitys;
+
+	std::vector<std::vector<int>>			m_entitySpawnMapPointData;
 
 	int roomMinWidth = 5;
 	int roomMaxWidth = 10;
@@ -50,7 +56,7 @@ public:
 	// <•½‚ç‚Èƒ}ƒbƒv>
 	void Plain();
 
-	const std::vector<std::vector<int>>& GetMapData();
+	std::vector<std::vector<int>>& GetEntitySpawnMapData();
 
 private:
 

@@ -84,12 +84,15 @@ void PlayState::CreateGameEntitys(GameContext& context)
 	}
 	{
 		auto entity = m_registry.create();
-		m_player = entity;
-		m_registry.assign<Player>(entity, &m_registry, entity);
+		auto& player = m_registry.assign<Player>(entity, &m_registry, entity);
 		auto& obj = m_registry.assign<GameObject>(entity, &m_registry, entity);
 		auto& renderer = m_registry.assign<PrimitiveRenderer>(entity);
 		renderer.SetModel(context.Get<PrimitiveModelList>().GetModel(PrimitiveModelList::ID::Sphere));
 		renderer.SetModelOption(DirectX::Colors::Aqua);
+
+		player.DetermineSpawnPosition(m_mapGenerator);
+
+		m_player = entity;
 	}
 }
 
@@ -146,6 +149,7 @@ void PlayState::DebugFunction()
 	if (InputManager::GetKeyDown(DirectX::Keyboard::Keys::F2))
 	{
 		m_registry.get<MapGenerator>(m_mapGenerator).Generate();
+		m_registry.get<Player>(m_player).DetermineSpawnPosition(m_mapGenerator);
 	}
 	if (InputManager::GetKeyDown(DirectX::Keyboard::Keys::F3))
 	{

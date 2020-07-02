@@ -47,9 +47,9 @@ void MapGenerator::Plain()
 	ReflectMapDataToEntitys();
 }
 
-const std::vector<std::vector<int>>& MapGenerator::GetMapData()
+std::vector<std::vector<int>>& MapGenerator::GetEntitySpawnMapData()
 {
-	return m_mapData;
+	return m_entitySpawnMapPointData;
 }
 
 void MapGenerator::CreateMapData()
@@ -214,6 +214,8 @@ void MapGenerator::MapDataFillNone()
 
 void MapGenerator::ReflectMapDataToEntitys()
 {
+	m_entitySpawnMapPointData = m_mapData;
+
 	for (int z = 0; z < m_mapData.size(); z++)
 	{
 		for (int x = 0; x < m_mapData[z].size(); x++)
