@@ -40,6 +40,8 @@ private:
 private:
 	bool isWireframe = true;
 	std::unique_ptr<GridFloor> m_gridFloor;
+	bool isCollision = false;
+	Entity hitChunk;
 
 	void CreateDebugItems(GameContext& context);
 	void SwitchingDebug();

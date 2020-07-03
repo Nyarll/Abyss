@@ -40,17 +40,17 @@ void PlayState::Update(GameContext& context)
 		camera.Update(context, obj.GetTransform(), &target);
 	});
 
-
+	isCollision = false;
+	hitChunk = entt::null;
 	m_registry.view<Collider, GameObject, Player>().each([&](auto e, auto& pCollider, auto& obj, auto& player)
 	{
 		pCollider.SetPosition(obj.GetPosition());
-		obj.DeactivateRendering();
 		m_registry.view<Collider, Chunk>().each([&](auto ce, auto& cCollider, auto& chunk)
 		{
 			if (pCollider.OnCollision(cCollider))
 			{
-				int a = 10;
-				obj.ActivateRendering();
+				isCollision = true;
+				hitChunk = ce;
 			}
 		});
 	});
@@ -82,6 +82,7 @@ void PlayState::Render(GameContext& context)
 	});
 
 	DebugRender(context, cameraPos, view, proj);
+
 }
 
 void PlayState::CreateCamera()
@@ -195,5 +196,12 @@ void PlayState::DebugRender(GameContext& context, DirectX::SimpleMath::Vector3& 
 	{
 		auto font = context.Get<FontManager>().GetSpriteFont("Meiryo UI");
 		renderer.Draw(context, font, pos, DirectX::Colors::Red, "Camera : %.2f, %.2f", cameraPos.x, cameraPos.z);
+		if (isCollision)
+		{
+			renderer.Draw(context, font, DirectX::SimpleMath::Vector2(0, 36), DirectX::Colors::Red, "Chunk Hit !");
+			auto& collider = m_registry.get<Collider>(hitChunk);
+			DirectX::SimpleMath::Vector3 chunkPos = collider.GetPosition();
+			renderer.Draw(context, font, DirectX::SimpleMath::Vector2(0, 36 * 2), DirectX::Colors::Red, "pos : x.%.1f, z.%.1f", chunkPos.x, chunkPos.z);
+		}
 	});
 }

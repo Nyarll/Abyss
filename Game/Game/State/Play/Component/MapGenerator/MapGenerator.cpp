@@ -28,12 +28,8 @@ void MapGenerator::Initialize(GameContext& context, entt::DefaultRegistry* _pReg
 			obj.GetTransform()->localPosition = DirectX::SimpleMath::Vector3(x, 0, z);
 			obj.Activate();
 
-			auto& collider = registry->assign<Collider>(entity, ColliderType::Box, chunk_scale);
+			auto& collider = registry->assign<Collider>(entity, ColliderType::Box, chunk_scale / 2);
 			collider.SetPosition(DirectX::SimpleMath::Vector3(x, 0, z));
-
-			auto& renderer = registry->assign<PrimitiveRenderer>(entity);
-			renderer.SetModel(context.Get<PrimitiveModelList>().GetModel(PrimitiveModelList::Cube));
-			renderer.SetModelOption(DirectX::Colors::Red, true);
 
 			m_chunks[i].push_back(entity);
 		}

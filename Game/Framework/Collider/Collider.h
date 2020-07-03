@@ -36,13 +36,12 @@ private:
 public:
 	Collider(ColliderType type, float size);
 	Collider(const Collider& col);
+	Collider(Collider&& col)noexcept;
 
-	Collider& operator=(const Collider& col)
-	{
-		return std::move(*this);
-	}
+	Collider& operator=(Collider&& col)noexcept;
 
 	void SetPosition(const DirectX::SimpleMath::Vector3& pos);
+	DirectX::SimpleMath::Vector3 GetPosition();
 
 	bool OnCollision(Collider& collider);
 

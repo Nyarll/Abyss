@@ -48,6 +48,25 @@ Collider::Collider(const Collider& col)
 	}
 }
 
+Collider::Collider(Collider&& col) noexcept
+{
+	m_colliderType = col.m_colliderType;
+	m_size = col.m_size;
+
+	m_colliderHolder = std::move(col.m_colliderHolder);
+}
+
+Collider& Collider::operator=(Collider&& col) noexcept
+{
+	if (this != &col)
+	{
+		m_colliderType = col.m_colliderType;
+		m_size = col.m_size;
+		m_colliderHolder = std::move(col.m_colliderHolder);
+	}
+	return *this;
+}
+
 void Collider::SetPosition(const DirectX::SimpleMath::Vector3& pos)
 {
 	DirectX::XMFLOAT3 position;
@@ -70,6 +89,34 @@ void Collider::SetPosition(const DirectX::SimpleMath::Vector3& pos)
 		break;
 	}
 	}
+}
+
+DirectX::SimpleMath::Vector3 Collider::GetPosition()
+{
+	DirectX::XMFLOAT3 position;
+
+	switch (m_colliderType)
+	{
+	case ColliderType::Sphere:
+	{
+		auto sphere = GetCollider<DirectX::BoundingSphere>();
+		position = sphere->Center;
+		break;
+	}
+	case ColliderType::Box:
+	{
+		auto box = GetCollider<DirectX::BoundingBox>();
+		position = box->Center;
+		break;
+	}
+	}
+
+	DirectX::SimpleMath::Vector3 result;
+	result.x = position.x;
+	result.y = position.y;
+	result.z = position.z;
+
+	return result;
 }
 
 bool Collider::OnCollision(Collider& collider)
