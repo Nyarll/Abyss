@@ -22,6 +22,8 @@ void Player::Update()
 	if (m_player == entt::null)return;
 
 	Move();
+	Physics();
+	Respawn();
 }
 
 void Player::DetermineSpawnPosition(Entity map_generator)
@@ -37,8 +39,10 @@ void Player::DetermineSpawnPosition(Entity map_generator)
 		if (spawnData[z][x] == MapGenerator::MapState::Floor)
 		{
 			auto& obj = registry->get<GameObject>(m_player);
-			obj.GetTransform()->localPosition = DirectX::SimpleMath::Vector3(x, obj.GetTransform()->localPosition.y, z);
+			m_spawnPoint = DirectX::SimpleMath::Vector3(x, obj.GetTransform()->localPosition.y, z);
+			obj.GetTransform()->localPosition = m_spawnPoint;
 			spawnData[z][x] = MapGenerator::MapState::EntityPlaced;
+			
 			break;
 		}
 	}
@@ -66,7 +70,35 @@ void Player::Move()
 		vel.x -= 1.0f;
 	}
 	vel.Normalize();
-	vel *= .5f;
+	vel *= .3f;
 
 	registry->get<GameObject>(m_player).GetTransform()->localPosition = pos + vel;
+}
+
+void Player::Physics()
+{
+	auto& obj = registry->get<GameObject>(m_player);
+	if (!obj.IsCollision())
+		return;
+
+	if (obj.GetCollidedObjectTag() == GameObject::Tag::Floor)
+	{
+		auto pos = obj.GetPosition();
+		auto vel = obj.GetVelocity();
+		
+		obj.SetPosition(DirectX::SimpleMath::Vector3(pos.x, 0, pos.z));
+		obj.SetVelocity(DirectX::SimpleMath::Vector3(vel.x, 0, vel.z));
+	}
+}
+
+void Player::Respawn()
+{
+	auto& obj = registry->get<GameObject>(m_player);
+
+	if (obj.GetPosition().y < -10)
+	{
+		DirectX::SimpleMath::Vector3 respawn = m_spawnPoint;
+		respawn.y = 5.f;
+		obj.SetPosition(respawn);
+	}
 }

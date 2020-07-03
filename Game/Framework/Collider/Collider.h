@@ -34,7 +34,7 @@ private:
 	float m_size;
 
 public:
-	Collider(ColliderType type, float size);
+	Collider(ColliderType type, float size = 1.f);
 	Collider(const Collider& col);
 	Collider(Collider&& col)noexcept;
 

@@ -20,40 +20,20 @@ void PlayState::Update(GameContext& context)
 
 	Transform target;
 	target = *(m_registry.get<GameObject>(m_player).GetTransform());
-	//target.localPosition = target.localScale = DirectX::SimpleMath::Vector3(0, 0, 0);
-
-	/*m_registry.view<GameObject, DebugCamera>().each([&](auto entity, auto& obj, auto& camera)
+	m_registry.view<GameObject, Camera>().each([&](auto entity, auto& obj, auto& camera)
 	{
-		camera.Update(context, obj.GetTransform());
-	});*/
+		camera.Update(context, obj.GetTransform(), &target);
+	});
 
 	m_registry.view<Rigidbody>().each([](auto entity, auto& rb)
 	{
 		rb.Update();
 	});
 
+	CheckCollision();
+
 	m_registry.get<Player>(m_player).Update();
 
-
-	m_registry.view<GameObject, Camera>().each([&](auto entity, auto& obj, auto& camera)
-	{
-		camera.Update(context, obj.GetTransform(), &target);
-	});
-
-	isCollision = false;
-	hitChunk = entt::null;
-	m_registry.view<Collider, GameObject, Player>().each([&](auto e, auto& pCollider, auto& obj, auto& player)
-	{
-		pCollider.SetPosition(obj.GetPosition());
-		m_registry.view<Collider, Chunk>().each([&](auto ce, auto& cCollider, auto& chunk)
-		{
-			if (pCollider.OnCollision(cCollider))
-			{
-				isCollision = true;
-				hitChunk = ce;
-			}
-		});
-	});
 	// <TransformをWorld行列へ更新>
 	m_registry.view<GameObject>().each([](auto entity, auto& obj)
 	{
@@ -108,8 +88,10 @@ void PlayState::CreateGameEntitys(GameContext& context)
 		auto& player = m_registry.assign<Player>(entity, &m_registry, entity);
 		auto& obj = m_registry.assign<GameObject>(entity, &m_registry, entity);
 
-		//m_registry.assign<Rigidbody>(entity, &m_registry, entity);
-		m_registry.assign<Collider>(entity, ColliderType::Sphere, 1.f);
+		obj.SetTag(GameObject::Tag::Player);
+
+		m_registry.assign<Rigidbody>(entity, &m_registry, entity);
+		m_registry.assign<Collider>(entity, ColliderType::Sphere, .5f);
 
 		auto& renderer = m_registry.assign<PrimitiveRenderer>(entity);
 		renderer.SetModel(context.Get<PrimitiveModelList>().GetModel(PrimitiveModelList::ID::Sphere));
@@ -137,6 +119,49 @@ void PlayState::RegisterTexture(GameContext& context)
 	config.Load("Resources/Json/PlayStateConfig.json");
 
 	textureManager.Register(context, config.GetAs<std::string>("Texture.Floor"), TextureID::Floor);
+}
+
+void PlayState::CheckCollision()
+{
+	m_hitChunk = entt::null;
+
+	// <チャンクとプレイヤーで判定>
+	m_registry.view<Collider, GameObject, Player>().each([&](auto e, auto& pCollider, auto& obj, auto& player)
+	{
+		pCollider.SetPosition(obj.GetPosition());
+		m_registry.view<Collider, Chunk>().each([&](auto ce, auto& cCollider, auto& chunk)
+		{
+			if (pCollider.OnCollision(cCollider))
+			{
+				m_hitChunk = ce;
+			}
+		});
+	});
+
+	if (m_hitChunk == entt::null)
+		return;
+
+	auto& blocks = m_registry.get<Chunk>(m_hitChunk).GetChild();
+	auto& playerCollider = m_registry.get<Collider>(m_player);
+	auto& playerObject = m_registry.get<GameObject>(m_player);
+	playerObject.NotCollided();
+
+	for (auto& block : blocks)
+	{
+		auto& bounding = m_registry.get<Collider>(block);
+		auto& box = m_registry.get<GameObject>(block);
+
+		if (box.IsActive())
+		{
+			if (playerCollider.OnCollision(bounding))
+			{
+				playerObject.Collided();
+				playerObject.SetCollidedObjectTag(box.GetTag());
+			}
+		}
+	}
+
+
 }
 
 void PlayState::CreateDebugItems(GameContext& context)
@@ -196,12 +221,5 @@ void PlayState::DebugRender(GameContext& context, DirectX::SimpleMath::Vector3& 
 	{
 		auto font = context.Get<FontManager>().GetSpriteFont("Meiryo UI");
 		renderer.Draw(context, font, pos, DirectX::Colors::Red, "Camera : %.2f, %.2f", cameraPos.x, cameraPos.z);
-		if (isCollision)
-		{
-			renderer.Draw(context, font, DirectX::SimpleMath::Vector2(0, 36), DirectX::Colors::Red, "Chunk Hit !");
-			auto& collider = m_registry.get<Collider>(hitChunk);
-			DirectX::SimpleMath::Vector3 chunkPos = collider.GetPosition();
-			renderer.Draw(context, font, DirectX::SimpleMath::Vector2(0, 36 * 2), DirectX::Colors::Red, "pos : x.%.1f, z.%.1f", chunkPos.x, chunkPos.z);
-		}
 	});
 }

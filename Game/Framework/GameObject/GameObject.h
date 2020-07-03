@@ -14,6 +14,16 @@
 // <GameObject>
 class GameObject
 {
+public:
+	enum Tag
+	{
+		None = (-1),
+
+		Universal,
+		Player,
+		Floor,
+	};
+
 private:
 	entt::DefaultRegistry* registry;
 	uint32_t entity;
@@ -22,6 +32,7 @@ private:
 	bool m_isActive = true;
 	bool m_isRendering = true;
 	Transform transform;
+	Tag m_tag = Tag::Universal;
 
 	DirectX::SimpleMath::Vector3 m_velocity;
 
@@ -30,6 +41,9 @@ private:
 	DirectX::SimpleMath::Matrix m_world;
 
 	int m_count = 0;
+
+	bool m_isCollisiion = false;
+	Tag m_collidedObjectTag = Tag::None;
 
 public:
 	GameObject()
@@ -123,6 +137,19 @@ public:
 		return m_isRendering;
 	}
 
+	void SetPosition(DirectX::SimpleMath::Vector3 pos)
+	{
+		if (parent == entt::null)
+		{
+			transform.localPosition = pos;
+		}
+		else
+		{
+			auto pT = registry->get<GameObject>(parent).GetTransform();
+			transform.localPosition = pos - pT->localPosition;
+		}
+	}
+
 	DirectX::SimpleMath::Vector3 GetPosition()
 	{
 		if (parent == entt::null)
@@ -132,10 +159,48 @@ public:
 		else
 		{
 			DirectX::SimpleMath::Vector3 position = transform.localPosition;
-			auto& pT = registry->get<GameObject>(parent);
-			position -= pT.GetTransform()->localPosition;
+			auto pT = registry->get<GameObject>(parent).GetTransform();
+			position += pT->localPosition;
 			return position;
 		}
+	}
+
+	// <‰½‚©‚Æ“–‚½‚Á‚Ä‚¢‚é‚©‚Ç‚¤‚©>
+	bool IsCollision()
+	{
+		return m_isCollisiion;
+	}
+
+	// <“–‚½‚Á‚Ä‚¢‚È‚¢>
+	void NotCollided()
+	{
+		m_isCollisiion = false;
+	}
+
+	// <“–‚½‚Á‚Ä‚¢‚é>
+	void Collided()
+	{
+		m_isCollisiion = true;
+	}
+
+	Tag GetTag()
+	{
+		return m_tag;
+	}
+
+	void SetTag(Tag tag)
+	{
+		m_tag = tag;
+	}
+
+	Tag GetCollidedObjectTag()
+	{
+		return m_collidedObjectTag;
+	}
+
+	void SetCollidedObjectTag(Tag tag)
+	{
+		m_collidedObjectTag = tag;
 	}
 };
 

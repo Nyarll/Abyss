@@ -14,6 +14,8 @@ private:
 	Entity m_player;
 	entt::DefaultRegistry* registry;
 
+	DirectX::SimpleMath::Vector3 m_spawnPoint;
+
 public:
 	Player();
 	Player(entt::DefaultRegistry* _registry, Entity entity);
@@ -24,6 +26,8 @@ public:
 
 private:
 	void Move();
+	void Physics();
+	void Respawn();
 };
 
 #endif

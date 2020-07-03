@@ -18,6 +18,7 @@ class PlayState : public IState
 private:
 	Entity m_mapGenerator = entt::null;
 	Entity m_player = entt::null;
+	Entity m_hitChunk;
 
 public:
 	virtual void Initialize(GameContext& context)override;
@@ -36,12 +37,12 @@ private:
 	void CreateUI(GameContext& context);
 	void RegisterTexture(GameContext& context);
 
+	void CheckCollision();
+
 	// <デバッグ用>
 private:
 	bool isWireframe = true;
 	std::unique_ptr<GridFloor> m_gridFloor;
-	bool isCollision = false;
-	Entity hitChunk;
 
 	void CreateDebugItems(GameContext& context);
 	void SwitchingDebug();
