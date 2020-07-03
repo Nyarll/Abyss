@@ -60,9 +60,7 @@ Collider& Collider::operator=(Collider&& col) noexcept
 {
 	if (this != &col)
 	{
-		m_colliderType = col.m_colliderType;
-		m_size = col.m_size;
-		m_colliderHolder = std::move(col.m_colliderHolder);
+		*this = std::move(col);
 	}
 	return *this;
 }
