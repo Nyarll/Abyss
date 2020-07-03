@@ -91,7 +91,7 @@ void PlayState::CreateGameEntitys(GameContext& context)
 		obj.SetTag(GameObject::Tag::Player);
 
 		m_registry.assign<Rigidbody>(entity, &m_registry, entity);
-		m_registry.assign<Collider>(entity, ColliderType::Sphere, .5f);
+		m_registry.assign<Collider>(entity, ColliderType::Box, .5f);
 
 		auto& renderer = m_registry.assign<PrimitiveRenderer>(entity);
 		renderer.SetModel(context.Get<PrimitiveModelList>().GetModel(PrimitiveModelList::ID::Sphere));
@@ -123,7 +123,7 @@ void PlayState::RegisterTexture(GameContext& context)
 
 void PlayState::CheckCollision()
 {
-	m_hitChunk = entt::null;
+	m_hitChunk.clear();
 
 	// <チャンクとプレイヤーで判定>
 	m_registry.view<Collider, GameObject, Player>().each([&](auto e, auto& pCollider, auto& obj, auto& player)
@@ -133,34 +133,37 @@ void PlayState::CheckCollision()
 		{
 			if (pCollider.OnCollision(cCollider))
 			{
-				m_hitChunk = ce;
+				m_hitChunk.push_back(ce);
 			}
 		});
 	});
 
-	if (m_hitChunk == entt::null)
+	if (m_hitChunk.size() == 0)
 		return;
 
-	auto& blocks = m_registry.get<Chunk>(m_hitChunk).GetChild();
 	auto& playerCollider = m_registry.get<Collider>(m_player);
 	auto& playerObject = m_registry.get<GameObject>(m_player);
 	playerObject.NotCollided();
 
-	for (auto& block : blocks)
+	for (auto& chunk : m_hitChunk)
 	{
-		auto& bounding = m_registry.get<Collider>(block);
-		auto& box = m_registry.get<GameObject>(block);
+		auto& blocks = m_registry.get<Chunk>(chunk).GetChild();
 
-		if (box.IsActive())
+		for (auto& block : blocks)
 		{
-			if (playerCollider.OnCollision(bounding))
+			auto& bounding = m_registry.get<Collider>(block);
+			auto& box = m_registry.get<GameObject>(block);
+
+			if (box.IsActive())
 			{
-				playerObject.Collided();
-				playerObject.SetCollidedObjectTag(box.GetTag());
+				if (playerCollider.OnCollision(bounding))
+				{
+					playerObject.Collided();
+					playerObject.SetCollidedObjectTag(box.GetTag());
+				}
 			}
 		}
 	}
-
 
 }
 

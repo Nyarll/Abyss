@@ -18,7 +18,7 @@ class PlayState : public IState
 private:
 	Entity m_mapGenerator = entt::null;
 	Entity m_player = entt::null;
-	Entity m_hitChunk;
+	std::vector<Entity>	m_hitChunk;
 
 public:
 	virtual void Initialize(GameContext& context)override;

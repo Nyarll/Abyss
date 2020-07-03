@@ -52,8 +52,8 @@ void MapGenerator::Initialize(GameContext& context, entt::DefaultRegistry* _pReg
 
 			obj.SetTag(GameObject::Tag::Floor);
 
-			auto& collider = registry->assign<Collider>(entity, ColliderType::Box, .5f);
-			collider.SetPosition(DirectX::SimpleMath::Vector3((float)x, -1.f, (float)z));
+			auto& collider = registry->assign<Collider>(entity, ColliderType::Box, .45f);
+			collider.SetPosition(DirectX::SimpleMath::Vector3((float)x - .2f, -1.f, (float)z - .2f));
 
 			auto& renderer = registry->assign<PrimitiveRenderer>(entity);
 			renderer.SetModel(context.Get<PrimitiveModelList>().GetModel(PrimitiveModelList::ID::Cube));
