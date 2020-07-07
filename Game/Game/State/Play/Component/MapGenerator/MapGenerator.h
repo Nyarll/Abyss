@@ -26,7 +26,7 @@ public:
 private:
 	entt::DefaultRegistry* registry;
 
-	static const int MapSize;
+	static const int kMapSize;
 
 	std::vector<std::vector<int>>			m_mapData;
 	std::vector<std::vector<Entity>>		m_mapEntitys;
@@ -36,16 +36,13 @@ private:
 
 	std::vector<std::vector<Entity>>		m_chunks;
 
-	int roomMinWidth = 5;
-	int roomMaxWidth = 10;
-
-	int roomMinHeight = 5;
-	int roomMaxHeight = 10;
-
-	int roomCountMin = 5;
-	int roomCountMax = 10;
-
-	int meetPointCount = 1;
+	static const int kRoomMinWidth;
+	static const int kRoomMaxWidth;
+	static const int kRoomMinHeight;
+	static const int kRoomMaxHeight;
+	static const int kRoomCountMin;
+	static const int kRoomCountMax;
+	static const int kMeetPointCount;
 
 public:
 	MapGenerator() :registry(nullptr) {}

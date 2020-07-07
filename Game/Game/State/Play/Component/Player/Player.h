@@ -11,10 +11,14 @@
 class Player
 {
 private:
+	static const float kJumpForce;
+
 	Entity m_player;
 	entt::DefaultRegistry* registry;
 
 	DirectX::SimpleMath::Vector3 m_spawnPoint;
+
+	bool m_isJump = false;
 
 public:
 	Player();
@@ -26,6 +30,7 @@ public:
 
 private:
 	void Move();
+	void Jump();
 	void Physics();
 	void Respawn();
 };

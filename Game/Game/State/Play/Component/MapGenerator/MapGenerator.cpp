@@ -5,17 +5,25 @@
 
 #include "../Chunk/Chunk.h"
 
-const int MapGenerator::MapSize = 64;
+const int MapGenerator::kMapSize = 64;
+
+const int MapGenerator::kRoomMinWidth = 5;
+const int MapGenerator::kRoomMaxWidth = 10;
+const int MapGenerator::kRoomMinHeight = 5;
+const int MapGenerator::kRoomMaxHeight = 10;
+const int MapGenerator::kRoomCountMin = 5;
+const int MapGenerator::kRoomCountMax = 10;
+const int MapGenerator::kMeetPointCount = 1;
 
 void MapGenerator::Initialize(GameContext& context, entt::DefaultRegistry* _pRegistry)
 {
 	registry = _pRegistry;
 
 	const float chunk_scale = 16;
-	for (int i = 0; i < (MapSize / chunk_scale); i++)
+	for (int i = 0; i < (kMapSize / chunk_scale); i++)
 	{
 		m_chunks.push_back(std::vector<Entity>());
-		for (int j = 0; j < (MapSize / chunk_scale); j++)
+		for (int j = 0; j < (kMapSize / chunk_scale); j++)
 		{
 			auto entity = registry->create();
 			
@@ -35,10 +43,10 @@ void MapGenerator::Initialize(GameContext& context, entt::DefaultRegistry* _pReg
 		}
 	}
 
-	for (int z = 0; z < MapSize; z++)
+	for (int z = 0; z < kMapSize; z++)
 	{
 		m_mapEntitys.push_back(std::vector<Entity>());
-		for (int x = 0; x < MapSize; x++)
+		for (int x = 0; x < kMapSize; x++)
 		{
 			auto entity = registry->create();
 			auto parent = m_chunks[z / chunk_scale][x / chunk_scale];
@@ -52,7 +60,7 @@ void MapGenerator::Initialize(GameContext& context, entt::DefaultRegistry* _pReg
 
 			obj.SetTag(GameObject::Tag::Floor);
 
-			auto& collider = registry->assign<Collider>(entity, ColliderType::Box, .45f);
+			auto& collider = registry->assign<Collider>(entity, ColliderType::Box, .5f);
 			collider.SetPosition(DirectX::SimpleMath::Vector3((float)x - .2f, -1.f, (float)z - .2f));
 
 			auto& renderer = registry->assign<PrimitiveRenderer>(entity);
@@ -78,10 +86,10 @@ void MapGenerator::Generate()
 void MapGenerator::Plain()
 {
 	MapDataClear();
-	for (int z = 0; z < MapSize; z++)
+	for (int z = 0; z < kMapSize; z++)
 	{
 		m_mapData.push_back(std::vector<int>());
-		for (int x = 0; x < MapSize; x++)
+		for (int x = 0; x < kMapSize; x++)
 		{
 			m_mapData[z].push_back((int)MapState::Floor);
 		}
@@ -98,23 +106,23 @@ void MapGenerator::CreateMapData()
 {
 	Random random;
 
-	int roomCount = random.Range(roomCountMin, roomCountMax);
+	int roomCount = random.Range(kRoomCountMin, kRoomCountMax);
 
 	std::vector<int> meetPointsX;
 	std::vector<int> meetPointsY;
-	for (int i = 0; i < meetPointCount; i++)
+	for (int i = 0; i < kMeetPointCount; i++)
 	{
-		meetPointsX.push_back(random.Range(MapSize / 4, MapSize * 3 / 4));
-		meetPointsY.push_back(random.Range(MapSize / 4, MapSize * 3 / 4));
+		meetPointsX.push_back(random.Range(kMapSize / 4, kMapSize * 3 / 4));
+		meetPointsY.push_back(random.Range(kMapSize / 4, kMapSize * 3 / 4));
 		m_mapData[meetPointsY[i]][meetPointsX[i]] = (int)MapState::Floor;
 	}
 
 	for (int i = 0; i < roomCount; i++)
 	{
-		int roomWidth = random.Range(roomMinWidth, roomMaxWidth);
-		int roomHeight = random.Range(roomMinHeight, roomMaxHeight);
-		int roomPointX = random.Range(2, MapSize - roomMaxWidth - 2);
-		int roomPointY = random.Range(2, MapSize - roomMaxWidth - 2);
+		int roomWidth = random.Range(kRoomMinWidth, kRoomMaxWidth);
+		int roomHeight = random.Range(kRoomMinHeight, kRoomMaxHeight);
+		int roomPointX = random.Range(2, kMapSize - kRoomMaxWidth - 2);
+		int roomPointY = random.Range(2, kMapSize - kRoomMaxWidth - 2);
 
 		int roadStartPointX = random.Range(roomPointX, roomPointX + roomWidth);
 		int roadStartPointY = random.Range(roomPointY, roomPointY + roomHeight);
@@ -248,10 +256,10 @@ void MapGenerator::MapDataClear()
 
 void MapGenerator::MapDataFillNone()
 {
-	for (int z = 0; z < MapSize; z++)
+	for (int z = 0; z < kMapSize; z++)
 	{
 		m_mapData.push_back(std::vector<int>());
-		for (int x = 0; x < MapSize; x++)
+		for (int x = 0; x < kMapSize; x++)
 		{
 			m_mapData[z].push_back((int)MapState::None);
 		}

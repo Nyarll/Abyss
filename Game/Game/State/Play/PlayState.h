@@ -34,6 +34,10 @@ public:
 private:
 	void CreateCamera();
 	void CreateGameEntitys(GameContext& context);
+
+	void CreateMapGenerator(GameContext& context);
+	void CreatePlayer(GameContext& context);
+
 	void CreateUI(GameContext& context);
 	void RegisterTexture(GameContext& context);
 

@@ -4,15 +4,17 @@
 
 #include "../MapGenerator/MapGenerator.h"
 
+const float Player::kJumpForce = 0.5f;
+
 Player::Player()
 	:registry(nullptr)
-	,m_player(entt::null)
+	, m_player(entt::null)
 {
 }
 
 Player::Player(entt::DefaultRegistry* _registry, Entity entity)
-	:registry(_registry)
-	,m_player(entity)
+	: registry(_registry)
+	, m_player(entity)
 {
 }
 
@@ -21,8 +23,11 @@ void Player::Update()
 	if (!registry)return;
 	if (m_player == entt::null)return;
 
-	Move();
 	Physics();
+
+	Move();
+	Jump();
+	
 	Respawn();
 }
 
@@ -42,7 +47,7 @@ void Player::DetermineSpawnPosition(Entity map_generator)
 			m_spawnPoint = DirectX::SimpleMath::Vector3(x, obj.GetTransform()->localPosition.y, z);
 			obj.GetTransform()->localPosition = m_spawnPoint;
 			spawnData[z][x] = MapGenerator::MapState::EntityPlaced;
-			
+
 			break;
 		}
 	}
@@ -50,7 +55,7 @@ void Player::DetermineSpawnPosition(Entity map_generator)
 
 void Player::Move()
 {
-	DirectX::SimpleMath::Vector3 pos = registry->get<GameObject>(m_player).GetTransform()->localPosition;
+	auto& obj = registry->get<GameObject>(m_player);
 	DirectX::SimpleMath::Vector3 vel = DirectX::SimpleMath::Vector3::Zero;
 
 	if (InputManager::GetKey(DirectX::Keyboard::Keys::W))
@@ -71,8 +76,25 @@ void Player::Move()
 	}
 	vel.Normalize();
 	vel *= .3f;
+	vel.y = obj.GetVelocity().y;
 
-	registry->get<GameObject>(m_player).GetTransform()->localPosition = pos + vel;
+	obj.SetVelocity(vel);
+}
+
+void Player::Jump()
+{
+	auto& obj = registry->get<GameObject>(m_player);
+	DirectX::SimpleMath::Vector3 pos = obj.GetPosition();
+	DirectX::SimpleMath::Vector3 vel = obj.GetVelocity();
+
+	if (InputManager::GetKeyDown(DirectX::Keyboard::Keys::Space) && !m_isJump)
+	{
+		m_isJump = true;
+		vel.y = kJumpForce;
+		obj.SetVelocity(vel);
+		//pos.y += vel.y;
+		//obj.SetPosition(pos);
+	}
 }
 
 void Player::Physics()
@@ -85,9 +107,10 @@ void Player::Physics()
 	{
 		auto pos = obj.GetPosition();
 		auto vel = obj.GetVelocity();
-		
-		obj.SetPosition(DirectX::SimpleMath::Vector3(pos.x, 0, pos.z));
+
 		obj.SetVelocity(DirectX::SimpleMath::Vector3(vel.x, 0, vel.z));
+		obj.SetPosition(DirectX::SimpleMath::Vector3(pos.x, 0, pos.z));
+		m_isJump = false;
 	}
 }
 

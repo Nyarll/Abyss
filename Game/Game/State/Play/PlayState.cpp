@@ -76,31 +76,37 @@ void PlayState::CreateCamera()
 
 void PlayState::CreateGameEntitys(GameContext& context)
 {
-	{
-		auto entity = m_registry.create();
-		auto& generator = m_registry.assign<MapGenerator>(entity);
-		generator.Initialize(context, &m_registry);
-		generator.Generate();
-		m_mapGenerator = entity;
-	}
-	{
-		auto entity = m_registry.create();
-		auto& player = m_registry.assign<Player>(entity, &m_registry, entity);
-		auto& obj = m_registry.assign<GameObject>(entity, &m_registry, entity);
+	CreateMapGenerator(context);
+	CreatePlayer(context);
+}
 
-		obj.SetTag(GameObject::Tag::Player);
+void PlayState::CreateMapGenerator(GameContext & context)
+{
+	auto entity = m_registry.create();
+	auto& generator = m_registry.assign<MapGenerator>(entity);
+	generator.Initialize(context, &m_registry);
+	generator.Generate();
+	m_mapGenerator = entity;
+}
 
-		m_registry.assign<Rigidbody>(entity, &m_registry, entity);
-		m_registry.assign<Collider>(entity, ColliderType::Box, .5f);
+void PlayState::CreatePlayer(GameContext & context)
+{
+	auto entity = m_registry.create();
+	auto& player = m_registry.assign<Player>(entity, &m_registry, entity);
+	auto& obj = m_registry.assign<GameObject>(entity, &m_registry, entity);
 
-		auto& renderer = m_registry.assign<PrimitiveRenderer>(entity);
-		renderer.SetModel(context.Get<PrimitiveModelList>().GetModel(PrimitiveModelList::ID::Sphere));
-		renderer.SetModelOption(DirectX::Colors::Aqua);
+	obj.SetTag(GameObject::Tag::Player);
 
-		player.DetermineSpawnPosition(m_mapGenerator);
+	m_registry.assign<Rigidbody>(entity, &m_registry, entity);
+	m_registry.assign<Collider>(entity, ColliderType::Box, .5f);
 
-		m_player = entity;
-	}
+	auto& renderer = m_registry.assign<PrimitiveRenderer>(entity);
+	renderer.SetModel(context.Get<PrimitiveModelList>().GetModel(PrimitiveModelList::ID::Sphere));
+	renderer.SetModelOption(DirectX::Colors::Aqua);
+
+	player.DetermineSpawnPosition(m_mapGenerator);
+
+	m_player = entity;
 }
 
 void PlayState::CreateUI(GameContext& context)
