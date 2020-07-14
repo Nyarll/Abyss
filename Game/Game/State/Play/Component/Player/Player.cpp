@@ -4,7 +4,7 @@
 
 #include "../MapGenerator/MapGenerator.h"
 
-const float Player::kJumpForce = 0.5f;
+const float Player::kJumpForce = 0.3f;
 
 Player::Player()
 	:registry(nullptr)
@@ -75,7 +75,7 @@ void Player::Move()
 		vel.x -= 1.0f;
 	}
 	vel.Normalize();
-	vel *= .3f;
+	vel *= .25f;
 	vel.y = obj.GetVelocity().y;
 
 	obj.SetVelocity(vel);

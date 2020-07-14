@@ -57,6 +57,7 @@ public:
 	{
 	}
 
+	// <更新>
 	void Update()
 	{
 		transform.localPosition += m_velocity;
@@ -73,12 +74,13 @@ public:
 	{
 		return &transform;
 	}
-
+	// <親オブジェクトを設定>
 	void SetParent(Entity _parent)
 	{
 		parent = _parent;
 	}
 
+	// <描画用行列を取得>
 	const DirectX::SimpleMath::Matrix GetMatrix()
 	{
 		if (parent == entt::null)
@@ -146,26 +148,31 @@ public:
 		m_isCollisiion = true;
 	}
 
+	// <タグを取得>
 	Tag GetTag()
 	{
 		return m_tag;
 	}
-
+	
+	// <タグを設定>
 	void SetTag(Tag tag)
 	{
 		m_tag = tag;
 	}
 
+	// <衝突したオブジェクトのタグを取得>
 	Tag GetCollidedObjectTag()
 	{
 		return m_collidedObjectTag;
 	}
 
+	// <衝突したオブジェクトのタグを設定>
 	void SetCollidedObjectTag(Tag tag)
 	{
 		m_collidedObjectTag = tag;
 	}
 
+	// <座標を設定>
 	void SetPosition(DirectX::SimpleMath::Vector3 pos)
 	{
 		if (parent == entt::null)
@@ -179,6 +186,7 @@ public:
 		}
 	}
 
+	// <座標を取得>
 	DirectX::SimpleMath::Vector3 GetPosition()
 	{
 		if (parent == entt::null)
@@ -194,20 +202,22 @@ public:
 		}
 	}
 
+	// <速度を設定>
 	void SetVelocity(const DirectX::SimpleMath::Vector3& vel)
 	{
 		m_velocity = vel;
 	}
+	// <速度を取得>
 	const DirectX::SimpleMath::Vector3& GetVelocity()
 	{
 		return m_velocity;
 	}
-
+	// <回転を設定>
 	void SetRotation(const DirectX::SimpleMath::Quaternion& rotation)
 	{
 		transform.localRotation = rotation;
 	}
-
+	// <回転を取得>
 	const DirectX::SimpleMath::Quaternion& GetRotation()
 	{
 		if (parent == entt::null)
@@ -222,12 +232,13 @@ public:
 			return rotation;
 		}
 	}
-
+	// <拡縮を設定>
 	void SetScale(const DirectX::SimpleMath::Vector3& scale)
 	{
 		transform.localScale = scale;
 	}
 
+	// <拡縮を取得>
 	const DirectX::SimpleMath::Vector3& GetScale()
 	{
 		if (parent == entt::null)

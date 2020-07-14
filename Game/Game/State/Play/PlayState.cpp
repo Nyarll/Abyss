@@ -98,7 +98,7 @@ void PlayState::CreatePlayer(GameContext & context)
 	obj.SetTag(GameObject::Tag::Player);
 
 	m_registry.assign<Rigidbody>(entity, &m_registry, entity);
-	m_registry.assign<Collider>(entity, ColliderType::Box, .5f);
+	m_registry.assign<Collider>(entity, ColliderType::Box, DirectX::SimpleMath::Vector3(.25f, .5f, .25f));
 
 	auto& renderer = m_registry.assign<PrimitiveRenderer>(entity);
 	renderer.SetModel(context.Get<PrimitiveModelList>().GetModel(PrimitiveModelList::ID::Sphere));

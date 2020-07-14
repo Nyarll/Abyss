@@ -3,7 +3,7 @@
 Collider::Collider(ColliderType type, float size)
 	:m_colliderType(type)
 {
-	m_size = size;
+	m_size = DirectX::SimpleMath::Vector3(size, size, size);
 
 	switch (m_colliderType)
 	{
@@ -18,7 +18,31 @@ Collider::Collider(ColliderType type, float size)
 	{
 		SetCollider<DirectX::BoundingBox>();
 		auto box = GetCollider<DirectX::BoundingBox>();
-		box->Extents = DirectX::SimpleMath::Vector3(size, size, size);
+		box->Extents = m_size;
+		break;
+	}
+	}
+}
+
+Collider::Collider(ColliderType type, DirectX::SimpleMath::Vector3 extents)
+	:m_colliderType(type)
+{
+	m_size = extents;
+
+	switch (m_colliderType)
+	{
+	case ColliderType::Sphere:
+	{
+		SetCollider<DirectX::BoundingSphere>();
+		auto sphere = GetCollider<DirectX::BoundingSphere>();
+		sphere->Radius = m_size.x;
+		break;
+	}
+	case ColliderType::Box:
+	{
+		SetCollider<DirectX::BoundingBox>();
+		auto box = GetCollider<DirectX::BoundingBox>();
+		box->Extents = m_size;
 		break;
 	}
 	}
@@ -35,14 +59,14 @@ Collider::Collider(const Collider& col)
 	{
 		SetCollider<DirectX::BoundingSphere>();
 		auto sphere = GetCollider<DirectX::BoundingSphere>();
-		sphere->Radius = m_size;
+		sphere->Radius = m_size.x;
 		break;
 	}
 	case ColliderType::Box:
 	{
 		SetCollider<DirectX::BoundingBox>();
 		auto box = GetCollider<DirectX::BoundingBox>();
-		box->Extents = DirectX::SimpleMath::Vector3(m_size, m_size, m_size);
+		box->Extents = m_size;
 		break;
 	}
 	}

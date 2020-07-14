@@ -31,10 +31,11 @@ class Collider
 private:
 	ColliderType m_colliderType;
 	std::unique_ptr<_ColliderHolderBase> m_colliderHolder;
-	float m_size;
+	DirectX::SimpleMath::Vector3 m_size;
 
 public:
 	Collider(ColliderType type, float size = 1.f);
+	Collider(ColliderType type, DirectX::SimpleMath::Vector3 extents = DirectX::SimpleMath::Vector3::One);
 	Collider(const Collider& col);
 	Collider(Collider&& col)noexcept;
 
