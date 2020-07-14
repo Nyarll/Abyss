@@ -21,6 +21,7 @@ public:
 
 		Universal,
 		Player,
+		Enemy,
 		Floor,
 	};
 

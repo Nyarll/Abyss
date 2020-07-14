@@ -78,9 +78,10 @@ void PlayState::CreateGameEntitys(GameContext& context)
 {
 	CreateMapGenerator(context);
 	CreatePlayer(context);
+	CreateEnemy(context);
 }
 
-void PlayState::CreateMapGenerator(GameContext & context)
+void PlayState::CreateMapGenerator(GameContext& context)
 {
 	auto entity = m_registry.create();
 	auto& generator = m_registry.assign<MapGenerator>(entity);
@@ -89,7 +90,7 @@ void PlayState::CreateMapGenerator(GameContext & context)
 	m_mapGenerator = entity;
 }
 
-void PlayState::CreatePlayer(GameContext & context)
+void PlayState::CreatePlayer(GameContext& context)
 {
 	auto entity = m_registry.create();
 	auto& player = m_registry.assign<Player>(entity, &m_registry, entity);
@@ -107,6 +108,24 @@ void PlayState::CreatePlayer(GameContext & context)
 	player.DetermineSpawnPosition(m_mapGenerator);
 
 	m_player = entity;
+}
+
+void PlayState::CreateEnemy(GameContext& context)
+{
+	auto entity = m_registry.create();
+	auto& enemy = m_registry.assign<Enemy>(entity, &m_registry, entity);
+	auto& obj = m_registry.assign<GameObject>(entity, &m_registry, entity);
+
+	obj.SetTag(GameObject::Tag::Enemy);
+
+	//m_registry.assign<Rigidbody>(entity, &m_registry, entity);
+	//m_registry.assign<Collider>(entity, ColliderType::Box, DirectX::SimpleMath::Vector3(.25f, .5f, .25f));
+
+	auto& renderer = m_registry.assign<PrimitiveRenderer>(entity);
+	renderer.SetModel(context.Get<PrimitiveModelList>().GetModel(PrimitiveModelList::ID::Sphere));
+	renderer.SetModelOption(DirectX::Colors::Red);
+
+	enemy.DetermineSpawnPosition(m_mapGenerator);
 }
 
 void PlayState::CreateUI(GameContext& context)

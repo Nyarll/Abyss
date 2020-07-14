@@ -107,6 +107,9 @@
     <Filter Include="Game\Game\State\Play\Component\Chunk">
       <UniqueIdentifier>{71023945-572c-41b2-823e-adea39e4969d}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Game\Game\State\Play\Component\Enemy">
+      <UniqueIdentifier>{98789845-9be3-4b92-937a-4521bace9899}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="pch.h" />
@@ -236,6 +239,9 @@
     <ClInclude Include="Game\Game\State\Play\Component\Chunk\Chunk.h">
       <Filter>Game\Game\State\Play\Component\Chunk</Filter>
     </ClInclude>
+    <ClInclude Include="Game\Game\State\Play\Component\Enemy\Enemy.h">
+      <Filter>Game\Game\State\Play\Component\Enemy</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="pch.cpp" />
@@ -331,6 +337,9 @@
     </ClCompile>
     <ClCompile Include="Game\Game\State\Play\Component\Chunk\Chunk.cpp">
       <Filter>Game\Game\State\Play\Component\Chunk</Filter>
+    </ClCompile>
+    <ClCompile Include="Game\Game\State\Play\Component\Enemy\Enemy.cpp">
+      <Filter>Game\Game\State\Play\Component\Enemy</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

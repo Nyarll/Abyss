@@ -37,6 +37,7 @@ private:
 
 	void CreateMapGenerator(GameContext& context);
 	void CreatePlayer(GameContext& context);
+	void CreateEnemy(GameContext& context);
 
 	void CreateUI(GameContext& context);
 	void RegisterTexture(GameContext& context);

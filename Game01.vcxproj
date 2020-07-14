@@ -203,6 +203,7 @@
     <ClInclude Include="Game\Game\State\Play\Component\DebugTools\DebugCamera\DebugCamera.h" />
     <ClInclude Include="Game\Game\State\Play\Component\DebugTools\DebugTools.h" />
     <ClInclude Include="Game\Game\State\Play\Component\DebugTools\Grid\Grid.h" />
+    <ClInclude Include="Game\Game\State\Play\Component\Enemy\Enemy.h" />
     <ClInclude Include="Game\Game\State\Play\Component\MapGenerator\MapGenerator.h" />
     <ClInclude Include="Game\Game\State\Play\Component\Player\Player.h" />
     <ClInclude Include="Game\Game\State\Play\PlayState.h" />
@@ -237,6 +238,7 @@
     <ClCompile Include="Game\Game\State\Play\Component\Chunk\Chunk.cpp" />
     <ClCompile Include="Game\Game\State\Play\Component\DebugTools\DebugCamera\DebugCamera.cpp" />
     <ClCompile Include="Game\Game\State\Play\Component\DebugTools\Grid\Grid.cpp" />
+    <ClCompile Include="Game\Game\State\Play\Component\Enemy\Enemy.cpp" />
     <ClCompile Include="Game\Game\State\Play\Component\MapGenerator\MapGenerator.cpp" />
     <ClCompile Include="Game\Game\State\Play\Component\Player\Player.cpp" />
     <ClCompile Include="Game\Game\State\Play\PlayState.cpp" />
