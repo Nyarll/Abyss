@@ -19,7 +19,7 @@ namespace JsonImport
 	using object_type = ::picojson::object;
 	using value_type = ::picojson::value;
 
-	void split(std::vector<std::string>& path, const std::string& dot_sep_path)
+	inline void split(std::vector<std::string>& path, const std::string& dot_sep_path)
 	{
 		const char* dp = dot_sep_path.c_str();
 		char buf[100] = {};
@@ -59,7 +59,7 @@ namespace JsonImport
 	}
 
 	template <typename Type>
-	Type get_as(const value_type& value);
+	inline Type get_as(const value_type& value);
 
 	/**/
 	template <>

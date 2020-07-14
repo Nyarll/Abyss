@@ -14,6 +14,8 @@
 
 #include "../Framework/InputManager/InputManager.h"
 
+#include "../Framework/Primitive/PrimitiveModelList.h"
+
 extern void ExitGame();
 
 using namespace DirectX;
@@ -61,6 +63,9 @@ void Game::Initialize(HWND window, int width, int height)
 	Register(std::make_unique<CommonStates>(device));
 	// <スプライトバッチ作成>
 	Register(std::make_unique<DirectX::SpriteBatch>(context));
+
+	Register(std::make_unique<PrimitiveModelList>());
+	Get<PrimitiveModelList>().Initialize(*this);
 
 	RegisterTexture();
 	RegisterState();
@@ -233,8 +238,9 @@ void Game::RegisterState()
 
 	//manager.Register(StateManager::StateID::PLAY, ...);
 	manager.Register(StateManager::StateID::TITLE, TitleState::Create);
+	manager.Register(StateManager::StateID::PLAY, PlayState::Create);
 
-	manager.SetStartState(*this, StateManager::StateID::TITLE);
+	manager.SetStartState(*this, StateManager::StateID::PLAY);
 }
 
 void Game::RegisterFont()

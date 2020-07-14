@@ -68,6 +68,45 @@
     <Filter Include="Game\Framework\InputManager">
       <UniqueIdentifier>{a922b952-6a91-440c-a822-4756a375214e}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Game\Framework\Primitive">
+      <UniqueIdentifier>{2c9da175-0510-48f2-a94d-6386eb8abcd2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game\Framework\Camera">
+      <UniqueIdentifier>{fd5464e5-4a89-41e0-9aed-c4cca98deb57}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game\Game\State\Play\Component">
+      <UniqueIdentifier>{cb3abedd-f7e2-4ff0-948d-f2945785c436}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game\Framework\Optional">
+      <UniqueIdentifier>{d475b35c-a02f-47c6-86a0-2f5d97feeaef}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game\Game\State\Play\Component\MapGenerator">
+      <UniqueIdentifier>{1c295b1a-ac17-47e6-900d-d1ad29c239d7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game\Framework\Random">
+      <UniqueIdentifier>{3091bf6a-ad99-48b4-bc73-9a436b9a9efd}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game\Game\State\Play\Component\Debug">
+      <UniqueIdentifier>{bbce5d29-18af-4608-b008-516960c91154}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game\Game\State\Play\Component\Debug\DebugCamera">
+      <UniqueIdentifier>{b8aac547-a52a-42fb-b026-bccc3a7ce46a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game\Game\State\Play\Component\Debug\Grid">
+      <UniqueIdentifier>{0da216ca-4284-4631-b8cf-dbf1b932a593}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game\Game\State\Play\Component\Player">
+      <UniqueIdentifier>{b3fcbe8f-da25-4a66-bdae-28146f478990}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game\Framework\Rigidbody">
+      <UniqueIdentifier>{22346781-c80e-4560-8734-725202fd644a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game\Framework\Collider">
+      <UniqueIdentifier>{f3b22be3-d34c-4ca3-83f7-bb842b6b5544}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game\Game\State\Play\Component\Chunk">
+      <UniqueIdentifier>{71023945-572c-41b2-823e-adea39e4969d}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="pch.h" />
@@ -94,12 +133,6 @@
     </ClInclude>
     <ClInclude Include="Game\Framework\Utility\MathUtility.h">
       <Filter>Game\Framework\Utility</Filter>
-    </ClInclude>
-    <ClInclude Include="Game\Framework\GameObject\Transform.h">
-      <Filter>Game\Framework\GameObject</Filter>
-    </ClInclude>
-    <ClInclude Include="Game\Framework\GameObject\Property.h">
-      <Filter>Game\Framework\GameObject</Filter>
     </ClInclude>
     <ClInclude Include="Game\Framework\GameObject\GameObject.h">
       <Filter>Game\Framework\GameObject</Filter>
@@ -148,6 +181,60 @@
     </ClInclude>
     <ClInclude Include="Game\Framework\InputManager\InputManager.h">
       <Filter>Game\Framework\InputManager</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\Game\State\Play\PlayState.h">
+      <Filter>Game\Game\State\Play</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\Framework\Primitive\PrimitiveRenderer.h">
+      <Filter>Game\Framework\Primitive</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\Framework\Primitive\PrimitiveModelList.h">
+      <Filter>Game\Framework\Primitive</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\Framework\Camera\Camera.h">
+      <Filter>Game\Framework\Camera</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\Framework\GameObject\Transform.h">
+      <Filter>Game\Framework\GameObject</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\Game\State\Play\Component\Components.h">
+      <Filter>Game\Game\State\Play\Component</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\Framework\Optional\Optional.h">
+      <Filter>Game\Framework\Optional</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\Framework\Random\Random.h">
+      <Filter>Game\Framework\Random</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\Game\State\Play\Component\DebugTools\DebugCamera\DebugCamera.h">
+      <Filter>Game\Game\State\Play\Component\Debug\DebugCamera</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\Game\State\Play\Component\DebugTools\DebugTools.h">
+      <Filter>Game\Game\State\Play\Component\Debug</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\Game\State\Play\Component\MapGenerator\MapGenerator.h">
+      <Filter>Game\Game\State\Play\Component\MapGenerator</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\Game\State\Play\Component\DebugTools\Grid\Grid.h">
+      <Filter>Game\Game\State\Play\Component\Debug\Grid</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\Framework\Json\Json.h">
+      <Filter>Game\Framework\Json</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\Framework\Utility\StringUtility.h">
+      <Filter>Game\Framework\Utility</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\Game\State\Play\Component\Player\Player.h">
+      <Filter>Game\Game\State\Play\Component\Player</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\Framework\Rigidbody\Rigidbody.h">
+      <Filter>Game\Framework\Rigidbody</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\Framework\Collider\Collider.h">
+      <Filter>Game\Framework\Collider</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\Game\State\Play\Component\Chunk\Chunk.h">
+      <Filter>Game\Game\State\Play\Component\Chunk</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -202,6 +289,48 @@
     </ClCompile>
     <ClCompile Include="Game\Framework\InputManager\InputManager.cpp">
       <Filter>Game\Framework\InputManager</Filter>
+    </ClCompile>
+    <ClCompile Include="Game\Game\State\Play\PlayState.cpp">
+      <Filter>Game\Game\State\Play</Filter>
+    </ClCompile>
+    <ClCompile Include="Game\Framework\Primitive\PrimitiveRenderer.cpp">
+      <Filter>Game\Framework\Primitive</Filter>
+    </ClCompile>
+    <ClCompile Include="Game\Framework\Primitive\PrimitiveModelList.cpp">
+      <Filter>Game\Framework\Primitive</Filter>
+    </ClCompile>
+    <ClCompile Include="Game\Framework\Camera\Camera.cpp">
+      <Filter>Game\Framework\Camera</Filter>
+    </ClCompile>
+    <ClCompile Include="Game\Framework\Random\Random.cpp">
+      <Filter>Game\Framework\Random</Filter>
+    </ClCompile>
+    <ClCompile Include="Game\Game\State\Play\Component\DebugTools\DebugCamera\DebugCamera.cpp">
+      <Filter>Game\Game\State\Play\Component\Debug\DebugCamera</Filter>
+    </ClCompile>
+    <ClCompile Include="Game\Game\State\Play\Component\DebugTools\Grid\Grid.cpp">
+      <Filter>Game\Game\State\Play\Component\Debug\Grid</Filter>
+    </ClCompile>
+    <ClCompile Include="Game\Game\State\Play\Component\MapGenerator\MapGenerator.cpp">
+      <Filter>Game\Game\State\Play\Component\MapGenerator</Filter>
+    </ClCompile>
+    <ClCompile Include="Game\Framework\Json\Json.cpp">
+      <Filter>Game\Framework\Json</Filter>
+    </ClCompile>
+    <ClCompile Include="Game\Framework\Utility\StringUtility.cpp">
+      <Filter>Game\Framework\Utility</Filter>
+    </ClCompile>
+    <ClCompile Include="Game\Game\State\Play\Component\Player\Player.cpp">
+      <Filter>Game\Game\State\Play\Component\Player</Filter>
+    </ClCompile>
+    <ClCompile Include="Game\Framework\Rigidbody\Rigidbody.cpp">
+      <Filter>Game\Framework\Rigidbody</Filter>
+    </ClCompile>
+    <ClCompile Include="Game\Framework\Collider\Collider.cpp">
+      <Filter>Game\Framework\Collider</Filter>
+    </ClCompile>
+    <ClCompile Include="Game\Game\State\Play\Component\Chunk\Chunk.cpp">
+      <Filter>Game\Game\State\Play\Component\Chunk</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

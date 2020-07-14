@@ -12,6 +12,7 @@
 #include "BinaryFile\BinaryFile.h"
 
 #include "Utility\MathUtility.h"
+#include "Utility\StringUtility.h"
 
 #include "Context\GameContext.h"
 
@@ -23,16 +24,24 @@
 #include "Texture\TextureManager.h"
 
 #include "GameObject\GameObject.h"
+#include "Rigidbody\Rigidbody.h"
+#include "Collider\Collider.h"
 
 #include "SpriteRenderer\SpriteRenderer.h"
+#include "Primitive\PrimitiveRenderer.h"
+
+#include "Primitive\PrimitiveModelList.h"
 
 #include "GameFont\FontManager.h"
 #include "GameFont\FontRenderer.h"
 
-#include "Json\JsonImport.h"
-
 #include "InputManager\InputManager.h"
 
 #include "Sound\Adx2Le.h"
+
+#include "Camera\Camera.h"
+#include "Random\Random.h"
+
+#include "Json\Json.h"
 
 #endif
