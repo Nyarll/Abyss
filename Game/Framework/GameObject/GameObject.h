@@ -94,15 +94,6 @@ public:
 		}
 	}
 
-	void SetVelocity(const DirectX::SimpleMath::Vector3& vel)
-	{
-		m_velocity = vel;
-	}
-	const DirectX::SimpleMath::Vector3& GetVelocity()
-	{
-		return m_velocity;
-	}
-
 	// <オブジェクトをアクティブにする>
 	void Activate()
 	{
@@ -135,34 +126,6 @@ public:
 	bool IsRendering()
 	{
 		return m_isRendering;
-	}
-
-	void SetPosition(DirectX::SimpleMath::Vector3 pos)
-	{
-		if (parent == entt::null)
-		{
-			transform.localPosition = pos;
-		}
-		else
-		{
-			auto pT = registry->get<GameObject>(parent).GetTransform();
-			transform.localPosition = pos - pT->localPosition;
-		}
-	}
-
-	DirectX::SimpleMath::Vector3 GetPosition()
-	{
-		if (parent == entt::null)
-		{
-			return transform.localPosition;
-		}
-		else
-		{
-			DirectX::SimpleMath::Vector3 position = transform.localPosition;
-			auto pT = registry->get<GameObject>(parent).GetTransform();
-			position += pT->localPosition;
-			return position;
-		}
 	}
 
 	// <何かと当たっているかどうか>
@@ -201,6 +164,83 @@ public:
 	void SetCollidedObjectTag(Tag tag)
 	{
 		m_collidedObjectTag = tag;
+	}
+
+	void SetPosition(DirectX::SimpleMath::Vector3 pos)
+	{
+		if (parent == entt::null)
+		{
+			transform.localPosition = pos;
+		}
+		else
+		{
+			auto pT = registry->get<GameObject>(parent).GetTransform();
+			transform.localPosition = pos - pT->localPosition;
+		}
+	}
+
+	DirectX::SimpleMath::Vector3 GetPosition()
+	{
+		if (parent == entt::null)
+		{
+			return transform.localPosition;
+		}
+		else
+		{
+			DirectX::SimpleMath::Vector3 position = transform.localPosition;
+			auto pT = registry->get<GameObject>(parent).GetTransform();
+			position += pT->localPosition;
+			return position;
+		}
+	}
+
+	void SetVelocity(const DirectX::SimpleMath::Vector3& vel)
+	{
+		m_velocity = vel;
+	}
+	const DirectX::SimpleMath::Vector3& GetVelocity()
+	{
+		return m_velocity;
+	}
+
+	void SetRotation(const DirectX::SimpleMath::Quaternion& rotation)
+	{
+		transform.localRotation = rotation;
+	}
+
+	const DirectX::SimpleMath::Quaternion& GetRotation()
+	{
+		if (parent == entt::null)
+		{
+			return transform.localRotation;
+		}
+		else
+		{
+			DirectX::SimpleMath::Quaternion rotation = transform.localRotation;
+			auto pT = registry->get<GameObject>(parent).GetTransform();
+			rotation *= pT->localRotation;
+			return rotation;
+		}
+	}
+
+	void SetScale(const DirectX::SimpleMath::Vector3& scale)
+	{
+		transform.localScale = scale;
+	}
+
+	const DirectX::SimpleMath::Vector3& GetScale()
+	{
+		if (parent == entt::null)
+		{
+			return transform.localScale;
+		}
+		else
+		{
+			DirectX::SimpleMath::Vector3 scale = transform.localScale;
+			auto pT = registry->get<GameObject>(parent).GetTransform();
+			scale *= pT->localScale;
+			return scale;
+		}
 	}
 };
 
