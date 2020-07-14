@@ -30,6 +30,11 @@ void PlayState::Update(GameContext& context)
 		rb.Update();
 	});
 
+	m_registry.view<Enemy>().each([](auto entity, auto& enemy)
+	{
+		enemy.Update();
+	});
+
 	CheckCollision();
 
 	m_registry.get<Player>(m_player).Update();
@@ -126,6 +131,7 @@ void PlayState::CreateEnemy(GameContext& context)
 	renderer.SetModelOption(DirectX::Colors::Red);
 
 	enemy.DetermineSpawnPosition(m_mapGenerator);
+	enemy.SetPlayerEntity(m_player);
 }
 
 void PlayState::CreateUI(GameContext& context)

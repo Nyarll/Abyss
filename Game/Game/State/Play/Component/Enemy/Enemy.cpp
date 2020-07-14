@@ -11,6 +11,7 @@ Enemy::Enemy(entt::DefaultRegistry * _registry, Entity entity)
 
 void Enemy::Update()
 {
+	Move();
 }
 
 void Enemy::DetermineSpawnPosition(Entity map_generator)
@@ -39,4 +40,20 @@ void Enemy::DetermineSpawnPosition(Entity map_generator)
 void Enemy::SetPlayerEntity(Entity player)
 {
 	m_player = player;
+}
+
+void Enemy::Move()
+{
+	DirectX::SimpleMath::Vector3 targetPosition = registry->get<GameObject>(m_player).GetPosition();
+
+	GameObject& obj = registry->get<GameObject>(m_enemy);
+
+	DirectX::SimpleMath::Vector3 dir = targetPosition - obj.GetPosition();
+
+	dir.Normalize();
+	dir *= 0.1f;
+
+	dir.y = obj.GetVelocity().y;
+
+	obj.SetVelocity(dir);
 }

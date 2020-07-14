@@ -23,6 +23,9 @@ public:
 	void DetermineSpawnPosition(Entity map_generator);
 
 	void SetPlayerEntity(Entity player);
+
+private:
+	void Move();
 };
 
 #endif
