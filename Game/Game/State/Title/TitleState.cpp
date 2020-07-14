@@ -27,7 +27,7 @@ void TitleState::Update(GameContext& context)
 {
 	if (InputManager::GetKeyDown(DirectX::Keyboard::Keys::Space))
 	{
-		//context.Get<StateManager>().RequestState(StateManager::StateID::PLAY);
+		context.Get<StateManager>().RequestState(StateManager::StateID::PLAY);
 	}
 }
 

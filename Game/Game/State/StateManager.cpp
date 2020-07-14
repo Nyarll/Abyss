@@ -61,7 +61,7 @@ void StateManager::RenderActiveState(GameContext & context)
 
 void StateManager::RequestState(StateID _stateID)
 {
-	assert(_stateID >= 0 && _stateID < StateID::NONE && "Error : Invalid scene ID.");
+	assert(_stateID >= 0 && _stateID < StateID::NUM_STATES && "Error : Invalid scene ID.");
 
 	m_nextStateID = _stateID;
 }
