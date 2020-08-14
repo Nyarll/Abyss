@@ -44,7 +44,7 @@ void Player::DetermineSpawnPosition(Entity map_generator)
 		if (spawnData[z][x] == MapGenerator::MapState::Floor)
 		{
 			auto& obj = registry->get<GameObject>(m_player);
-			m_spawnPoint = DirectX::SimpleMath::Vector3(x, obj.GetTransform()->localPosition.y, z);
+			m_spawnPoint = DirectX::SimpleMath::Vector3(x, 1.f, z);
 			obj.GetTransform()->localPosition = m_spawnPoint;
 			spawnData[z][x] = MapGenerator::MapState::EntityPlaced;
 

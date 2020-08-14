@@ -86,6 +86,17 @@ void PlayState::CreateGameEntitys(GameContext& context)
 	CreateEnemy(context);
 }
 
+void PlayState::CreateBackground(GameContext& context)
+{
+	/*auto entity = m_registry.create();
+	auto& obj = m_registry.assign<GameObject>(entity);
+	auto& renderer = m_registry.assign<PrimitiveRenderer>(entity);
+	renderer.SetModel(context.Get<PrimitiveModelList>().GetModel(PrimitiveModelList::ID::Sphere));
+
+	auto& back = m_registry.assign<Background>(entity);
+	back.Initialize(context);*/
+}
+
 void PlayState::CreateMapGenerator(GameContext& context)
 {
 	auto entity = m_registry.create();
@@ -176,9 +187,10 @@ void PlayState::CheckCollision()
 	auto& playerObject = m_registry.get<GameObject>(m_player);
 	playerObject.NotCollided();
 
-	for (auto& chunk : m_hitChunk)
+	for (auto& chunkEntity : m_hitChunk)
 	{
-		auto& blocks = m_registry.get<Chunk>(chunk).GetChild();
+		auto& chunk = m_registry.get<Chunk>(chunkEntity);
+		auto& blocks = chunk.GetChildBlocks();
 
 		for (auto& block : blocks)
 		{
@@ -191,6 +203,22 @@ void PlayState::CheckCollision()
 				{
 					playerObject.Collided();
 					playerObject.SetCollidedObjectTag(box.GetTag());
+				}
+			}
+		}
+
+		auto& items = chunk.GetChildItems();
+		for (auto& item : items)
+		{
+			auto& bounding = m_registry.get<Collider>(item);
+			auto& obj = m_registry.get<GameObject>(item);
+
+			if (obj.IsActive())
+			{
+				if (playerCollider.OnCollision(bounding))
+				{
+					auto& itemComponent = m_registry.get<Item>(item);
+					itemComponent.OnHitPlayer();
 				}
 			}
 		}

@@ -15,6 +15,8 @@ Background& Background::operator=(Background && back) noexcept
 	m_VertexShader = std::move(back.m_VertexShader);
 	m_inputLayout = std::move(back.m_inputLayout);
 	m_pDefaultCulling = back.m_pDefaultCulling;
+
+	return *this;
 }
 
 void Background::Initialize(GameContext& context)
@@ -37,6 +39,8 @@ void Background::Begin(GameContext& context)
 	deviceContext->RSGetState(&m_pDefaultCulling);
 	// <ƒJƒŠƒ“ƒOÝ’è>
 	deviceContext->RSSetState(state.CullNone());
+
+	deviceContext->PSSetShader(m_PixelShader.Get(), nullptr, 0);
 }
 
 void Background::End(GameContext& context)

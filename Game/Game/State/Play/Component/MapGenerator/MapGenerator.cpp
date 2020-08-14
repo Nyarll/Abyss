@@ -4,12 +4,13 @@
 #include "../../../../../Framework/Framework.h"
 
 #include "../Chunk/Chunk.h"
+#include "../Item/Item.h"
 
 const int MapGenerator::kMapSize = 64;
 
-const int MapGenerator::kRoomMinWidth = 5;
+const int MapGenerator::kRoomMinWidth = 8;
 const int MapGenerator::kRoomMaxWidth = 10;
-const int MapGenerator::kRoomMinHeight = 5;
+const int MapGenerator::kRoomMinHeight = 8;
 const int MapGenerator::kRoomMaxHeight = 10;
 const int MapGenerator::kRoomCountMin = 5;
 const int MapGenerator::kRoomCountMax = 10;
@@ -19,60 +20,11 @@ void MapGenerator::Initialize(GameContext& context, entt::DefaultRegistry* _pReg
 {
 	registry = _pRegistry;
 
-	const float chunk_scale = 16;
-	for (int i = 0; i < (kMapSize / chunk_scale); i++)
-	{
-		m_chunks.push_back(std::vector<Entity>());
-		for (int j = 0; j < (kMapSize / chunk_scale); j++)
-		{
-			auto entity = registry->create();
-			
-			registry->assign<Chunk>(entity, chunk_scale);
+	const float chunk_scale = 4;
 
-			float x = (chunk_scale / 2.f) + ((float)j * chunk_scale);
-			float z = (chunk_scale / 2.f) + ((float)i * chunk_scale);
-
-			auto& obj = registry->assign<GameObject>(entity, registry, entity);
-			obj.GetTransform()->localPosition = DirectX::SimpleMath::Vector3(x, 0, z);
-			obj.Activate();
-
-			auto& collider = registry->assign<Collider>(entity, ColliderType::Box, chunk_scale / 2);
-			collider.SetPosition(DirectX::SimpleMath::Vector3(x, 0, z));
-
-			m_chunks[i].push_back(entity);
-		}
-	}
-
-	for (int z = 0; z < kMapSize; z++)
-	{
-		m_mapEntitys.push_back(std::vector<Entity>());
-		for (int x = 0; x < kMapSize; x++)
-		{
-			auto entity = registry->create();
-			auto parent = m_chunks[z / chunk_scale][x / chunk_scale];
-
-			auto& obj = registry->assign<GameObject>(entity, registry, entity);
-			auto& parentPos = registry->get<GameObject>(parent).GetTransform()->localPosition;
-			obj.GetTransform()->localPosition = DirectX::SimpleMath::Vector3((float)x - parentPos.x, -1.f, (float)z - parentPos.z);
-			obj.SetParent(parent);
-			obj.Deactivate();
-			obj.DeactivateRendering();
-
-			obj.SetTag(GameObject::Tag::Floor);
-
-			auto& collider = registry->assign<Collider>(entity, ColliderType::Box, .5f);
-			collider.SetPosition(DirectX::SimpleMath::Vector3((float)x - .2f, -1.f, (float)z - .2f));
-
-			auto& renderer = registry->assign<PrimitiveRenderer>(entity);
-			renderer.SetModel(context.Get<PrimitiveModelList>().GetModel(PrimitiveModelList::ID::Cube));
-			renderer.SetModelOption(DirectX::Colors::White, false, context.Get<TextureManager>().GetTexture(TextureID::Floor));
-
-			auto& chunk = registry->get<Chunk>(parent);
-			chunk.RegisterChild(entity);
-
-			m_mapEntitys[z].push_back(entity);
-		}
-	}
+	InitializeChunks(context, chunk_scale);
+	InitializeFloors(context, chunk_scale);
+	InitializeItems(context, chunk_scale);
 }
 
 void MapGenerator::Generate()
@@ -100,6 +52,105 @@ void MapGenerator::Plain()
 std::vector<std::vector<int>>& MapGenerator::GetEntitySpawnMapData()
 {
 	return m_entitySpawnMapPointData;
+}
+
+void MapGenerator::InitializeChunks(GameContext & context, float scale)
+{
+	for (int i = 0; i < (kMapSize / scale); i++)
+	{
+		m_chunks.push_back(std::vector<Entity>());
+		for (int j = 0; j < (kMapSize / scale); j++)
+		{
+			auto entity = registry->create();
+
+			registry->assign<Chunk>(entity, scale);
+
+			float x = (scale / 2.f) + ((float)j * scale);
+			float z = (scale / 2.f) + ((float)i * scale);
+
+			auto& obj = registry->assign<GameObject>(entity, registry, entity);
+			obj.GetTransform()->localPosition = DirectX::SimpleMath::Vector3(x, 0, z);
+			obj.Activate();
+
+			auto& collider = registry->assign<Collider>(entity, ColliderType::Box, scale / 2);
+			collider.SetPosition(DirectX::SimpleMath::Vector3(x, 0, z));
+
+			m_chunks[i].push_back(entity);
+		}
+	}
+}
+
+void MapGenerator::InitializeFloors(GameContext & context, float scale)
+{
+	for (int z = 0; z < kMapSize; z++)
+	{
+		m_mapEntitys.push_back(std::vector<Entity>());
+		for (int x = 0; x < kMapSize; x++)
+		{
+			auto entity = registry->create();
+			auto parent = m_chunks[z / scale][x / scale];
+
+			auto& obj = registry->assign<GameObject>(entity, registry, entity);
+			auto& parentPos = registry->get<GameObject>(parent).GetTransform()->localPosition;
+			obj.GetTransform()->localPosition = DirectX::SimpleMath::Vector3((float)x - parentPos.x, -1.f, (float)z - parentPos.z);
+			obj.SetParent(parent);
+			obj.Deactivate();
+			obj.DeactivateRendering();
+
+			obj.SetTag(GameObject::Tag::Floor);
+
+			auto& collider = registry->assign<Collider>(entity, ColliderType::Box, .75f);
+			collider.SetPosition(DirectX::SimpleMath::Vector3((float)x - .2f, -1.f, (float)z - .2f));
+
+			auto& renderer = registry->assign<PrimitiveRenderer>(entity);
+			renderer.SetModel(context.Get<PrimitiveModelList>().GetModel(PrimitiveModelList::ID::Cube));
+			renderer.SetModelOption(DirectX::Colors::White, false, context.Get<TextureManager>().GetTexture(TextureID::Floor));
+
+			auto& chunk = registry->get<Chunk>(parent);
+			chunk.RegisterChildBlocks(entity);
+
+			m_mapEntitys[z].push_back(entity);
+		}
+	}
+}
+
+void MapGenerator::InitializeItems(GameContext & context, float scale)
+{
+	for (int z = 0; z < kMapSize; z++)
+	{
+		m_mapItems.push_back(std::vector<Entity>());
+		for (int x = 0; x < kMapSize; x++)
+		{
+			auto entity = registry->create();
+			auto parent = m_chunks[z / scale][x / scale];
+
+			auto& obj = registry->assign<GameObject>(entity, registry, entity);
+			auto& parentPos = registry->get<GameObject>(parent).GetPosition();
+			obj.SetPosition(DirectX::SimpleMath::Vector3((float)x - parentPos.x, 0.f, (float)z - parentPos.z));
+			obj.SetScale(DirectX::SimpleMath::Vector3(.25f, .25f, .25f));
+			obj.SetParent(parent);
+			obj.Deactivate();
+			obj.DeactivateRendering();
+
+			obj.SetTag(GameObject::Tag::Item);
+
+			auto& collider = registry->assign<Collider>(entity, ColliderType::Box, .5f);
+			collider.SetPosition(DirectX::SimpleMath::Vector3((float)x - .2f, 0.f, (float)z - .2f));
+
+			auto& renderer = registry->assign<PrimitiveRenderer>(entity);
+			renderer.SetModel(context.Get<PrimitiveModelList>().GetModel(PrimitiveModelList::ID::Octahedron));
+			renderer.SetModelOption(DirectX::Colors::YellowGreen, false);
+
+			auto& chunk = registry->get<Chunk>(parent);
+			chunk.RegisterChildItems(entity);
+
+			auto& item = registry->assign<Item>(entity);
+			item.SetEntity(entity);
+			item.SetRegistry(registry);
+
+			m_mapItems[z].push_back(entity);
+		}
+	}
 }
 
 void MapGenerator::CreateMapData()
@@ -252,6 +303,17 @@ void MapGenerator::MapDataClear()
 		}
 		m_activeMapEntitys.clear();
 	}
+
+	if (m_activeItems.size() > 0)
+	{
+		for (auto& entity : m_activeItems)
+		{
+			auto& obj = registry->get<GameObject>(entity);
+			obj.Deactivate();
+			obj.DeactivateRendering();
+		}
+		m_activeItems.clear();
+	}
 }
 
 void MapGenerator::MapDataFillNone()
@@ -276,10 +338,23 @@ void MapGenerator::ReflectMapDataToEntitys()
 		{
 			if (m_mapData[z][x] == (int)MapState::Floor)
 			{
-				auto entity = m_mapEntitys[z][x];
-				registry->get<GameObject>(entity).Activate();
-				registry->get<GameObject>(entity).ActivateRendering();
-				m_activeMapEntitys.push_back(entity);
+				{
+					auto entity = m_mapEntitys[z][x];
+					registry->get<GameObject>(entity).Activate();
+					registry->get<GameObject>(entity).ActivateRendering();
+					m_activeMapEntitys.push_back(entity);
+				}
+
+				if(m_mapItems.size() > 0)
+				{
+					//if (z % 2 == 0 && x % 2 == 0)
+					{
+						auto entity = m_mapItems[z][x];
+						registry->get<GameObject>(entity).Activate();
+						registry->get<GameObject>(entity).ActivateRendering();
+						m_activeItems.push_back(entity);
+					}
+				}
 			}
 		}
 	}

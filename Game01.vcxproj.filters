@@ -110,6 +110,15 @@
     <Filter Include="Game\Game\State\Play\Component\Enemy">
       <UniqueIdentifier>{98789845-9be3-4b92-937a-4521bace9899}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Game\Game\State\Play\Component\Background">
+      <UniqueIdentifier>{c9dbf7a1-ae2b-4a28-ab5a-3f3bece0fbae}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game\Resources\Shader">
+      <UniqueIdentifier>{d689a34d-6db3-4ea8-86dc-51b899168ecb}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game\Game\State\Play\Component\Item">
+      <UniqueIdentifier>{b269d749-bd33-424f-97f5-187d7d4b8a16}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="pch.h" />
@@ -242,6 +251,12 @@
     <ClInclude Include="Game\Game\State\Play\Component\Enemy\Enemy.h">
       <Filter>Game\Game\State\Play\Component\Enemy</Filter>
     </ClInclude>
+    <ClInclude Include="Game\Game\State\Play\Component\Background\Background.h">
+      <Filter>Game\Game\State\Play\Component\Background</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\Game\State\Play\Component\Item\Item.h">
+      <Filter>Game\Game\State\Play\Component\Item</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="pch.cpp" />
@@ -341,6 +356,12 @@
     <ClCompile Include="Game\Game\State\Play\Component\Enemy\Enemy.cpp">
       <Filter>Game\Game\State\Play\Component\Enemy</Filter>
     </ClCompile>
+    <ClCompile Include="Game\Game\State\Play\Component\Background\Background.cpp">
+      <Filter>Game\Game\State\Play\Component\Background</Filter>
+    </ClCompile>
+    <ClCompile Include="Game\Game\State\Play\Component\Item\Item.cpp">
+      <Filter>Game\Game\State\Play\Component\Item</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="resource.rc" />
@@ -354,5 +375,10 @@
     <Manifest Include="settings.manifest">
       <Filter>Assets</Filter>
     </Manifest>
+  </ItemGroup>
+  <ItemGroup>
+    <FxCompile Include="Resources\Shader\backgroundPS.hlsl">
+      <Filter>Game\Resources\Shader</Filter>
+    </FxCompile>
   </ItemGroup>
 </Project>

@@ -23,6 +23,8 @@ public:
 		Player,
 		Enemy,
 		Floor,
+		Item,
+		Background,
 	};
 
 private:

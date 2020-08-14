@@ -13,6 +13,7 @@
 class Background
 {
 private:
+
 	ID3D11RasterizerState* m_pDefaultCulling;
 	Microsoft::WRL::ComPtr<ID3D11PixelShader>	m_PixelShader;
 	Microsoft::WRL::ComPtr<ID3D11VertexShader>	m_VertexShader;

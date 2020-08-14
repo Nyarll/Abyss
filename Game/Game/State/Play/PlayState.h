@@ -35,6 +35,7 @@ private:
 	void CreateCamera();
 	void CreateGameEntitys(GameContext& context);
 
+	void CreateBackground(GameContext& context);
 	void CreateMapGenerator(GameContext& context);
 	void CreatePlayer(GameContext& context);
 	void CreateEnemy(GameContext& context);

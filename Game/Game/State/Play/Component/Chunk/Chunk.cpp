@@ -7,5 +7,5 @@ Chunk::Chunk(float size)
 
 float Chunk::GetSize()
 {
-	return 0.0f;
+	return m_size;
 }
