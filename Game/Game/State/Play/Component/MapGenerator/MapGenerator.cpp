@@ -24,7 +24,7 @@ void MapGenerator::Initialize(GameContext& context, entt::DefaultRegistry* _pReg
 
 	InitializeChunks(context, chunk_scale);
 	InitializeFloors(context, chunk_scale);
-	InitializeItems(context, chunk_scale);
+	//InitializeItems(context, chunk_scale);
 }
 
 void MapGenerator::Generate()

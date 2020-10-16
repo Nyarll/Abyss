@@ -45,6 +45,9 @@ private:
 
 	void CheckCollision();
 
+	void Player_CheckCollision();
+	void Enemy_CheckCollision();
+
 	// <デバッグ用>
 private:
 	bool isWireframe = true;

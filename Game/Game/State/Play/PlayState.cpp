@@ -135,7 +135,7 @@ void PlayState::CreateEnemy(GameContext& context)
 	obj.SetTag(GameObject::Tag::Enemy);
 
 	//m_registry.assign<Rigidbody>(entity, &m_registry, entity);
-	//m_registry.assign<Collider>(entity, ColliderType::Box, DirectX::SimpleMath::Vector3(.25f, .5f, .25f));
+	m_registry.assign<Collider>(entity, ColliderType::Box, DirectX::SimpleMath::Vector3(.25f, .5f, .25f));
 
 	auto& renderer = m_registry.assign<PrimitiveRenderer>(entity);
 	renderer.SetModel(context.Get<PrimitiveModelList>().GetModel(PrimitiveModelList::ID::Sphere));
@@ -164,6 +164,12 @@ void PlayState::RegisterTexture(GameContext& context)
 }
 
 void PlayState::CheckCollision()
+{
+	Player_CheckCollision();
+	Enemy_CheckCollision();
+}
+
+void PlayState::Player_CheckCollision()
 {
 	m_hitChunk.clear();
 
@@ -203,27 +209,85 @@ void PlayState::CheckCollision()
 				{
 					playerObject.Collided();
 					playerObject.SetCollidedObjectTag(box.GetTag());
+
+					m_registry.get<PrimitiveRenderer>(block).SetColor(DirectX::Colors::Aqua);
 				}
 			}
 		}
 
-		auto& items = chunk.GetChildItems();
+		/*auto& items = chunk.GetChildItems();
 		for (auto& item : items)
 		{
-			auto& bounding = m_registry.get<Collider>(item);
-			auto& obj = m_registry.get<GameObject>(item);
+		auto& bounding = m_registry.get<Collider>(item);
+		auto& obj = m_registry.get<GameObject>(item);
 
-			if (obj.IsActive())
+		if (obj.IsActive())
+		{
+		if (playerCollider.OnCollision(bounding))
+		{
+		auto& itemComponent = m_registry.get<Item>(item);
+		itemComponent.OnHitPlayer();
+		}
+		}
+		}*/
+	}
+}
+
+void PlayState::Enemy_CheckCollision()
+{
+	m_hitChunk.clear();
+
+	// <チャンクとEnemyで判定>
+	m_registry.view<Collider, GameObject, Enemy>().each([&](auto e, auto& pCollider, auto& obj, auto& enemy)
+	{
+		pCollider.SetPosition(obj.GetPosition());
+		m_registry.view<Collider, Chunk>().each([&](auto ce, auto& cCollider, auto& chunk)
+		{
+			if (pCollider.OnCollision(cCollider))
 			{
-				if (playerCollider.OnCollision(bounding))
+				m_hitChunk.push_back(ce);
+			}
+		});
+	});
+
+	if (m_hitChunk.size() == 0)
+		return;
+
+	auto& enemys = m_registry.view<Collider, GameObject, Enemy>();
+	
+	for (auto& entity : enemys)
+	{
+		auto& obj = enemys.get<GameObject>(entity);
+		obj.NotCollided();
+	}
+
+	// <Enemyと床ブロックの当たり判定>
+	for (auto& chunkEntity : m_hitChunk)
+	{
+		auto& chunk = m_registry.get<Chunk>(chunkEntity);
+		auto& blocks = chunk.GetChildBlocks();
+
+		for (auto& block : blocks)
+		{
+			auto& bounding = m_registry.get<Collider>(block);
+			auto& box = m_registry.get<GameObject>(block);
+
+			if (box.IsActive())
+			{
+				for (auto& enemy : enemys)
 				{
-					auto& itemComponent = m_registry.get<Item>(item);
-					itemComponent.OnHitPlayer();
+					if (enemys.get<Collider>(enemy).OnCollision(bounding))
+					{
+						auto& obj = enemys.get<GameObject>(enemy);
+						obj.Collided();
+						obj.SetCollidedObjectTag(box.GetTag());
+
+						m_registry.get<PrimitiveRenderer>(block).SetColor(DirectX::Colors::Red);
+					}
 				}
 			}
 		}
 	}
-
 }
 
 void PlayState::CreateDebugItems(GameContext& context)

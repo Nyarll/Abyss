@@ -27,7 +27,7 @@ void Enemy::DetermineSpawnPosition(Entity map_generator)
 		if (spawnData[z][x] == MapGenerator::MapState::Floor)
 		{
 			auto& obj = registry->get<GameObject>(m_enemy);
-			auto spawnPoint = DirectX::SimpleMath::Vector3(x, obj.GetPosition().y, z);
+			auto spawnPoint = DirectX::SimpleMath::Vector3(x, -0.2f, z);
 
 			obj.SetPosition(spawnPoint);
 			spawnData[z][x] = MapGenerator::MapState::EntityPlaced;
